@@ -1,0 +1,39 @@
+.list {
+	@extend .body-m;
+	&__item {
+		padding: 2rem;
+		display: grid;
+		grid-template-columns: 1fr max-content;
+		grid-template-areas:
+			'label checkbox'
+			'text text';
+	}
+	&__label {
+		cursor: pointer;
+	}
+	&__text {
+		font-weight: 300;
+		grid-area: text;
+		transition: max-height 1s;
+		max-height: 0;
+		overflow: hidden;
+	}
+	&__checkbox {
+		cursor: pointer;
+		appearance: none;
+		justify-self: end;
+		&::after {
+			content: url(../assets/icons/plus.svg);
+			display: block;
+			transition: transform 1s;
+		}
+		&:checked {
+			&::after {
+				transform: rotate(90deg + 45deg);
+			}
+			& + .list__text {
+				max-height: 30rem;
+			}
+		}
+	}
+}

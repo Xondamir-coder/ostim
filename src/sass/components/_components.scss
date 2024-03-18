@@ -1,0 +1,27 @@
+.button {
+	font-family: $font-lato;
+	padding: 1.6rem 5rem;
+	text-transform: uppercase;
+	font-size: 1.4rem;
+	font-weight: 500;
+	color: #fff;
+	letter-spacing: 2px;
+	transition: {
+		property: color, background-color, transform, box-shadow;
+		duration: 0.5s;
+	}
+	&:hover {
+		transform: translateY(-8px);
+	}
+	&:active {
+		transform: translateY(-3px);
+	}
+}
+.router__link {
+	color: currentColor;
+	text-decoration: none;
+
+	&--active {
+		color: $color-secondary !important;
+	}
+}

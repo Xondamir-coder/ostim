@@ -1,0 +1,19 @@
+// Colors
+$color-primary: #272727;
+$color-intermediate-primary: #564e4e;
+$color-secondary: #ae2316;
+$color-tertiary: #fadcd9;
+$color-blue: #72aec8;
+$footer-gradient: linear-gradient(300deg, #000, #4b4b4b);
+$about-gradient: linear-gradient(300deg, #fff, #faf5f2);
+
+// Font
+$font-jost: 'Jost', sans-serif;
+$font-lato: 'Lato', sans-serif;
+
+// Breakpoints
+$mobile: 400px; // 0px - 400px
+$tab-port: 735px; // 400px - 735px
+$tab-land: 1200px; // 900px - 1200px
+$desktop: 1440px; // 1200px - 1920px
+$large-desktop: 1920px; // 1920px+
