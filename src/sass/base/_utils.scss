@@ -1,3 +1,7 @@
 .fw-500 {
 	font-weight: 500;
 }
+.section--hidden {
+	opacity: 0;
+	transform: translateY(-10rem);
+}

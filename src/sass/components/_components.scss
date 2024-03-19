@@ -17,6 +17,22 @@
 		transform: translateY(-3px);
 	}
 }
+.primary-button {
+	background-color: $color-primary;
+	&:hover {
+		color: $color-primary;
+		background-color: rgba($color-primary, 0.2);
+		box-shadow: 0px 0px 15px 3px rgba($color-primary, 0.2);
+	}
+}
+.blue-button {
+	background-color: $color-blue;
+	&:hover {
+		color: $color-blue;
+		background-color: rgba($color-blue, 0.2);
+		box-shadow: 0px 0px 15px 3px rgba($color-blue, 0.2);
+	}
+}
 .router__link {
 	color: currentColor;
 	text-decoration: none;

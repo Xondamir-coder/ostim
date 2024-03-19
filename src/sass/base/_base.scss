@@ -16,6 +16,7 @@ body {
 	font-size: 1.6rem; // set to 16px
 	font-family: $font-lato;
 	color: $color-primary;
+	@extend .body-m;
 }
 button {
 	background-color: transparent;
@@ -24,4 +25,31 @@ button {
 }
 ul {
 	list-style: none;
+}
+main {
+	--page-margin-x: 15rem;
+	--page-margin-y: 3rem;
+
+	display: grid;
+	row-gap: 8rem;
+	@include media($tab-port) {
+		row-gap: 5rem;
+	}
+
+	& > * {
+		margin: var(--page-margin-y) var(--page-margin-x);
+		transition: {
+			property: opacity, transform;
+			duration: 1s;
+		}
+		@include media($large-desktop, min) {
+			--page-margin-x: 20rem;
+		}
+		@include media($tab-port) {
+			--page-margin-x: 5rem;
+		}
+		@include media($mobile) {
+			--page-margin-x: 2.5rem;
+		}
+	}
 }
