@@ -33,7 +33,7 @@
 						</svg>
 					</label>
 					<div class="header__menu">
-						<NavLinks class="header__list" :links="links" />
+						<NavLinks class="header__list" :links="links" @click="closeMenu" />
 					</div>
 				</div>
 			</nav>
@@ -45,6 +45,10 @@
 import NavLinks from '@/components/NavLinks.vue';
 import { RouterLink } from 'vue-router';
 
+const closeMenu = () => {
+	const checkbox = document.getElementById('menu');
+	checkbox.checked = !checkbox.checked;
+};
 const links = [
 	{
 		to: 'main',
@@ -115,6 +119,9 @@ const links = [
 		display: grid;
 		place-items: center;
 		grid-template-areas: 'area';
+		@include media($tab-port, min) {
+			display: none;
+		}
 	}
 	&__checkbox {
 		grid-area: area;
