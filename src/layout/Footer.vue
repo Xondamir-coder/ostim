@@ -107,42 +107,42 @@ import NavLinks from '@/components/NavLinks.vue';
 const main__links = [
 	{
 		to: 'main',
-		name: 'Asosiy',
+		name: 'Asosiy'
 	},
 	{
 		to: 'about',
-		name: 'Biz Haqimizda',
+		name: 'Biz Haqimizda'
 	},
 	{
 		to: 'catalog',
-		name: 'Katalog',
+		name: 'Katalog'
 	},
 	{
 		to: 'contact',
-		name: 'Aloqa',
-	},
+		name: 'Aloqa'
+	}
 ];
 const secondary__links = [
 	{
 		to: 'order',
-		name: 'track your order',
+		name: 'track your order'
 	},
 	{
 		to: 'policy',
-		name: 'return policies',
+		name: 'return policies'
 	},
 	{
 		to: 'delivery',
-		name: 'shipping + delivery',
+		name: 'shipping + delivery'
 	},
 	{
 		to: 'contact',
-		name: 'contact us',
+		name: 'contact us'
 	},
 	{
 		to: 'faq',
-		name: 'faqs',
-	},
+		name: 'faqs'
+	}
 ];
 </script>
 
@@ -151,12 +151,9 @@ const secondary__links = [
 .footer {
 	&__social {
 		flex-basis: 30%;
-		display: grid;
-		row-gap: 1rem;
+		@include grid-row-gap(1rem);
 		&-links {
-			display: flex;
-			align-items: center;
-			gap: 3rem;
+			@include flex(null, center, 3rem);
 		}
 		&-icon svg path {
 			transition: fill 0.5s;
@@ -166,22 +163,17 @@ const secondary__links = [
 		}
 	}
 	&__content {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
-		gap: 2rem;
+		@include flex-justify(space-between, 2rem, wrap);
 		@include media($tab-port) {
 			flex-direction: column;
 		}
 	}
 	&__list {
-		align-self: flex-end;
-		flex-direction: column;
-		gap: 1rem;
-		align-items: flex-start;
+		@include flex-align(flex-start, 1rem, null, column);
 		@include media($tab-port) {
 			align-self: auto;
 		}
+		align-self: flex-start;
 	}
 	&__faq h1 {
 		margin-bottom: 1rem;

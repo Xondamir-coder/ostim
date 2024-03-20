@@ -78,8 +78,8 @@ const infoData = {
 				'730 Glenstone Ave 65802, Springfield, US',
 				'+123 222 333 44',
 				'+123 666 777 88',
-				'logo@yourinfo.com',
-			],
+				'logo@yourinfo.com'
+			]
 		},
 		{
 			title: 'office',
@@ -87,10 +87,10 @@ const infoData = {
 				'730 Glenstone Ave 65802, Springfield, US',
 				'+123 222 333 44',
 				'+123 666 777 88',
-				'logo@yourinfo.com',
-			],
-		},
-	],
+				'logo@yourinfo.com'
+			]
+		}
+	]
 };
 const officeData = {
 	title: 'Bizning ofislarimiz',
@@ -102,8 +102,8 @@ const officeData = {
 				'730 Glenstone Ave 65802, Springfield, US',
 				'+123 222 333 44',
 				'+123 666 777 88',
-				'logo@yourinfo.com',
-			],
+				'logo@yourinfo.com'
+			]
 		},
 		{
 			title: 'Turkiya',
@@ -111,10 +111,10 @@ const officeData = {
 				'730 Glenstone Ave 65802, Springfield, US',
 				'+123 222 333 44',
 				'+123 666 777 88',
-				'logo@yourinfo.com',
-			],
-		},
-	],
+				'logo@yourinfo.com'
+			]
+		}
+	]
 };
 
 const submitData = reactive({
@@ -122,7 +122,7 @@ const submitData = reactive({
 	email: '',
 	tel: '',
 	subject: '',
-	message: '',
+	message: ''
 });
 
 const submitForm = () => {
@@ -137,32 +137,27 @@ onMounted(() => animateSections(Array.from(container.value.children)));
 @import '@/sass/abstracts/index';
 
 .info {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-	gap: 2rem;
+	@include grid-responsive-cols(300px, 2rem);
 	overflow: hidden;
-
 	&__contact {
 		animation: appear-right 1s;
-		display: grid;
-		row-gap: 3rem;
+		@include grid-row-gap(3rem);
 	}
 	&__form {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		column-gap: 2rem;
-		row-gap: 3rem;
+		$gaps: (
+			row: 3rem,
+			column: 2rem
+		);
+		@include grid-repeated-cols(2);
+		@include grid-gaps($gaps);
 		@include media($tab-port) {
 			grid-template-columns: 1fr;
 		}
 		input {
+			@include text(14px, 300, 2.2rem, 0.03em);
+			@include border(#d9d9d9);
 			grid-column: 1/-1;
-			font-size: 14px;
-			font-weight: 300;
-			line-height: 2.2rem;
-			letter-spacing: 0.03em;
 			padding: 1.5rem;
-			border: 1px solid #d9d9d9;
 			transition: border 0.3s;
 		}
 		button {
@@ -181,19 +176,14 @@ onMounted(() => animateSections(Array.from(container.value.children)));
 	}
 }
 .office {
-	display: grid;
-	grid-auto-flow: column;
-	grid-auto-columns: 1fr;
-	gap: 2rem;
+	@include grid-auto(column, 2rem);
 	@include media($tab-land) {
 		grid-auto-flow: row;
 	}
 	img {
-		width: 100%;
-		height: 100%;
+		@include cover-img();
+		@include rounded-border();
 		aspect-ratio: 3/2;
-		object-fit: cover;
-		border-radius: 1rem;
 	}
 }
 </style>

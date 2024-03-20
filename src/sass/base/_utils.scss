@@ -2,6 +2,6 @@
 	font-weight: 500;
 }
 .section--hidden {
-	opacity: 0;
+	@include hidden;
 	transform: translateY(-10rem);
 }

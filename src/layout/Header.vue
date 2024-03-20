@@ -15,8 +15,9 @@
 						class="nav__toggler"
 						type="checkbox"
 						@change="toggleMenu"
+						id="menu"
 						ref="menu_btn" />
-					<div class="nav__hamburger"><div></div></div>
+					<label for="menu" class="nav__hamburger"><div></div></label>
 					<div class="header__menu">
 						<NavLinks class="header__list" :links="links" @click="toggleCheckbox" />
 					</div>
@@ -44,20 +45,20 @@ const toggleCheckbox = () => {
 const links = [
 	{
 		to: 'main',
-		name: 'Asosiy',
+		name: 'Asosiy'
 	},
 	{
 		to: 'about',
-		name: 'Biz Haqimizda',
+		name: 'Biz Haqimizda'
 	},
 	{
 		to: 'catalog',
-		name: 'Katalog',
+		name: 'Katalog'
 	},
 	{
 		to: 'contact',
-		name: 'Aloqa',
-	},
+		name: 'Aloqa'
+	}
 ];
 </script>
 
@@ -66,50 +67,42 @@ const links = [
 
 .header {
 	&__container {
-		padding: 0.9rem 0;
-		max-width: 70%;
-		margin: 0 auto;
-		display: flex;
-		justify-content: space-between;
-		gap: 2rem;
+		@include flex-justify(space-between);
 		@include media($tab-port) {
 			max-width: 90%;
 		}
+		padding: 0.9rem 0;
+		max-width: 70%;
+		margin: 0 auto;
+		gap: 2rem;
 	}
 	&__menu {
+		@include grid-center;
+		@include hidden;
 		background-color: $color-intermediate-primary;
 		position: absolute;
 		z-index: 3;
 		inset: 0;
-		display: grid;
-		place-items: center;
 		height: 0;
-		opacity: 0;
-		visibility: hidden;
 		transition: {
 			property: visibility, opacity, height;
 			duration: 1s;
 		}
 	}
 	&__list {
-		display: grid;
-		row-gap: 2rem;
+		@include grid-row-gap(2rem);
 	}
 }
 .nav {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	width: 100%;
-	max-width: 60rem;
+	@include flex(space-between, center);
+	@include responsive-width(60rem);
 	@include media($tab-port) {
 		justify-content: flex-end;
 		gap: 1rem;
 	}
 	&__menu {
-		display: grid;
-		place-items: center;
-		grid-template-areas: 'area';
+		@include grid-center;
+		@include grid-area('area');
 		@include media($tab-port, min) {
 			display: none;
 		}
@@ -119,14 +112,12 @@ const links = [
 		appearance: none;
 		&:checked ~ .header__menu {
 			height: 100vh;
-			opacity: 1;
-			visibility: visible;
+			@include visible;
 		}
 	}
 	&__btn {
+		@include flex-align(center);
 		grid-area: area;
-		display: flex;
-		align-items: center;
 		z-index: 4;
 		svg path {
 			transition: fill 0.5s;
@@ -141,9 +132,7 @@ const links = [
 		}
 	}
 	&__lang {
-		display: flex;
-		align-items: center;
-		gap: 1rem;
+		@include flex-align(center, 1rem);
 		& > * {
 			cursor: pointer;
 		}
@@ -160,17 +149,14 @@ const links = [
 		}
 	}
 	&__toggler {
-		/* ALWAYS KEEPING THE TOGGLER OR THE CHECKBOX ON TOP OF EVERYTHING :  */
+		@include dimensions(50px);
+		@include hidden;
 		grid-area: area;
 		z-index: 5;
-		height: 50px;
-		width: 50px;
 		cursor: pointer;
-		opacity: 0;
 		&:checked + .nav__hamburger > div {
 			background: rgba(0, 0, 0, 0);
 		}
-
 		&:checked + .nav__hamburger > div::before {
 			top: 0;
 			transform: rotate(45deg);
@@ -183,20 +169,15 @@ const links = [
 		}
 		&:checked ~ .header__menu {
 			height: 100vh;
-			opacity: 1;
-			visibility: visible;
+			@include visible;
 		}
 	}
 	&__hamburger {
+		@include dimensions(40px);
+		@include flex-center;
 		z-index: 4;
 		grid-area: area;
-		height: 40px;
-		width: 40px;
 		padding: 0.6rem;
-
-		display: flex;
-		align-items: center;
-		justify-content: center;
 		& > div {
 			position: relative;
 			top: 0;
@@ -208,12 +189,9 @@ const links = [
 		}
 		& > div::before,
 		& > div::after {
-			content: '';
-			position: absolute;
-			top: -10px;
+			@include pseudo('', -10px);
+			@include dimensions(100%, 2px);
 			background-color: #000;
-			width: 100%;
-			height: 2px;
 			transition: all 0.4s ease;
 		}
 		& > div::after {

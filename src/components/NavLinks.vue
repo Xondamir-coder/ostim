@@ -13,7 +13,7 @@
 
 <script setup>
 const props = defineProps({
-	links: Array,
+	links: Array
 });
 </script>
 
@@ -22,26 +22,20 @@ const props = defineProps({
 
 .list {
 	text-align: center;
-	display: flex;
-	align-items: center;
+	@include flex-align(center);
 }
 .link {
-	color: $color-primary;
-	font-weight: 500;
-	font-size: 14px;
-	transition: color ease-out 300ms;
-	text-transform: uppercase;
-	letter-spacing: 0.1em;
 	position: relative;
+	color: $color-primary;
+	@include text(14px, 500, null, uppercase, 0.1em);
+	transition: color ease-out 300ms;
 	&:hover::before {
 		width: 100%;
 	}
 	&::before {
 		content: '';
-		position: absolute;
-		bottom: -5px;
-		width: 0;
-		height: 1px;
+		@include pseudo('', calc(100% + 2px));
+		@include dimensions(0, 1px);
 		background-color: red;
 		transition: width 0.5s;
 	}

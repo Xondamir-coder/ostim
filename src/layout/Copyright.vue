@@ -22,28 +22,21 @@
 <script setup></script>
 
 <style lang="scss" scoped>
+@import '@/sass/abstracts/index';
 .copyright {
 	margin: 0;
 	border-top: 1px solid #d0d0d0;
 	&__content {
 		margin: var(--page-margin-y) var(--page-margin-x);
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
+		@include flex-justify(space-between, null, wrap);
 	}
 	&__container {
-		width: 100%;
-		max-width: 55rem;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		flex-wrap: wrap;
+		@include responsive-width(55rem);
+		@include flex(space-between, center, null, wrap);
 	}
 	&__partners,
 	&__payment {
-		display: flex;
-		align-items: center;
-		gap: 1rem;
+		@include flex-align(center, 1rem);
 	}
 }
 </style>

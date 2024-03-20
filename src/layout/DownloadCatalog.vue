@@ -9,11 +9,10 @@
 <style lang="scss" scoped>
 @import '@/sass/abstracts/index';
 .download {
-	background: $color-primary;
-	color: #fff;
-	display: grid;
+	@include grid-row-gap(1.8rem);
 	justify-items: start;
-	row-gap: 1.8rem;
+	color: #fff;
+	background: $color-primary;
 	padding: 8rem 11rem;
 	@include media($tab-port) {
 		padding: 4rem;

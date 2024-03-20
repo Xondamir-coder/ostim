@@ -18,51 +18,37 @@
 	</div>
 </template>
 
-<script setup></script>
-
 <style lang="scss" scoped>
 @import '@/sass/abstracts/index';
 .error {
-	display: grid;
-	place-items: center;
-	height: 100vh;
-	width: 100vw;
+	@include grid-center;
+	@include full-viewport;
 	@include media($large-desktop, min) {
 		grid-auto-flow: column;
 	}
 	&__img {
-		object-fit: cover;
-		width: 902.74px;
-		height: 820.77px;
+		@include cover-img(902px, 820px);
 		@include media($large-desktop) {
 			display: none;
 		}
 	}
 }
 .container {
-	width: 100%;
-	max-width: 44rem;
-	display: grid;
-	row-gap: 40px;
+	@include grid-row-gap(40px);
+	@include responsive-width(44rem);
 	justify-items: center;
 	a {
 		color: #fff;
 	}
 }
 .content {
-	display: grid;
-	row-gap: 20px;
+	@include grid-row-gap(20px);
 	&__heading {
+		@include text(24px, 600, 28px, none);
 		justify-self: center;
-		text-transform: none;
-		font-size: 24px;
-		font-weight: 600;
-		line-height: 28px;
 	}
 	&__text {
-		font-size: 20px;
-		font-weight: 600;
-		line-height: 23.44px;
+		@include text(20px, 600, _, 23.44px);
 	}
 	&__img {
 		justify-self: center;
@@ -73,9 +59,7 @@
 		list-style: initial;
 		@extend .content;
 		li {
-			font-size: 12px;
-			font-weight: 400;
-			line-height: 14.06px;
+			@include text(12px, 400, 14px);
 		}
 	}
 }

@@ -39,14 +39,10 @@ ul {
 main {
 	--page-margin-x: 15rem;
 	--page-margin-y: 3rem;
-	display: grid;
-	row-gap: 8rem;
+	@include grid-row-gap(8rem);
 	& > * {
 		margin: var(--page-margin-y) var(--page-margin-x);
-		transition: {
-			property: opacity, transform;
-			duration: 1s;
-		}
+		@include transition-appear-transform(1s);
 		@include media($large-desktop, min) {
 			--page-margin-x: 20rem;
 		}

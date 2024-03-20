@@ -1,5 +1,149 @@
+// Media
 @mixin media($breakpoint, $min-max: max) {
 	@media only screen and (#{$min-max}-width: $breakpoint) {
 		@content;
 	}
+}
+
+// Grid
+@mixin grid-responsive-cols($min-width, $gap: 0, $num: auto-fit) {
+	display: grid;
+	grid-template-columns: repeat($num, minmax($min-width, 1fr));
+	gap: $gap;
+}
+@mixin grid-repeated-cols($num, $gap: 0, $width: 1fr) {
+	display: grid;
+	grid-template-columns: repeat($num, $width);
+	gap: $gap;
+}
+@mixin grid-auto($name: column, $gap: 0, $width: 1fr) {
+	display: grid;
+	grid-auto-flow: $name;
+	grid-auto-#{$name}s: $width;
+	gap: $gap;
+}
+@mixin grid-center {
+	display: grid;
+	place-items: center;
+}
+@mixin grid-area($area) {
+	display: grid;
+	grid-template-areas: $area;
+}
+@mixin grid-row-gap($gap) {
+	display: grid;
+	row-gap: $gap;
+}
+@mixin grid-col-gap($gap) {
+	display: grid;
+	column-gap: $gap;
+}
+@mixin grid-gaps($gaps) {
+	display: grid;
+	@each $name, $gap in $gaps {
+		#{$name}-gap: $gap;
+	}
+}
+
+// Flex
+@mixin flex($justify: flex-start, $align: stretch, $gap: 0, $wrap: nowrap, $direction: row) {
+	display: flex;
+	justify-content: $justify;
+	align-items: $align;
+	flex-wrap: $wrap;
+	gap: $gap;
+	flex-direction: $direction;
+}
+@mixin flex-justify($justify, $gap: 0, $wrap: nowrap, $direction: row) {
+	display: flex;
+	justify-content: $justify;
+	flex-wrap: $wrap;
+	gap: $gap;
+	flex-direction: $direction;
+}
+@mixin flex-align($align, $gap: 0, $wrap: nowrap, $direction: row) {
+	display: flex;
+	align-items: $align;
+	flex-wrap: $wrap;
+	gap: $gap;
+	flex-direction: $direction;
+}
+@mixin flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+// Img
+@mixin cover-img($width: 100%, $height: 100%, $position: initial) {
+	@include dimensions($width, $height);
+	object-fit: cover;
+	object-position: $position;
+}
+
+// Miscellaneous
+@mixin responsive-width($max-width, $width: 100%) {
+	max-width: $max-width;
+	width: $width;
+}
+@mixin pseudo($content, $top: 0, $left: 0, $x: 0, $y: 0) {
+	content: $content;
+	@include position-absolute($top, $left, $x, $y);
+}
+@mixin position-absolute($top: 0, $left: 0, $x: 0, $y: 0) {
+	position: absolute;
+	top: $top;
+	left: $left;
+	transform: translate($x, $y);
+}
+@mixin rounded-border {
+	border-radius: 10px;
+}
+@mixin full-viewport {
+	width: 100vw;
+	height: 100vh;
+}
+@mixin dimensions($width, $height: 0) {
+	width: $width;
+	height: $height;
+	@if $height == 0 {
+		height: $width;
+	}
+}
+@mixin underline($offset: 5px, $thickness: 1px) {
+	text-decoration: underline;
+	text-decoration-thickness: $thickness;
+	text-underline-offset: $offset;
+}
+@mixin hidden {
+	visibility: hidden;
+	opacity: 0;
+}
+@mixin visible {
+	visibility: visible;
+	opacity: 1;
+}
+@mixin transition-appear-transform($duration: 0.5s) {
+	transition: {
+		property: opacity, visibility, transform;
+		duration: $duration;
+	}
+}
+@mixin transition-appear($duration: 0.5s) {
+	transition: {
+		property: opacity, visibility;
+		duration: $duration;
+	}
+}
+@mixin border($color) {
+	border: 1px solid $color;
+}
+
+// Text
+@mixin text($size, $weight, $line-height: initial, $transform: initial, $spacing: initial) {
+	font-size: $size;
+	font-weight: $weight;
+	line-height: $line-height;
+	text-transform: $transform;
+	letter-spacing: $spacing;
 }

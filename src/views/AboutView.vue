@@ -108,52 +108,45 @@ const features = [
 	{
 		title: 'Qulay joylashuv',
 		text: 'Consectetur adipi elit lorem ipsum dolor sit amet.',
-		img: korzinka,
+		img: korzinka
 	},
 	{
 		title: 'Sifat kafolati',
 		text: 'Consectetur adipi elit lorem ipsum dolor sit amet.',
-		img: quality,
+		img: quality
 	},
 	{
 		title: 'Yangi zonalar',
 		text: 'Consectetur adipi elit lorem ipsum dolor sit amet.',
-		img: new_zone,
+		img: new_zone
 	},
 	{
 		title: "100% xavfsiz to'lov",
 		text: 'Consectetur adipi elit lorem ipsum dolor sit amet.',
-		img: safe,
-	},
+		img: safe
+	}
 ];
 
 onMounted(() => animateSections(Array.from(container.value.children)));
 </script>
 
 <style lang="scss" scoped>
-@import '../sass/abstracts/index';
+@import '@/sass/abstracts/index';
 
 .features {
 	&__list {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-		gap: 2rem;
+		@include grid-responsive-cols(250px, 2rem);
 	}
 	&__item {
-		display: grid;
-		column-gap: 1.4rem;
+		@include grid-area('icon title' 'icon text');
+		@include hidden;
 		grid-template-columns: 3rem;
-		grid-template-areas:
-			'icon title'
-			'icon text';
-		opacity: 0;
+		column-gap: 1.4rem;
 		&-icon {
 			grid-area: icon;
-			width: 2.5rem;
-			height: 2.5rem;
+			@include dimensions(2.5rem);
 			img {
-				width: 100%;
-				height: 100%;
+				@include dimensions(100%);
 			}
 		}
 	}
@@ -165,41 +158,29 @@ onMounted(() => animateSections(Array.from(container.value.children)));
 }
 
 .us {
-	display: grid;
-	grid-auto-flow: column;
-	grid-auto-columns: 1fr;
-	gap: 7rem;
+	@include grid-auto(column, 7rem);
 	@include media($tab-land) {
 		grid-auto-flow: row;
 	}
 	&__content {
-		display: grid;
+		@include grid-row-gap(3rem);
 		justify-items: start;
-		row-gap: 3rem;
 	}
 	&__video {
-		border-radius: 1rem;
-		object-fit: cover;
-		width: 100%;
-		height: 100%;
+		@include cover-img();
+		@include rounded-border();
 	}
 }
 
 .feedback {
-	position: relative;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding-top: 5rem;
+	@include flex(space-between, center);
 	@include media($tab-port) {
 		gap: 1rem;
 	}
+	position: relative;
+	padding-top: 5rem;
 	&::before {
-		content: url(../assets/icons/quotes.svg);
-		position: absolute;
-		top: -35px;
-		left: 50%;
-		transform: translateX(-50%);
+		@include pseudo(url(../assets/icons/quotes.svg), -35px, 50%, -50%);
 	}
 	&__btn {
 		svg path {
@@ -210,19 +191,15 @@ onMounted(() => animateSections(Array.from(container.value.children)));
 		}
 	}
 	&__content {
-		text-align: center;
-		flex-basis: 80%;
-		display: grid;
-		row-gap: 3rem;
+		@include grid-row-gap(3rem);
 		@include media($tab-port) {
 			flex-basis: 100%;
 		}
+		text-align: center;
+		flex-basis: 80%;
 		&-author {
-			text-transform: uppercase;
-			font-weight: 500;
-			letter-spacing: 0.1em;
-			display: grid;
-			row-gap: 1rem;
+			@include grid-row-gap(1rem);
+			@include text(_, 500, _, uppercase, 0.1em);
 		}
 	}
 }

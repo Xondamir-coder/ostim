@@ -19,20 +19,17 @@
 @import '@/sass/abstracts/index';
 
 .hero {
+	@include grid-center;
 	margin: 0;
 	background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
 		url(../assets/about-hero.jpg);
 	background-position: center;
 	background-size: cover;
 	height: calc(100dvh - 7.7rem);
-	display: grid;
-	place-items: center;
 	&__content {
-		width: 100%;
-		max-width: 80rem;
+		@include responsive-width(80rem);
+		@include grid-row-gap(2rem);
 		color: #fff;
-		display: grid;
-		row-gap: 2rem;
 		justify-items: center;
 		text-align: center;
 		button {
@@ -43,11 +40,8 @@
 		}
 	}
 	&__heading {
+		@include text(7.2rem, 600, 8rem, none);
 		animation: slide-left 1s ease-out;
-		text-transform: none;
-		font-size: 7.2rem;
-		font-weight: 600;
-		line-height: 8rem;
 	}
 }
 </style>

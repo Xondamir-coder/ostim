@@ -33,6 +33,7 @@ const name = computed(() => (route.name === 'about' ? 'Biz Haqimizda' : 'Aloqa')
 @import '@/sass/abstracts/index';
 
 .hero {
+	@include grid-center;
 	margin: 0 !important;
 	background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
 		url(../assets/about-hero.jpg);
@@ -40,8 +41,6 @@ const name = computed(() => (route.name === 'about' ? 'Biz Haqimizda' : 'Aloqa')
 	background-size: cover;
 	height: 30rem;
 	color: #fff;
-	display: grid;
-	place-items: center;
 	text-align: center;
 	font-weight: 300;
 	animation: appear 1s ease-out;
@@ -51,9 +50,7 @@ const name = computed(() => (route.name === 'about' ? 'Biz Haqimizda' : 'Aloqa')
 	&__link {
 		&:last-child {
 			color: $color-secondary;
-			text-decoration: underline;
-			text-decoration-thickness: 1px;
-			text-underline-offset: 5px;
+			@include underline();
 		}
 	}
 	&__text {

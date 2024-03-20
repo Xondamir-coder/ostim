@@ -19,61 +19,51 @@
 </template>
 
 <style lang="scss" scoped>
+@import '@/sass/abstracts/index';
 .instagram {
 	text-align: center;
-	display: grid;
-	row-gap: 2.5rem;
+	@include grid-row-gap(2.5rem);
 	&__list {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-		gap: 2rem;
+		@include grid-responsive-cols(200px, 2rem);
 	}
 	&__item {
 		a {
-			display: grid;
-			place-items: center;
-			grid-template-areas: 'area';
+			@include grid-center;
+			@include grid-area('area');
 			&:hover {
 				&::before {
-					opacity: 1;
+					@include visible;
 				}
 				& .instagram__icon {
-					opacity: 1;
+					@include visible;
 					transform: translateY(0);
 				}
 			}
 			&::before {
+				@include hidden;
+				@include transition-appear;
+				@include dimensions(100%);
+				@include rounded-border;
 				content: '';
 				position: relative;
 				z-index: 1;
 				grid-area: area;
-				width: 100%;
-				height: 100%;
 				background-color: rgba(0, 0, 0, 0.4);
-				opacity: 0;
-				transition: opacity 0.5s;
-				border-radius: 1rem;
 			}
 		}
 	}
 	&__banner {
-		border-radius: 1rem;
+		@include rounded-border;
+		@include cover-img(100%, 100%, center);
 		grid-area: area;
-		width: 100%;
-		height: 100%;
 		aspect-ratio: 2/2;
-		object-fit: cover;
-		object-position: center;
 	}
 	&__icon {
+		@include hidden;
+		@include transition-appear-transform;
 		grid-area: area;
 		z-index: 2;
-		opacity: 0;
 		transform: translateY(1rem);
-		transition: {
-			property: opacity, transform;
-			duration: 0.5s;
-		}
 	}
 }
 </style>

@@ -13,7 +13,7 @@
 
 <script setup>
 const props = defineProps({
-	data: Object,
+	data: Object
 });
 </script>
 
@@ -21,35 +21,29 @@ const props = defineProps({
 @import '@/sass/abstracts/index';
 
 .info__content {
-	animation: appear-left 1s;
-	display: grid;
-	row-gap: 3rem;
-	column-gap: 2rem;
-	grid-auto-rows: max-content;
-	grid-template-areas:
-		'head head'
-		'office management';
+	$gaps: (
+		row: 3rem,
+		column: 2rem
+	);
+	@include grid-area('head head' 'office management');
+	@include grid-gaps($gaps);
 	@include media($tab-port) {
-		grid-template-areas:
-			'head'
-			'office'
-			'management';
+		@include grid-area('head' 'office' 'management');
 	}
+	animation: appear-left 1s;
+	grid-auto-rows: max-content;
 	&-head {
 		grid-area: head;
 	}
 	& > *:not(.info__content-head) {
-		display: grid;
-		row-gap: 0.5rem;
+		@include grid-row-gap(0.5rem);
 		p {
 			font-weight: 400;
 		}
 	}
 
 	h2 {
-		text-decoration: underline;
-		text-decoration-thickness: 1px;
-		text-underline-offset: 2px;
+		@include underline(2px);
 		margin-bottom: 1rem;
 	}
 }
