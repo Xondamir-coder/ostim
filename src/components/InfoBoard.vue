@@ -18,7 +18,7 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
-@import '@/sass/abstracts/variables', '@/sass/abstracts/mixins';
+@import '@/sass/abstracts/index';
 
 .info__content {
 	animation: appear-left 1s;

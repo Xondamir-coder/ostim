@@ -42,7 +42,7 @@
 						name="message"
 						id="message"
 						placeholder="Write your message here *" />
-					<button type="submit" class="button primary-button">submit</button>
+					<button type="submit" class="primary-button">submit</button>
 				</form>
 			</div>
 		</section>
@@ -134,11 +134,11 @@ onMounted(() => animateSections(Array.from(container.value.children)));
 </script>
 
 <style lang="scss" scoped>
-@import '@/sass/abstracts/variables', '@/sass/abstracts/mixins';
+@import '@/sass/abstracts/index';
 
 .info {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	gap: 2rem;
 	overflow: hidden;
 
@@ -157,7 +157,7 @@ onMounted(() => animateSections(Array.from(container.value.children)));
 		}
 		input {
 			grid-column: 1/-1;
-			font-size: 1.4rem;
+			font-size: 14px;
 			font-weight: 300;
 			line-height: 2.2rem;
 			letter-spacing: 0.03em;

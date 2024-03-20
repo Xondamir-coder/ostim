@@ -30,7 +30,7 @@ const name = computed(() => (route.name === 'about' ? 'Biz Haqimizda' : 'Aloqa')
 </script>
 
 <style lang="scss" scoped>
-@import '@/sass/abstracts/mixins', '@/sass/abstracts/variables';
+@import '@/sass/abstracts/index';
 
 .hero {
 	margin: 0 !important;
@@ -46,9 +46,6 @@ const name = computed(() => (route.name === 'about' ? 'Biz Haqimizda' : 'Aloqa')
 	font-weight: 300;
 	animation: appear 1s ease-out;
 	&__heading {
-		@include media($tab-port) {
-			font-size: 10vw;
-		}
 		animation: slide-left 1s ease-out;
 	}
 	&__link {

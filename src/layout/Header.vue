@@ -1,5 +1,5 @@
 <template>
-	<header class="header">
+	<header class="header" v-if="route.name != 'error'">
 		<div class="header__container">
 			<RouterLink to="/">
 				<img src="../assets/logo.svg" alt="logo" />
@@ -11,29 +11,14 @@
 					<input class="nav__lang-checkbox" type="checkbox" name="lang" id="lang" />
 				</div>
 				<div class="nav__menu">
-					<input class="nav__checkbox" type="checkbox" name="menu" id="menu" />
-					<label for="menu" class="nav__btn">
-						<svg
-							width="30px"
-							height="30px"
-							viewBox="0 0 20 20"
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none">
-							<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-							<g
-								id="SVGRepo_tracerCarrier"
-								stroke-linecap="round"
-								stroke-linejoin="round"></g>
-							<g id="SVGRepo_iconCarrier">
-								<path
-									fill="#000000"
-									fill-rule="evenodd"
-									d="M18 5a1 1 0 100-2H2a1 1 0 000 2h16zm0 4a1 1 0 100-2h-8a1 1 0 100 2h8zm1 3a1 1 0 01-1 1H2a1 1 0 110-2h16a1 1 0 011 1zm-1 5a1 1 0 100-2h-8a1 1 0 100 2h8z"></path>
-							</g>
-						</svg>
-					</label>
+					<input
+						class="nav__toggler"
+						type="checkbox"
+						@change="toggleMenu"
+						ref="menu_btn" />
+					<div class="nav__hamburger"><div></div></div>
 					<div class="header__menu">
-						<NavLinks class="header__list" :links="links" @click="closeMenu" />
+						<NavLinks class="header__list" :links="links" @click="toggleCheckbox" />
 					</div>
 				</div>
 			</nav>
@@ -43,12 +28,19 @@
 
 <script setup>
 import NavLinks from '@/components/NavLinks.vue';
-import { RouterLink } from 'vue-router';
+import { ref } from 'vue';
+import { RouterLink, useRoute } from 'vue-router';
 
-const closeMenu = () => {
-	const checkbox = document.getElementById('menu');
-	checkbox.checked = !checkbox.checked;
+const route = useRoute();
+const bodyStyle = document.body.style;
+const menu_btn = ref();
+const toggleMenu = () =>
+	(bodyStyle.overflow = bodyStyle.overflow === 'hidden' ? 'visible' : 'hidden');
+const toggleCheckbox = () => {
+	menu_btn.value.checked = !menu_btn.value.checked;
+	toggleMenu();
 };
+
 const links = [
 	{
 		to: 'main',
@@ -70,8 +62,7 @@ const links = [
 </script>
 
 <style lang="scss" scoped>
-@import '../sass/abstracts/mixins';
-@import '../sass/abstracts/variables';
+@import '../sass/abstracts/index';
 
 .header {
 	&__container {
@@ -166,6 +157,67 @@ const links = [
 				display: block;
 				transition: transform 0.3s;
 			}
+		}
+	}
+	&__toggler {
+		/* ALWAYS KEEPING THE TOGGLER OR THE CHECKBOX ON TOP OF EVERYTHING :  */
+		grid-area: area;
+		z-index: 5;
+		height: 50px;
+		width: 50px;
+		cursor: pointer;
+		opacity: 0;
+		&:checked + .nav__hamburger > div {
+			background: rgba(0, 0, 0, 0);
+		}
+
+		&:checked + .nav__hamburger > div::before {
+			top: 0;
+			transform: rotate(45deg);
+			background-color: #fff;
+		}
+		&:checked + .nav__hamburger > div::after {
+			top: 0;
+			transform: rotate(135deg);
+			background-color: #fff;
+		}
+		&:checked ~ .header__menu {
+			height: 100vh;
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+	&__hamburger {
+		z-index: 4;
+		grid-area: area;
+		height: 40px;
+		width: 40px;
+		padding: 0.6rem;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		& > div {
+			position: relative;
+			top: 0;
+			left: 0;
+			background-color: #000;
+			height: 2px;
+			width: 60%;
+			transition: all 0.4s ease;
+		}
+		& > div::before,
+		& > div::after {
+			content: '';
+			position: absolute;
+			top: -10px;
+			background-color: #000;
+			width: 100%;
+			height: 2px;
+			transition: all 0.4s ease;
+		}
+		& > div::after {
+			top: 10px;
 		}
 	}
 }

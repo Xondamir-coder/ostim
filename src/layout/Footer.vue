@@ -147,7 +147,7 @@ const secondary__links = [
 </script>
 
 <style lang="scss" scoped>
-@import '@/sass/abstracts/mixins', '@/sass/abstracts/variables';
+@import '@/sass/abstracts/index';
 .footer {
 	&__social {
 		flex-basis: 30%;

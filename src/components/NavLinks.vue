@@ -18,8 +18,7 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
-@import '../sass/abstracts/mixins';
-@import '../sass/abstracts/variables';
+@import '../sass/abstracts/index';
 
 .list {
 	text-align: center;
@@ -29,7 +28,7 @@ const props = defineProps({
 .link {
 	color: $color-primary;
 	font-weight: 500;
-	font-size: 1.4rem;
+	font-size: 14px;
 	transition: color ease-out 300ms;
 	text-transform: uppercase;
 	letter-spacing: 0.1em;

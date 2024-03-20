@@ -4,6 +4,7 @@ import AboutView from '../views/AboutView.vue';
 import ContactView from '../views/ContactView.vue';
 import CatalogView from '../views/CatalogView.vue';
 import MainView from '../views/MainView.vue';
+import ErrorView from '../views/ErrorView.vue';
 
 const router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +33,11 @@ const router = createRouter({
 			path: '/catalog',
 			component: CatalogView,
 			name: 'catalog',
+		},
+		{
+			path: '/:pathMatch(.*)*',
+			component: ErrorView,
+			name: 'error',
 		},
 	],
 });

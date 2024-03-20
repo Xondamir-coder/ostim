@@ -7,7 +7,7 @@ export const animateSections = sections => {
 			}
 		});
 	};
-	const observer = new IntersectionObserver(observeSections, { threshold: 0.5 });
+	const observer = new IntersectionObserver(observeSections, { threshold: 0.3 });
 	sections.forEach(section => {
 		section.classList.add('section--hidden');
 		observer.observe(section);

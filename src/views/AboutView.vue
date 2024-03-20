@@ -28,7 +28,7 @@
 					libero etiam et in ac at quis. Risus augue curabitur diam senectus congue velit
 					et.
 				</p>
-				<button type="button" class="button primary-button">Batafsil</button>
+				<button type="button" class="primary-button">Batafsil</button>
 			</div>
 		</section>
 		<section class="feedback">
@@ -131,13 +131,12 @@ onMounted(() => animateSections(Array.from(container.value.children)));
 </script>
 
 <style lang="scss" scoped>
-@import '../sass/abstracts/mixins';
-@import '../sass/abstracts/variables';
+@import '../sass/abstracts/index';
 
 .features {
 	&__list {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 		gap: 2rem;
 	}
 	&__item {
@@ -150,6 +149,12 @@ onMounted(() => animateSections(Array.from(container.value.children)));
 		opacity: 0;
 		&-icon {
 			grid-area: icon;
+			width: 2.5rem;
+			height: 2.5rem;
+			img {
+				width: 100%;
+				height: 100%;
+			}
 		}
 	}
 	@for $i from 1 through 4 {
@@ -162,6 +167,7 @@ onMounted(() => animateSections(Array.from(container.value.children)));
 .us {
 	display: grid;
 	grid-auto-flow: column;
+	grid-auto-columns: 1fr;
 	gap: 7rem;
 	@include media($tab-land) {
 		grid-auto-flow: row;
@@ -173,6 +179,7 @@ onMounted(() => animateSections(Array.from(container.value.children)));
 	}
 	&__video {
 		border-radius: 1rem;
+		object-fit: cover;
 		width: 100%;
 		height: 100%;
 	}
@@ -182,15 +189,15 @@ onMounted(() => animateSections(Array.from(container.value.children)));
 	position: relative;
 	display: flex;
 	align-items: center;
-	padding-top: 7rem;
 	justify-content: space-between;
+	padding-top: 5rem;
 	@include media($tab-port) {
 		gap: 1rem;
 	}
 	&::before {
 		content: url(../assets/icons/quotes.svg);
 		position: absolute;
-		top: 0;
+		top: -35px;
 		left: 50%;
 		transform: translateX(-50%);
 	}
