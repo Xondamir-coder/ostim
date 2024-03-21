@@ -1,79 +1,65 @@
 @keyframes appear {
 	from {
-		@include hidden;
-		transform: translateY(-10rem);
+		@include hidden(0, -10rem);
 	}
 	to {
 		@include visible;
-		transform: translateY(0);
 	}
 }
 @keyframes appear-bottom {
 	from {
-		@include hidden;
-		transform: translateY(3rem);
+		@include hidden(0, 3rem);
 	}
 	to {
 		@include visible;
-		transform: translateY(0);
 	}
 }
 @keyframes appear-left {
 	from {
-		@include hidden;
-		transform: translateX(-70%);
+		@include hidden(-70%);
 	}
 	to {
 		@include visible;
-		transform: translateX(0);
 	}
 }
 @keyframes appear-right {
 	from {
-		@include hidden;
-		transform: translateX(70%);
+		@include hidden(70%);
 	}
 	to {
 		@include visible;
-		transform: translateX(0);
 	}
 }
 @keyframes slide-left {
 	0% {
-		@include hidden;
-		transform: translateX(-10rem);
+		@include hidden(-10rem);
 	}
 	80% {
 		transform: translateX(3rem);
 	}
 	100% {
 		@include visible;
-		transform: translate(0);
 	}
 }
 @keyframes slide-right {
 	0% {
-		@include hidden;
-		transform: translateX(10rem);
+		@include hidden(10rem);
 	}
 	80% {
 		transform: translateX(-1rem);
 	}
 	100% {
 		@include visible;
-		transform: translate(0);
 	}
 }
 @keyframes slide-bottom {
 	0% {
-		@include hidden;
-		transform: translateY(3rem);
+		@include hidden(0, 3rem);
 	}
 	80% {
 		transform: translateY(-0.5rem);
 	}
 	100% {
 		@include visible;
-		transform: translate(0);
 	}
 }

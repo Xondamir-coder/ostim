@@ -85,7 +85,7 @@ const links = [
 		inset: 0;
 		height: 0;
 		transition: {
-			property: visibility, opacity, height;
+			property: opacity, height;
 			duration: 1s;
 		}
 	}

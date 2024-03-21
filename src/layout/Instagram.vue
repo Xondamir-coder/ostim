@@ -31,20 +31,17 @@
 			@include grid-center;
 			@include grid-area('area');
 			&:hover {
-				&::before {
-					@include visible;
-				}
+				&::before,
 				& .instagram__icon {
 					@include visible;
-					transform: translateY(0);
 				}
 			}
 			&::before {
 				@include hidden;
-				@include transition-appear;
-				@include dimensions(100%);
 				@include rounded-border;
+				@include dimensions(100%);
 				content: '';
+				transition: opacity 0.5s;
 				position: relative;
 				z-index: 1;
 				grid-area: area;
@@ -59,11 +56,10 @@
 		aspect-ratio: 2/2;
 	}
 	&__icon {
-		@include hidden;
+		@include hidden(0, 1rem);
 		@include transition-appear-transform;
 		grid-area: area;
 		z-index: 2;
-		transform: translateY(1rem);
 	}
 }
 </style>

@@ -163,7 +163,7 @@ const secondary__links = [
 		}
 	}
 	&__content {
-		@include flex-justify(space-between, 2rem, wrap);
+		@include flex-justify(space-between, 20px, wrap);
 		@include media($tab-port) {
 			flex-direction: column;
 		}

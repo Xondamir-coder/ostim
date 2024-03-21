@@ -115,23 +115,17 @@
 	text-decoration-thickness: $thickness;
 	text-underline-offset: $offset;
 }
-@mixin hidden {
-	visibility: hidden;
+@mixin hidden($x: 0, $y: 0) {
 	opacity: 0;
+	transform: translate($x, $y);
 }
 @mixin visible {
-	visibility: visible;
 	opacity: 1;
+	transform: translate(0, 0);
 }
 @mixin transition-appear-transform($duration: 0.5s) {
 	transition: {
-		property: opacity, visibility, transform;
-		duration: $duration;
-	}
-}
-@mixin transition-appear($duration: 0.5s) {
-	transition: {
-		property: opacity, visibility;
+		property: opacity, transform;
 		duration: $duration;
 	}
 }

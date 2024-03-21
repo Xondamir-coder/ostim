@@ -165,10 +165,12 @@ onMounted(() => animateSections(Array.from(container.value.children)));
 	&__content {
 		@include grid-row-gap(3rem);
 		justify-items: start;
+		align-content: center;
 	}
 	&__video {
 		@include cover-img();
 		@include rounded-border();
+		aspect-ratio: 3/2;
 	}
 }
 
