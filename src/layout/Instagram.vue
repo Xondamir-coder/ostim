@@ -6,7 +6,7 @@
 				<a href="#">
 					<img
 						class="instagram__banner"
-						src="../assets/about-insta.jpg"
+						src="../assets/about-insta.avif"
 						alt="some photo" />
 					<img
 						class="instagram__icon"
@@ -51,7 +51,7 @@
 	}
 	&__banner {
 		@include rounded-border;
-		@include cover-img(100%, 100%, center);
+		@include cover-img;
 		grid-area: area;
 		aspect-ratio: 2/2;
 	}

@@ -22,7 +22,7 @@
 	@include grid-center;
 	margin: 0;
 	background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-		url(../assets/about-hero.jpg);
+		url(../assets/about-hero.avif);
 	background-position: center;
 	background-size: cover;
 	height: calc(100dvh - 7.7rem);

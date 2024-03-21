@@ -36,7 +36,7 @@ const name = computed(() => (route.name === 'about' ? 'Biz Haqimizda' : 'Aloqa')
 	@include grid-center;
 	margin: 0 !important;
 	background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-		url(../assets/about-hero.jpg);
+		url(../assets/about-hero.avif);
 	background-position-y: top;
 	background-size: cover;
 	height: 30rem;

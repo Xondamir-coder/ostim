@@ -16,8 +16,11 @@
 						type="checkbox"
 						@change="toggleMenu"
 						id="menu"
-						ref="menu_btn" />
-					<label for="menu" class="nav__hamburger"><div></div></label>
+						ref="menu_btn"
+						aria-label="checkbox" />
+					<label for="menu" class="nav__hamburger" aria-label="menu button"
+						><div></div
+					></label>
 					<div class="header__menu">
 						<NavLinks class="header__list" :links="links" @click="toggleCheckbox" />
 					</div>
@@ -63,8 +66,7 @@ const links = [
 </script>
 
 <style lang="scss" scoped>
-@import '../sass/abstracts/index';
-
+@import '@/sass/abstracts/index';
 .header {
 	&__container {
 		@include flex-justify(space-between);
@@ -79,6 +81,7 @@ const links = [
 	&__menu {
 		@include grid-center;
 		@include hidden;
+		overflow: hidden;
 		background-color: $color-intermediate-primary;
 		position: absolute;
 		z-index: 3;
@@ -113,6 +116,7 @@ const links = [
 		&:checked ~ .header__menu {
 			height: 100vh;
 			@include visible;
+			overflow: visible;
 		}
 	}
 	&__btn {

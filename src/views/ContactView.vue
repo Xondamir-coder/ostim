@@ -47,7 +47,7 @@
 			</div>
 		</section>
 		<section class="office">
-			<img src="../assets/contact-office.jpg" alt="office" />
+			<img src="../assets/contact-office.avif" alt="office" />
 			<InfoBoard :data="officeData" />
 		</section>
 		<DownloadCatalog />

@@ -75,10 +75,9 @@
 }
 
 // Img
-@mixin cover-img($width: 100%, $height: 100%, $position: initial) {
+@mixin cover-img($width: 100%, $height: 100%) {
 	@include dimensions($width, $height);
 	object-fit: cover;
-	object-position: $position;
 }
 
 // Miscellaneous
