@@ -1,5 +1,6 @@
 <template>
-	<main class="main">
+	<main class="main" ref="container">
+		<div class="overlay"></div>
 		<section class="hero">
 			<div class="hero__content">
 				<h1 class="hero__heading">Ishlab chiqarishning yangi bosqichi</h1>
@@ -12,7 +13,7 @@
 		</section>
 		<section class="choose">
 			<h2 class="heading">Nega aynan Ostim texnoparki</h2>
-			<div class="choose__container">
+			<div class="choose__container" ref="cards">
 				<div class="choose__box body-l" v-for="content in chooseContent" :key="content">
 					<div class="choose__icon">
 						<img :src="content.icon" :alt="content.title" />
@@ -44,7 +45,7 @@
 							stroke-linejoin="round" />
 					</svg>
 				</button>
-				<div class="avenues__container">
+				<div class="avenues__container" ref="avenues">
 					<div class="avenues__box" v-for="avenue in avenueContent" :key="avenue">
 						<img :src="avenue.banner" alt="banner" />
 						<h3>{{ avenue.title }}</h3>
@@ -166,7 +167,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 import iconCheck from '@/assets/icons/check.svg';
 import workflowIcon from '@/assets/icons/workflow.svg';
 import trustedIcon from '@/assets/icons/trusted.svg';
@@ -180,6 +183,9 @@ import DownloadCatalog from '@/layout/DownloadCatalog.vue';
 import Instagram from '@/layout/Instagram.vue';
 import Copyright from '@/layout/Copyright.vue';
 import Footer from '@/layout/Footer.vue';
+import { animateSections } from '@/js/helpers';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const chooseContent = [
 	{
@@ -261,6 +267,9 @@ const faqsArr = [
 
 const faqs = ref(faqsArr.slice(0, 4));
 const tel = ref('');
+const container = ref(null);
+const cards = ref(null);
+const avenues = ref(null);
 
 const submitTel = () => {
 	const trimmedTel = tel.value.replaceAll(' ', '');
@@ -275,6 +284,46 @@ const validateInput = () => {
 	if (spaces.includes(tel.value.length)) tel.value = `${tel.value} `;
 };
 const initInput = () => !tel.value && (tel.value = '+998 ');
+
+onMounted(() => {
+	animateSections(Array.from(container.value.children));
+
+	gsap.fromTo(
+		Array.from(cards.value.children),
+		{
+			x: `-100%`,
+			opacity: 0
+		},
+		{
+			scrollTrigger: {
+				trigger: cards.value,
+				start: 'top center'
+			},
+			x: 0,
+			opacity: 1,
+			duration: 1,
+			stagger: 0.5
+		}
+	);
+
+	gsap.fromTo(
+		Array.from(avenues.value.children),
+		{
+			scale: 0,
+			opacity: 0
+		},
+		{
+			scale: 1,
+			opacity: 1,
+			scrollTrigger: {
+				trigger: avenues.value,
+				start: 'top center'
+			},
+			duration: 0.8,
+			stagger: 0.5
+		}
+	);
+});
 </script>
 
 <style lang="scss" scoped>
@@ -292,6 +341,9 @@ const initInput = () => !tel.value && (tel.value = '+998 ');
 	background-position: center;
 	background-size: cover;
 	height: calc(100dvh - 7.7rem);
+	@include media($tab-port) {
+		background: none;
+	}
 	&__content {
 		@include responsive-width(80rem);
 		@include grid-row-gap(2rem);
@@ -317,6 +369,7 @@ const initInput = () => !tel.value && (tel.value = '+998 ');
 }
 .choose {
 	@include grid-row-gap(5rem);
+	overflow: hidden;
 	h2 {
 		justify-self: center;
 		text-align: center;
@@ -549,6 +602,20 @@ const initInput = () => !tel.value && (tel.value = '+998 ');
 			}
 		}
 	}
+}
+.overlay {
+	@include full-viewport;
+	@include media($tab-port, min) {
+		display: none;
+	}
+	margin: 0;
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(to right, rgba(#000, 0.4), rgba(#000, 0.4)),
+		url(../assets/about-hero.avif);
+	background-size: cover;
+	background-position: 23%;
+	z-index: -1;
 }
 
 .list-move,

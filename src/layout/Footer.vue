@@ -182,6 +182,8 @@ const secondary__links = [
 		@include media($tab-port) {
 			display: none;
 		}
+		font-size: 14px;
+		font-weight: 400;
 		align-self: flex-start;
 	}
 	&__faq {

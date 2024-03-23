@@ -1,8 +1,26 @@
 <template>
 	<header class="header" v-if="route.name != 'error'">
 		<div class="header__container">
+			<label class="header__btn" for="menu">
+				<input
+					class="header__menu"
+					type="checkbox"
+					name="menu"
+					id="menu"
+					@change="toggleBodyStyle" />
+				<label for="menu" class="header__label"></label>
+				<div class="menu">
+					<NavLinks :links="links" class="menu__list" />
+					<div class="menu__content">
+						<button class="menu__button button">joy tanlash</button>
+						<a href="tel:+998 71 210 44 54">+998 71 210 44 54</a>
+						<p>Dushanba-shanba: 9:00–18:00</p>
+					</div>
+				</div>
+			</label>
 			<RouterLink to="/">
-				<img src="../assets/logo.svg" alt="logo" />
+				<img class="header__logo" src="../assets/logo.svg" alt="logo" />
+				<img class="header__logo-white" src="../assets/logo-white.svg" alt="logo" />
 			</RouterLink>
 			<nav class="nav">
 				<NavLinks :links="links" class="nav__list" />
@@ -10,40 +28,22 @@
 					<label for="lang">UZ</label>
 					<input class="nav__lang-checkbox" type="checkbox" name="lang" id="lang" />
 				</div>
-				<div class="nav__menu">
-					<input
-						class="nav__toggler"
-						type="checkbox"
-						@change="toggleMenu"
-						id="menu"
-						ref="menu_btn"
-						aria-label="checkbox" />
-					<label for="menu" class="nav__hamburger" aria-label="menu button"
-						><div></div
-					></label>
-					<div class="header__menu">
-						<NavLinks class="header__list" :links="links" @click="toggleCheckbox" />
-					</div>
-				</div>
 			</nav>
+			<button class="header__btn header__btn-tel">
+				<img src="../assets/icons/tel.svg" alt="tel" />
+			</button>
 		</div>
 	</header>
 </template>
 
 <script setup>
 import NavLinks from '@/components/NavLinks.vue';
-import { ref } from 'vue';
 import { RouterLink, useRoute } from 'vue-router';
 
 const route = useRoute();
 const bodyStyle = document.body.style;
-const menu_btn = ref();
-const toggleMenu = () =>
+const toggleBodyStyle = () =>
 	(bodyStyle.overflow = bodyStyle.overflow === 'hidden' ? 'visible' : 'hidden');
-const toggleCheckbox = () => {
-	menu_btn.value.checked = !menu_btn.value.checked;
-	toggleMenu();
-};
 
 const links = [
 	{
@@ -68,28 +68,85 @@ const links = [
 <style lang="scss" scoped>
 @import '@/sass/abstracts/index';
 .header {
+	&__menu:checked + .header__label {
+		background-color: transparent;
+	}
+	&__menu:checked + .header__label::after {
+		transform: rotate(45deg);
+		background-color: #fff;
+	}
+	&__menu:checked + .header__label::before {
+		transform: rotate(-45deg);
+		background-color: #fff;
+	}
+	&__menu:checked ~ .menu {
+		@include visible;
+	}
+	&__btn {
+		@include dimensions(40px);
+		@include grid-center;
+		@include media($tab-port, min) {
+			display: none;
+		}
+		background: white;
+		box-shadow: 0px 10px 60px -5px rgba(#937249, 0.45);
+		border-radius: 50%;
+		&-tel {
+			background: $color-secondary;
+		}
+	}
+	&__label {
+		@include rounded-border;
+		@include grid-area('area');
+		z-index: 2;
+		width: 15.6px;
+		height: 2.4px;
+		background-color: $color-secondary;
+		transition: background-color 0.4s;
+		&::before,
+		&::after {
+			content: '';
+			display: block;
+			width: 100%;
+			height: 100%;
+			border-radius: inherit;
+			background-color: $color-secondary;
+			grid-area: area;
+			transition: transform 0.5s, background-color 0.5s;
+		}
+		&::before {
+			transform: translateY(-5px);
+		}
+		&::after {
+			transform: translateY(5px);
+		}
+	}
+	&__menu {
+		display: none;
+	}
 	&__container {
 		@include flex-justify(space-between);
 		@include media($tab-port) {
+			padding-top: 20px;
 			max-width: 90%;
+			align-items: center;
+		}
+		& > * {
+			z-index: 2;
 		}
 		padding: 0.9rem 0;
 		max-width: 70%;
 		margin: 0 auto;
 		gap: 2rem;
 	}
-	&__menu {
-		@include grid-center;
-		@include hidden;
-		overflow: hidden;
-		background-color: $color-intermediate-primary;
-		position: absolute;
-		z-index: 3;
-		inset: 0;
-		height: 0;
-		transition: {
-			property: opacity, height;
-			duration: 1s;
+	&__logo {
+		@include media($tab-port) {
+			display: none;
+		}
+		&-white {
+			@include media($tab-port, min) {
+				display: none;
+			}
 		}
 	}
 	&__list {
@@ -100,8 +157,7 @@ const links = [
 	@include flex(space-between, center);
 	@include responsive-width(60rem);
 	@include media($tab-port) {
-		justify-content: flex-end;
-		gap: 1rem;
+		display: none;
 	}
 	&__menu {
 		@include grid-center;
@@ -128,15 +184,15 @@ const links = [
 		}
 	}
 	&__list {
+		font-weight: 400;
+		font-size: 14px;
 		flex-basis: 80%;
 		justify-content: space-evenly;
 		gap: 1rem;
-		@include media($tab-port) {
-			display: none;
-		}
 	}
 	&__lang {
 		@include flex-align(center, 1rem);
+
 		& > * {
 			cursor: pointer;
 		}
@@ -152,54 +208,44 @@ const links = [
 			}
 		}
 	}
-	&__toggler {
-		@include dimensions(50px);
-		@include hidden;
-		grid-area: area;
-		z-index: 5;
-		cursor: pointer;
-		&:checked + .nav__hamburger > div {
-			background: rgba(0, 0, 0, 0);
-		}
-		&:checked + .nav__hamburger > div::before {
-			top: 0;
-			transform: rotate(45deg);
-			background-color: #fff;
-		}
-		&:checked + .nav__hamburger > div::after {
-			top: 0;
-			transform: rotate(135deg);
-			background-color: #fff;
-		}
-		&:checked ~ .header__menu {
-			height: 100vh;
-			@include visible;
-		}
+}
+.menu {
+	@include full-viewport;
+	@include hidden(-100%);
+	@include flex-justify(space-around, null, null, column);
+	padding-top: 120px;
+	transition: opacity 0.8s, transform 0.8s;
+	position: absolute;
+	inset: 0;
+	background-image: linear-gradient(to bottom, #4a0605, #150303);
+
+	&__list {
+		font-family: $font-jost;
+		font-weight: 400;
+		font-size: 5.4rem;
+		color: #fff;
+		line-height: 148%;
+		flex-direction: column;
+		gap: 3rem;
 	}
-	&__hamburger {
-		@include dimensions(40px);
-		@include flex-center;
-		z-index: 4;
-		grid-area: area;
-		padding: 0.6rem;
-		& > div {
-			position: relative;
-			top: 0;
-			left: 0;
-			background-color: #000;
-			height: 2px;
-			width: 60%;
-			transition: all 0.4s ease;
+	&__button {
+		font-family: $font-jost;
+		font-size: 12px;
+		border: 1px solid #fff;
+	}
+	&__content {
+		@include grid-row-gap(20px);
+		justify-items: center;
+		align-items: center;
+		font-family: $font-jost;
+		a {
+			font-weight: 300;
+			font-size: 3.5rem;
+			color: #fff;
+			text-decoration: none;
 		}
-		& > div::before,
-		& > div::after {
-			@include pseudo('', -10px);
-			@include dimensions(100%, 2px);
-			background-color: #000;
-			transition: all 0.4s ease;
-		}
-		& > div::after {
-			top: 10px;
+		p {
+			color: rgba(#fff, 0.3);
 		}
 	}
 }

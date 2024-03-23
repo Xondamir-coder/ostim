@@ -26,8 +26,8 @@ const props = defineProps({
 }
 .link {
 	position: relative;
-	color: $color-primary;
-	@include text(14px, 500, null, uppercase, 0.1em);
+	color: inherit;
+	@include text(inherit, inherit, null, uppercase, 0.1em);
 	transition: color ease-out 300ms;
 	&:hover::before {
 		width: 100%;
