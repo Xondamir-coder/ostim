@@ -90,13 +90,22 @@
 				<NavLinks :links="secondary__links" class="footer__list" />
 			</div>
 			<div class="footer__contact">
-				<h1 class="heading-s">aloqa</h1>
-				<p>Do you have any queries or suggestions?</p>
-				<a class="footer__contact-mail" href="mailto:yourinfo@gmail.com">
-					yourinfo@gmail.com
-				</a>
-				<p>If you need support? Just give us a call.</p>
-				<a class="footer__contact-tel" href="tel:+998992000101">+998 99 200 01 01</a>
+				<div class="footer__contact-large">
+					<h1 class="heading-s">aloqa</h1>
+					<p>Do you have any queries or suggestions?</p>
+					<a class="footer__contact-mail" href="mailto:yourinfo@gmail.com">
+						yourinfo@gmail.com
+					</a>
+					<p>If you need support? Just give us a call.</p>
+					<a class="footer__contact-tel" href="tel:+998992000101">+998 99 200 01 01</a>
+				</div>
+				<div class="footer__contact-small">
+					<p>
+						Savollaringiz bormi?<br />
+						Qo’ng’iroq qiling:
+					</p>
+					<a class="footer__contact-tel" href="tel:+998992000101">+998 99 200 01 01</a>
+				</div>
 			</div>
 		</div>
 	</footer>
@@ -106,7 +115,7 @@
 import NavLinks from '@/components/NavLinks.vue';
 const main__links = [
 	{
-		to: 'main',
+		to: '',
 		name: 'Asosiy'
 	},
 	{
@@ -165,22 +174,41 @@ const secondary__links = [
 	&__content {
 		@include flex-justify(space-between, 20px, wrap);
 		@include media($tab-port) {
-			flex-direction: column;
+			font-size: 13px;
 		}
 	}
 	&__list {
 		@include flex-align(flex-start, 1rem, null, column);
 		@include media($tab-port) {
-			align-self: auto;
+			display: none;
 		}
 		align-self: flex-start;
+	}
+	&__faq {
+		@include media($tab-port) {
+			display: none;
+		}
 	}
 	&__faq h1 {
 		margin-bottom: 1rem;
 	}
 	&__contact {
+		@include media($tab-port) {
+			align-self: center;
+		}
 		p {
 			margin-top: 1rem;
+		}
+		&-small {
+			@include media($tab-port, min) {
+				display: none;
+			}
+			font-size: 11px;
+		}
+		&-large {
+			@include media($tab-port) {
+				display: none;
+			}
 		}
 		&-mail {
 			color: $color-primary;

@@ -26,9 +26,10 @@
 	display: grid;
 	place-items: center;
 }
-@mixin grid-area($area) {
+@mixin grid-area($area, $grid-cols: null) {
 	display: grid;
 	grid-template-areas: $area;
+	grid-template-columns: $grid-cols;
 }
 @mixin grid-row-gap($gap) {
 	display: grid;

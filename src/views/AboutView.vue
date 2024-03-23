@@ -163,7 +163,7 @@ onMounted(() => animateSections(Array.from(container.value.children)));
 		grid-auto-flow: row;
 	}
 	&__content {
-		@include grid-row-gap(3rem);
+		@include grid-row-gap(2rem);
 		justify-items: start;
 		align-content: center;
 	}

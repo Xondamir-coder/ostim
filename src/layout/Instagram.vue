@@ -24,7 +24,9 @@
 	text-align: center;
 	@include grid-row-gap(2.5rem);
 	&__list {
-		@include grid-responsive-cols(200px, 2rem);
+		display: flex;
+		gap: 2rem;
+		overflow-x: auto;
 	}
 	&__item {
 		a {
@@ -51,7 +53,7 @@
 	}
 	&__banner {
 		@include rounded-border;
-		@include cover-img;
+		@include cover-img(24.1rem, 24.1rem);
 		grid-area: area;
 		aspect-ratio: 2/2;
 	}

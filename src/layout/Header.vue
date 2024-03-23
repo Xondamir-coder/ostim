@@ -47,7 +47,7 @@ const toggleCheckbox = () => {
 
 const links = [
 	{
-		to: 'main',
+		to: '',
 		name: 'Asosiy'
 	},
 	{
