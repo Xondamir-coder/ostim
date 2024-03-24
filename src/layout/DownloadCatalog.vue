@@ -29,10 +29,12 @@
 		@include grid-row-gap(18px);
 		@include media($tab-land) {
 			padding: 10rem 5rem;
+			text-align: center;
 			justify-items: center;
 		}
 		@include media($tab-port) {
-			padding: 0;
+			padding: 5rem 0;
+			line-height: 1.5em;
 		}
 		justify-items: start;
 	}

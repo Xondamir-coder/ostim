@@ -25,9 +25,10 @@ const props = defineProps({
 	@include flex-align(center);
 }
 .link {
+	@include text(inherit, inherit, null, uppercase, 0.1em);
+	font-family: $font-jost;
 	position: relative;
 	color: inherit;
-	@include text(inherit, inherit, null, uppercase, 0.1em);
 	transition: color ease-out 300ms;
 	&:hover::before {
 		width: 100%;

@@ -45,7 +45,7 @@ main {
 		margin: var(--page-margin-y) var(--page-margin-x);
 		@include transition-appear-transform(1s);
 		@include media($large-desktop, min) {
-			--page-margin-x: 20rem;
+			--page-margin-x: 30rem;
 		}
 		@include media($tab-port) {
 			--page-margin-x: 5rem;

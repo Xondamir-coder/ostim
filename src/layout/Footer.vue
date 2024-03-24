@@ -158,6 +158,7 @@ const secondary__links = [
 <style lang="scss" scoped>
 @import '@/sass/abstracts/index';
 .footer {
+	font-family: $font-poppins;
 	&__social {
 		flex-basis: 30%;
 		@include grid-row-gap(1rem);

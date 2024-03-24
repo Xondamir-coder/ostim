@@ -47,7 +47,9 @@
 				</button>
 				<div class="avenues__container" ref="avenues">
 					<div class="avenues__box" v-for="avenue in avenueContent" :key="avenue">
-						<img :src="avenue.banner" alt="banner" />
+						<div class="avenues__banner">
+							<img :src="avenue.banner" alt="banner" />
+						</div>
 						<h3>{{ avenue.title }}</h3>
 					</div>
 				</div>
@@ -160,7 +162,7 @@
 				</form>
 			</div>
 		</section>
-		<Instagram />
+		<Instagram ref="posts" />
 		<Footer />
 		<Copyright />
 	</main>
@@ -270,6 +272,7 @@ const tel = ref('');
 const container = ref(null);
 const cards = ref(null);
 const avenues = ref(null);
+const posts = ref(null);
 
 const submitTel = () => {
 	const trimmedTel = tel.value.replaceAll(' ', '');
@@ -289,7 +292,7 @@ onMounted(() => {
 	animateSections(Array.from(container.value.children));
 
 	gsap.fromTo(
-		Array.from(cards.value.children),
+		cards.value.children,
 		{
 			x: `-100%`,
 			opacity: 0
@@ -307,13 +310,13 @@ onMounted(() => {
 	);
 
 	gsap.fromTo(
-		Array.from(avenues.value.children),
+		avenues.value.children,
 		{
-			scale: 0,
+			y: '-50%',
 			opacity: 0
 		},
 		{
-			scale: 1,
+			y: 0,
 			opacity: 1,
 			scrollTrigger: {
 				trigger: avenues.value,
@@ -321,6 +324,21 @@ onMounted(() => {
 			},
 			duration: 0.8,
 			stagger: 0.5
+		}
+	);
+
+	gsap.fromTo(
+		posts.value.$el.lastElementChild.children,
+		{
+			scale: 0,
+			opacity: 0
+		},
+		{
+			scrollTrigger: posts.value.$el,
+			scale: 1,
+			opacity: 1,
+			stagger: 0.5,
+			duration: 1
 		}
 	);
 });
@@ -454,10 +472,18 @@ onMounted(() => {
 		border-radius: 50%;
 		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
 	}
+	&__banner {
+		@include rounded-border;
+		overflow: hidden;
+	}
 	&__box {
+		cursor: pointer;
+		&:hover img {
+			transform: scale(1.5);
+		}
 		& img {
-			@include cover-img(100%, auto);
-			@include rounded-border;
+			@include cover-img;
+			transition: transform 0.7s ease-out;
 		}
 		h3 {
 			@include text(14px, bold, null, uppercase, 2px);
@@ -509,7 +535,7 @@ onMounted(() => {
 	}
 	&__form {
 		@include flex(space-between, center);
-		@include responsive-width(40rem);
+		@include responsive-width(400px);
 		background-color: #fefcfb;
 		border: 1px solid $color-tertiary;
 		padding: 1rem 2rem;
@@ -518,6 +544,7 @@ onMounted(() => {
 	}
 	&__input {
 		@include text(14px, 400, 2em);
+		background-color: transparent;
 		border: none;
 		color: $color-secondary;
 		font-family: inherit;
@@ -544,7 +571,7 @@ onMounted(() => {
 	overflow-y: auto;
 	overflow-x: hidden;
 	&::-webkit-scrollbar {
-		width: 2px;
+		width: 4px;
 	}
 	&::-webkit-scrollbar-track {
 		background-color: $color-tertiary;
@@ -555,6 +582,7 @@ onMounted(() => {
 	}
 	&__item {
 		@include grid-area('label checkbox' 'text text', 1fr max-content);
+		align-items: center;
 		row-gap: 1rem;
 		padding-bottom: 1rem;
 	}
@@ -574,7 +602,6 @@ onMounted(() => {
 	&__icon {
 		@include grid-area('area');
 		@include dimensions(11px, 1px);
-		margin-top: 5px;
 		background-color: $color-secondary;
 		cursor: pointer;
 		&::before {
