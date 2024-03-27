@@ -9,13 +9,9 @@ import Header from '@/layout/Header.vue';
 import Lenis from '@studio-freight/lenis';
 
 const lenis = new Lenis();
-
-lenis.on('scroll', e => {});
-
-function raf(time) {
+const raf = time => {
 	lenis.raf(time);
 	requestAnimationFrame(raf);
-}
-
+};
 requestAnimationFrame(raf);
 </script>

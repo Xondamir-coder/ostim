@@ -13,7 +13,7 @@
 		</section>
 		<section class="choose">
 			<h2 class="heading">Nega aynan Ostim texnoparki</h2>
-			<div class="choose__container" ref="cards">
+			<div class="choose__container choose-animate" ref="chooseContainer">
 				<div class="choose__box body-l" v-for="content in chooseContent" :key="content">
 					<div class="choose__icon">
 						<img :src="content.icon" :alt="content.title" />
@@ -45,7 +45,7 @@
 							stroke-linejoin="round" />
 					</svg>
 				</button>
-				<div class="avenues__container" ref="avenues">
+				<div class="avenues__container avenues-animate" ref="avenuesContainer">
 					<div class="avenues__box" v-for="avenue in avenueContent" :key="avenue">
 						<div class="avenues__banner">
 							<img :src="avenue.banner" alt="banner" />
@@ -170,9 +170,6 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
-import gsap from 'gsap';
-
-import ScrollTrigger from 'gsap/ScrollTrigger';
 import iconCheck from '@/assets/icons/check.svg';
 import workflowIcon from '@/assets/icons/workflow.svg';
 import trustedIcon from '@/assets/icons/trusted.svg';
@@ -188,8 +185,6 @@ import Instagram from '@/layout/Instagram.vue';
 import Copyright from '@/layout/Copyright.vue';
 import Footer from '@/layout/Footer.vue';
 import { animateSections } from '@/js/helpers';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const chooseContent = [
 	{
@@ -272,8 +267,8 @@ const faqsArr = [
 const faqs = ref(faqsArr.slice(0, 4));
 const tel = ref('');
 const container = ref(null);
-const cards = ref(null);
-const avenues = ref(null);
+const chooseContainer = ref(null);
+const avenuesContainer = ref(null);
 
 const submitTel = () => {
 	const trimmedTel = tel.value.replaceAll(' ', '');
@@ -289,44 +284,16 @@ const validateInput = () => {
 };
 const initInput = () => !tel.value && (tel.value = '+998 ');
 
+const handleObserver = entries =>
+	entries.forEach(
+		entry => entry.isIntersecting && entry.target.classList.remove(entry.target.classList[1])
+	);
+
+const observer = new IntersectionObserver(handleObserver, { threshold: 0.3 });
 onMounted(() => {
 	animateSections(Array.from(container.value.children));
-
-	gsap.fromTo(
-		cards.value.children,
-		{
-			x: `-100%`,
-			opacity: 0
-		},
-		{
-			scrollTrigger: {
-				trigger: cards.value,
-				start: 'top center'
-			},
-			x: 0,
-			opacity: 1,
-			duration: 1,
-			stagger: 0.5
-		}
-	);
-
-	gsap.fromTo(
-		avenues.value.children,
-		{
-			y: '-50%',
-			opacity: 0
-		},
-		{
-			y: 0,
-			opacity: 1,
-			scrollTrigger: {
-				trigger: avenues.value,
-				start: 'top center'
-			},
-			duration: 0.8,
-			stagger: 0.5
-		}
-	);
+	observer.observe(avenuesContainer.value);
+	observer.observe(chooseContainer.value);
 });
 </script>
 
@@ -374,6 +341,10 @@ onMounted(() => {
 .choose {
 	@include grid-row-gap(5rem);
 	overflow: hidden;
+	&-animate &__box {
+		transform: translateX(-100%);
+		opacity: 0;
+	}
 	h2 {
 		justify-self: center;
 		text-align: center;
@@ -392,6 +363,14 @@ onMounted(() => {
 			text-align: center;
 			width: 300px;
 		}
+		@include transition-appear-transform(1s);
+		$transition-delays: 100ms 200ms 300ms;
+		@each $delay in $transition-delays {
+			$index: index($transition-delays, $delay);
+			&:nth-child(#{$index}) {
+				transition-delay: $delay * 5;
+			}
+		}
 	}
 	&__icon {
 		@include dimensions(6.2rem);
@@ -406,6 +385,10 @@ onMounted(() => {
 }
 .avenues {
 	@include grid-row-gap(3rem);
+	&-animate &__box {
+		transform: translateY(-50%);
+		opacity: 0;
+	}
 	h2#{&}__heading {
 		text-align: center;
 		line-height: normal;
@@ -464,6 +447,14 @@ onMounted(() => {
 	}
 	&__box {
 		cursor: pointer;
+		@include transition-appear-transform(1s);
+		$transition-delays: 100ms 200ms 300ms 400ms 500ms 600ms;
+		@each $delay in $transition-delays {
+			$index: index($transition-delays, $delay);
+			&:nth-child(#{$index}) {
+				transition-delay: $delay * 4;
+			}
+		}
 		&:hover img {
 			transform: scale(1.5);
 		}

@@ -1,8 +1,8 @@
 <template>
-	<section class="instagram" ref="posts">
+	<section class="instagram instagram-animate" ref="container">
 		<h1 class="heading-m">instagram sahifamizada</h1>
 		<ul class="instagram__list">
-			<li class="instagram__item" v-for="_ in [1, 2, 3, 4, 5]">
+			<li class="instagram__item" v-for="_ in posts">
 				<a href="#">
 					<img
 						class="instagram__banner"
@@ -20,28 +20,16 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
-import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
-gsap.registerPlugin(ScrollTrigger);
 
-const posts = ref(null);
-
-onMounted(() => {
-	gsap.fromTo(
-		posts.value.lastElementChild.children,
-		{
-			scale: 0,
-			opacity: 0
-		},
-		{
-			scrollTrigger: posts.value,
-			scale: 1,
-			opacity: 1,
-			stagger: 0.5,
-			duration: 1
-		}
+const container = ref(null);
+const posts = new Array(5);
+const handleObserve = entries =>
+	entries.forEach(
+		entry => entry.isIntersecting && entry.target.classList.remove('instagram-animate')
 	);
-});
+
+const observer = new IntersectionObserver(handleObserve, { threshold: 0.3 });
+onMounted(() => observer.observe(container.value));
 </script>
 
 <style lang="scss" scoped>
@@ -49,12 +37,24 @@ onMounted(() => {
 .instagram {
 	text-align: center;
 	@include grid-row-gap(2.5rem);
+	&-animate &__item {
+		transform: scale(0);
+		opacity: 0;
+	}
 	&__list {
 		display: flex;
 		gap: 2rem;
 		overflow-x: auto;
 	}
 	&__item {
+		@include transition-appear-transform(1s);
+		$transition-delays: 100ms 200ms 300ms 400ms 500ms 600ms;
+		@each $delay in $transition-delays {
+			$index: index($transition-delays, $delay);
+			&:nth-child(#{$index}) {
+				transition-delay: $delay * $index * 0.5;
+			}
+		}
 		a {
 			@include grid-center;
 			@include grid-area('area');
