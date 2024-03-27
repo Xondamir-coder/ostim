@@ -1,4 +1,5 @@
 <template>
+	<Background class="bg-small" />
 	<main class="about" ref="container">
 		<Hero />
 		<section class="features">
@@ -101,6 +102,7 @@ import Instagram from '@/layout/Instagram.vue';
 import Footer from '@/layout/Footer.vue';
 import Copyright from '@/layout/Copyright.vue';
 import { animateSections } from '@/js/helpers';
+import Background from '@/layout/Background.vue';
 
 const container = ref();
 

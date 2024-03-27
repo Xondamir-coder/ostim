@@ -1,5 +1,5 @@
 <template>
-	<section class="instagram">
+	<section class="instagram" ref="posts">
 		<h1 class="heading-m">instagram sahifamizada</h1>
 		<ul class="instagram__list">
 			<li class="instagram__item" v-for="_ in [1, 2, 3, 4, 5]">
@@ -17,6 +17,32 @@
 		</ul>
 	</section>
 </template>
+
+<script setup>
+import { onMounted, ref } from 'vue';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
+
+const posts = ref(null);
+
+onMounted(() => {
+	gsap.fromTo(
+		posts.value.lastElementChild.children,
+		{
+			scale: 0,
+			opacity: 0
+		},
+		{
+			scrollTrigger: posts.value,
+			scale: 1,
+			opacity: 1,
+			stagger: 0.5,
+			duration: 1
+		}
+	);
+});
+</script>
 
 <style lang="scss" scoped>
 @import '@/sass/abstracts/index';

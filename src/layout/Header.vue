@@ -2,15 +2,10 @@
 	<header class="header" v-if="route.name != 'error'">
 		<div class="header__container">
 			<label class="header__btn" for="menu">
-				<input
-					class="header__menu"
-					type="checkbox"
-					name="menu"
-					id="menu"
-					@change="toggleBodyStyle" />
+				<input class="header__menu" type="checkbox" name="menu" id="menu" ref="menuBtn" />
 				<label for="menu" class="header__label"></label>
 				<div class="menu">
-					<NavLinks :links="links" class="menu__list" />
+					<NavLinks :links="links" class="menu__list" @click="toggleMenu" />
 					<div class="menu__content">
 						<button class="menu__button button">joy tanlash</button>
 						<a href="tel:+998 71 210 44 54">+998 71 210 44 54</a>
@@ -38,12 +33,13 @@
 
 <script setup>
 import NavLinks from '@/components/NavLinks.vue';
+import { ref } from 'vue';
 import { RouterLink, useRoute } from 'vue-router';
 
 const route = useRoute();
-const bodyStyle = document.body.style;
-const toggleBodyStyle = () =>
-	(bodyStyle.overflow = bodyStyle.overflow === 'hidden' ? 'visible' : 'hidden');
+const menuBtn = ref(null);
+
+const toggleMenu = () => (menuBtn.value.checked = !menuBtn.value.checked);
 
 const links = [
 	{
@@ -68,6 +64,9 @@ const links = [
 <style lang="scss" scoped>
 @import '@/sass/abstracts/index';
 .header {
+	&__menu {
+		display: none;
+	}
 	&__menu:checked + .header__label {
 		background-color: transparent;
 	}
@@ -120,9 +119,6 @@ const links = [
 		&::after {
 			transform: translateY(5px);
 		}
-	}
-	&__menu {
-		display: none;
 	}
 	&__container {
 		@include flex-justify(space-between);
@@ -215,7 +211,7 @@ const links = [
 	@include flex-justify(space-around, null, null, column);
 	padding-top: 120px;
 	transition: opacity 0.8s, transform 0.8s;
-	position: absolute;
+	position: fixed;
 	inset: 0;
 	background-image: linear-gradient(to bottom, #4a0605, #150303);
 

@@ -1,6 +1,6 @@
 <template>
+	<Background />
 	<main class="main" ref="container">
-		<div class="overlay"></div>
 		<section class="hero">
 			<div class="hero__content">
 				<h1 class="hero__heading">Ishlab chiqarishning yangi bosqichi</h1>
@@ -140,7 +140,7 @@
 						required
 						minlength="17"
 						maxlength="17"
-						type="text"
+						type="tel"
 						class="connect__input"
 						placeholder="+998 __ ___  __ __"
 						v-model="tel" />
@@ -162,7 +162,7 @@
 				</form>
 			</div>
 		</section>
-		<Instagram ref="posts" />
+		<Instagram />
 		<Footer />
 		<Copyright />
 	</main>
@@ -171,6 +171,7 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import gsap from 'gsap';
+
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import iconCheck from '@/assets/icons/check.svg';
 import workflowIcon from '@/assets/icons/workflow.svg';
@@ -181,6 +182,7 @@ import hotelAvenue from '@/assets/hotel.avif';
 import businessAvenue from '@/assets/business.avif';
 import kindergardenAvenue from '@/assets/kindergarden.avif';
 import schoolAvenue from '@/assets/school.avif';
+import Background from '@/layout/Background.vue';
 import DownloadCatalog from '@/layout/DownloadCatalog.vue';
 import Instagram from '@/layout/Instagram.vue';
 import Copyright from '@/layout/Copyright.vue';
@@ -272,7 +274,6 @@ const tel = ref('');
 const container = ref(null);
 const cards = ref(null);
 const avenues = ref(null);
-const posts = ref(null);
 
 const submitTel = () => {
 	const trimmedTel = tel.value.replaceAll(' ', '');
@@ -324,21 +325,6 @@ onMounted(() => {
 			},
 			duration: 0.8,
 			stagger: 0.5
-		}
-	);
-
-	gsap.fromTo(
-		posts.value.$el.lastElementChild.children,
-		{
-			scale: 0,
-			opacity: 0
-		},
-		{
-			scrollTrigger: posts.value.$el,
-			scale: 1,
-			opacity: 1,
-			stagger: 0.5,
-			duration: 1
 		}
 	);
 });
@@ -629,20 +615,6 @@ onMounted(() => {
 			}
 		}
 	}
-}
-.overlay {
-	@include full-viewport;
-	@include media($tab-port, min) {
-		display: none;
-	}
-	margin: 0;
-	position: absolute;
-	inset: 0;
-	background: linear-gradient(to right, rgba(#000, 0.4), rgba(#000, 0.4)),
-		url(../assets/about-hero.avif);
-	background-size: cover;
-	background-position: 23%;
-	z-index: -1;
 }
 
 .list-move,

@@ -44,6 +44,9 @@ const name = computed(() => (route.name === 'about' ? 'Biz Haqimizda' : 'Aloqa')
 	text-align: center;
 	font-weight: 300;
 	animation: appear 1s ease-out;
+	@include media($tab-port) {
+		background: none;
+	}
 	&__heading {
 		animation: slide-left 1s ease-out;
 	}

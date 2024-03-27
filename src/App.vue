@@ -5,7 +5,7 @@
 
 <script setup>
 import { RouterView } from 'vue-router';
-import Header from './layout/Header.vue';
+import Header from '@/layout/Header.vue';
 import Lenis from '@studio-freight/lenis';
 
 const lenis = new Lenis();
