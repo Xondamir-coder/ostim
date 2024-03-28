@@ -23,6 +23,9 @@ html {
 		font-size: 40%;
 	}
 }
+#app {
+	overflow: hidden;
+}
 body {
 	font-size: 1.6rem; // set to 16px
 	font-family: $font-lato;

@@ -92,42 +92,11 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
-import korzinka from '@/assets/icons/korzinka.svg';
-import quality from '@/assets/icons/quality.svg';
-import new_zone from '@/assets/icons/new zone.svg';
-import safe from '@/assets/icons/safe.svg';
-import Hero from '@/layout/Hero.vue';
-import DownloadCatalog from '@/layout/DownloadCatalog.vue';
-import Instagram from '@/layout/Instagram.vue';
-import Footer from '@/layout/Footer.vue';
-import Copyright from '@/layout/Copyright.vue';
 import { animateSections } from '@/js/helpers';
-import Background from '@/layout/Background.vue';
+import { features } from '@/content/data';
+import { Hero, DownloadCatalog, Instagram, Footer, Copyright, Background } from '@/layout';
 
 const container = ref();
-
-const features = [
-	{
-		title: 'Qulay joylashuv',
-		text: 'Consectetur adipi elit lorem ipsum dolor sit amet.',
-		img: korzinka
-	},
-	{
-		title: 'Sifat kafolati',
-		text: 'Consectetur adipi elit lorem ipsum dolor sit amet.',
-		img: quality
-	},
-	{
-		title: 'Yangi zonalar',
-		text: 'Consectetur adipi elit lorem ipsum dolor sit amet.',
-		img: new_zone
-	},
-	{
-		title: "100% xavfsiz to'lov",
-		text: 'Consectetur adipi elit lorem ipsum dolor sit amet.',
-		img: safe
-	}
-];
 
 onMounted(() => animateSections(Array.from(container.value.children)));
 </script>
@@ -187,6 +156,9 @@ onMounted(() => animateSections(Array.from(container.value.children)));
 		@include pseudo(url(../assets/icons/quotes.svg), -35px, 50%, -50%);
 	}
 	&__btn {
+		@include media($tab-port) {
+			display: none;
+		}
 		svg path {
 			transition: stroke 0.2s;
 		}

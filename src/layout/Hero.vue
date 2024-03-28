@@ -6,7 +6,7 @@
 				<RouterLink
 					class="hero__link router__link"
 					active-class="router__link--active"
-					to="/main"
+					to="/"
 					>Asosiy</RouterLink
 				>
 				>

@@ -11,15 +11,15 @@
 				<button class="secondary-button">joy tanlash</button>
 			</div>
 		</section>
-		<section class="choose">
+		<section class="reasons">
 			<h2 class="heading">Nega aynan Ostim texnoparki</h2>
-			<div class="choose__container choose-animate" ref="chooseContainer">
-				<div class="choose__box body-l" v-for="content in chooseContent" :key="content">
-					<div class="choose__icon">
-						<img :src="content.icon" :alt="content.title" />
+			<div class="reasons__container reasons-animate" ref="reasonsContainer">
+				<div class="reasons__box body-l" v-for="reason in reasons" :key="reason">
+					<div class="reasons__icon">
+						<img :src="reason.icon" :alt="reason.title" />
 					</div>
-					<h3 class="choose__heading">{{ content.title }}</h3>
-					<p>{{ content.text }}</p>
+					<h3 class="reasons__heading">{{ reason.title }}</h3>
+					<p>{{ reason.text }}</p>
 				</div>
 			</div>
 		</section>
@@ -46,7 +46,7 @@
 					</svg>
 				</button>
 				<div class="avenues__container avenues-animate" ref="avenuesContainer">
-					<div class="avenues__box" v-for="avenue in avenueContent" :key="avenue">
+					<div class="avenues__box" v-for="avenue in avenues" :key="avenue">
 						<div class="avenues__banner">
 							<img :src="avenue.banner" alt="banner" />
 						</div>
@@ -170,104 +170,18 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
-import iconCheck from '@/assets/icons/check.svg';
-import workflowIcon from '@/assets/icons/workflow.svg';
-import trustedIcon from '@/assets/icons/trusted.svg';
-import adminAvenue from '@/assets/admin.avif';
-import sportAvenue from '@/assets/sport.avif';
-import hotelAvenue from '@/assets/hotel.avif';
-import businessAvenue from '@/assets/business.avif';
-import kindergardenAvenue from '@/assets/kindergarden.avif';
-import schoolAvenue from '@/assets/school.avif';
+import { animateSections } from '@/js/helpers';
+import { avenues, questions, reasons } from '@/content/data';
 import Background from '@/layout/Background.vue';
 import DownloadCatalog from '@/layout/DownloadCatalog.vue';
 import Instagram from '@/layout/Instagram.vue';
 import Copyright from '@/layout/Copyright.vue';
 import Footer from '@/layout/Footer.vue';
-import { animateSections } from '@/js/helpers';
 
-const chooseContent = [
-	{
-		icon: iconCheck,
-		title: 'Qulay joylashuv',
-		text: 'We deliver the final work with great professional way.'
-	},
-	{
-		icon: workflowIcon,
-		title: 'Zamonaviy texnopark',
-		text: 'We provide the most easy smoth workflow of interior design.'
-	},
-	{
-		icon: trustedIcon,
-		title: 'Xalqaro industrial park',
-		text: 'People trust us since we opened the company'
-	}
-];
-const avenueContent = [
-	{
-		banner: adminAvenue,
-		title: 'adminstration'
-	},
-	{
-		banner: sportAvenue,
-		title: 'Sport complex'
-	},
-	{
-		banner: schoolAvenue,
-		title: 'School'
-	},
-	{
-		banner: hotelAvenue,
-		title: 'Hotel'
-	},
-	{
-		banner: businessAvenue,
-		title: 'Business centre'
-	},
-	{
-		banner: kindergardenAvenue,
-		title: 'kindergarden'
-	}
-];
-const faqsArr = [
-	{
-		question: 'Texnopark qayerda joylashgan?',
-		answer: 'Modern design is a term in the design world that refers to a house with a clean design, sim'
-	},
-	{
-		question: 'Texnoparkda suv ta’minoti qanday?',
-		answer: 'Modern design is a term in the design world that refers to a house with a clean design, sim'
-	},
-	{
-		question: 'Umumiy maydon qancha?',
-		answer: 'Modern design is a term in the design world that refers to a house with a clean design, sim'
-	},
-	{
-		question: 'Qurib bitkazilish muddati',
-		answer: 'Modern design is a term in the design world that refers to a house with a clean design, sim'
-	},
-	{
-		question: 'Custom question',
-		answer: 'Modern design is a term in the design world that refers to a house with a clean design, sim'
-	},
-	{
-		question: 'Another question',
-		answer: 'Modern design is a term in the design world that refers to a house with a clean design, sim'
-	},
-	{
-		question: 'New question',
-		answer: 'Modern design is a term in the design world that refers to a house with a clean design, sim'
-	},
-	{
-		question: 'Old question',
-		answer: 'Modern design is a term in the design world that refers to a house with a clean design, sim'
-	}
-];
-
-const faqs = ref(faqsArr.slice(0, 4));
+const faqs = ref(questions.slice(0, 4));
 const tel = ref('');
 const container = ref(null);
-const chooseContainer = ref(null);
+const reasonsContainer = ref(null);
 const avenuesContainer = ref(null);
 
 const submitTel = () => {
@@ -293,7 +207,7 @@ const observer = new IntersectionObserver(handleObserver, { threshold: 0.3 });
 onMounted(() => {
 	animateSections(Array.from(container.value.children));
 	observer.observe(avenuesContainer.value);
-	observer.observe(chooseContainer.value);
+	observer.observe(reasonsContainer.value);
 });
 </script>
 
@@ -338,7 +252,7 @@ onMounted(() => {
 		font-size: inherit;
 	}
 }
-.choose {
+.reasons {
 	@include grid-row-gap(5rem);
 	overflow: hidden;
 	&-animate &__box {
