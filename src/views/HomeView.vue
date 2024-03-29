@@ -190,7 +190,7 @@ const submitTel = () => {
 	console.log(trimmedTel);
 	tel.value = '';
 };
-const increaseFaqs = () => (faqs.value = faqsArr.slice(0, faqs.value.length + 2));
+const increaseFaqs = () => (faqs.value = questions.slice(0, faqs.value.length + 2));
 const validateInput = () => {
 	const spaces = [7, 11, 14];
 	if (tel.value.length <= 5) tel.value = '+998 ';
