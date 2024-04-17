@@ -18,27 +18,9 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
-@import '../sass/abstracts/index';
+@import '@/sass/abstracts/placeholders';
 
 .list {
-	text-align: center;
-	@include flex-align(center);
-}
-.link {
-	@include text(inherit, inherit, null, uppercase, 0.1em);
-	font-family: $font-jost;
-	position: relative;
-	color: inherit;
-	transition: color ease-out 300ms;
-	&:hover::before {
-		width: 100%;
-	}
-	&::before {
-		content: '';
-		@include pseudo('', calc(100% + 2px));
-		@include dimensions(0, 1px);
-		background-color: red;
-		transition: width 0.5s;
-	}
+	@extend .list;
 }
 </style>

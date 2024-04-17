@@ -84,25 +84,29 @@
 					</ul>
 				</nav>
 			</div>
-			<NavLinks :links="main__links" class="footer__list" />
+			<NavLinks :links="routingLinks" class="footer__list" />
 			<div class="footer__faq">
-				<h1 class="heading-s">yordam & savollar</h1>
-				<NavLinks :links="secondary__links" class="footer__list" />
+				<h1 class="heading-s">Biz ijtimoiy tarmoqlarda:</h1>
+				<ul class="footer__list list">
+					<li class="item" v-for="link in socialLinks" :key="link.to">
+						<a class="link" :href="`/${link.to}`">{{ link.name }}</a>
+					</li>
+				</ul>
 			</div>
 			<div class="footer__contact">
 				<div class="footer__contact-large">
 					<h1 class="heading-s">aloqa</h1>
-					<p>Do you have any queries or suggestions?</p>
+					<p>Savollaringiz yoki takliflaringiz bormi?</p>
 					<a class="footer__contact-mail" href="mailto:yourinfo@gmail.com">
 						yourinfo@gmail.com
 					</a>
-					<p>If you need support? Just give us a call.</p>
+					<p>Savollaringiz bormi? Qo’ng’iroq qiling.</p>
 					<a class="footer__contact-tel" href="tel:+998992000101">+998 99 200 01 01</a>
 				</div>
 				<div class="footer__contact-small">
 					<p>
 						Savollaringiz bormi?<br />
-						Qo’ng’iroq qiling:
+						Qo’ng’iroq qiling.
 					</p>
 					<a class="footer__contact-tel" href="tel:+998992000101">+998 99 200 01 01</a>
 				</div>
@@ -113,44 +117,44 @@
 
 <script setup>
 import NavLinks from '@/components/NavLinks.vue';
-const main__links = [
+const routingLinks = [
 	{
 		to: '',
 		name: 'Asosiy'
+	},
+	{
+		to: 'project',
+		name: 'Loyiha'
 	},
 	{
 		to: 'about',
 		name: 'Biz Haqimizda'
 	},
 	{
-		to: 'catalog',
-		name: 'Katalog'
-	},
-	{
 		to: 'contact',
 		name: 'Aloqa'
 	}
 ];
-const secondary__links = [
+const socialLinks = [
 	{
-		to: 'order',
-		name: 'track your order'
+		to: '#',
+		name: 'instagram'
 	},
 	{
-		to: 'policy',
-		name: 'return policies'
+		to: '#',
+		name: 'facebook'
 	},
 	{
-		to: 'delivery',
-		name: 'shipping + delivery'
+		to: '#',
+		name: 'twitter'
 	},
 	{
-		to: 'contact',
-		name: 'contact us'
+		to: '#',
+		name: 'linkedin'
 	},
 	{
-		to: 'faq',
-		name: 'faqs'
+		to: '#',
+		name: 'telegram'
 	}
 ];
 </script>
@@ -185,7 +189,10 @@ const secondary__links = [
 		}
 		font-size: 14px;
 		font-weight: 400;
-		align-self: flex-start;
+		align-self: flex-end;
+		a {
+			text-decoration: none;
+		}
 	}
 	&__faq {
 		@include media($tab-port) {
@@ -200,7 +207,7 @@ const secondary__links = [
 			align-self: center;
 		}
 		p {
-			margin-top: 1rem;
+			margin: 1rem 0;
 		}
 		&-small {
 			@include media($tab-port, min) {

@@ -14,12 +14,10 @@
 					<img src="../assets/icons/paypal.svg" alt="paypal" />
 				</div>
 			</div>
-			<p>&copy; Copyright 2024</p>
+			<p>&copy; Copyright {{ new Date().getFullYear() }}</p>
 		</div>
 	</section>
 </template>
-
-<script setup></script>
 
 <style lang="scss" scoped>
 @import '@/sass/abstracts/index';

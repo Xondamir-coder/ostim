@@ -47,12 +47,12 @@ const links = [
 		name: 'Asosiy'
 	},
 	{
-		to: 'about',
-		name: 'Biz Haqimizda'
+		to: 'project',
+		name: 'Loyiha'
 	},
 	{
-		to: 'catalog',
-		name: 'Katalog'
+		to: 'about',
+		name: 'Biz Haqimizda'
 	},
 	{
 		to: 'contact',

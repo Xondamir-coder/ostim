@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import AboutView from '../views/AboutView.vue';
 import ContactView from '../views/ContactView.vue';
-import CatalogView from '../views/CatalogView.vue';
+import ProjectView from '../views/ProjectView.vue';
 import ErrorView from '../views/ErrorView.vue';
 
 const router = createRouter({
@@ -24,9 +24,9 @@ const router = createRouter({
 			name: 'contact'
 		},
 		{
-			path: '/catalog',
-			component: CatalogView,
-			name: 'catalog'
+			path: '/project',
+			component: ProjectView,
+			name: 'project'
 		},
 		{
 			path: '/:pathMatch(.*)*',
