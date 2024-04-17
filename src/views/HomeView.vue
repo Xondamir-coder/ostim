@@ -109,12 +109,14 @@
 					We are ready to help you build and also realize the room design that you dream
 					of dream
 				</p>
-				<TransitionGroup tag="ul" name="list" class="list">
-					<li class="list__item body-l" v-for="faq in faqs" :key="faq">
-						<input type="checkbox" class="list__checkbox" :id="faq.question" />
-						<label :for="faq.question" class="list__label">{{ faq.question }}</label>
-						<label :for="faq.question" class="list__icon"> </label>
-						<p class="list__text">{{ faq.answer }}</p>
+				<TransitionGroup tag="ul" name="list" class="faq__list">
+					<li class="faq__list__item body-l" v-for="faq in faqs" :key="faq">
+						<input type="checkbox" class="faq__list__checkbox" :id="faq.question" />
+						<label :for="faq.question" class="faq__list__label">{{
+							faq.question
+						}}</label>
+						<label :for="faq.question" class="faq__list__icon"> </label>
+						<p class="faq__list__text">{{ faq.answer }}</p>
 					</li>
 				</TransitionGroup>
 				<button class="faq__more" @click="increaseFaqs">more</button>
@@ -457,7 +459,7 @@ onMounted(() => {
 	}
 }
 
-.list {
+.faq__list {
 	max-height: 350px;
 	overflow-y: auto;
 	overflow-x: hidden;
@@ -508,14 +510,14 @@ onMounted(() => {
 	&__checkbox {
 		display: none;
 		&:checked {
-			& ~ .list__label {
+			& ~ .faq__list__label {
 				font-weight: bold;
 				color: #000;
 			}
-			& ~ .list__text {
+			& ~ .faq__list__text {
 				max-height: 30rem;
 			}
-			& ~ .list__icon::before {
+			& ~ .faq__list__icon::before {
 				scale: 0;
 			}
 		}
