@@ -18,9 +18,9 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
-@import '@/sass/abstracts/placeholders';
-
+@import '@/sass/abstracts/variables';
+@import '@/sass/abstracts/mixins';
 .list {
-	@extend .list;
+	@include list;
 }
 </style>

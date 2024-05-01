@@ -18,8 +18,6 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
-@import '@/sass/abstracts/index';
-
 .info__content {
 	$gaps: (
 		row: 3rem,
@@ -36,7 +34,9 @@ const props = defineProps({
 		grid-area: head;
 	}
 	& > *:not(.info__content-head) {
-		@include grid-row-gap(0.5rem);
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
 		p {
 			font-weight: 400;
 		}

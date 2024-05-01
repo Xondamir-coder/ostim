@@ -1,16 +1,19 @@
 <template>
 	<section class="download">
 		<div class="download__content">
-			<h1 class="heading-m">Katalogni to’liq yuklab oling</h1>
-			<p>eng yangi va to’liq ma’lumotlar katalogimizda*</p>
-			<button class="secondary-button">Yuklab olish</button>
+			<h1 class="heading-m">{{ i18n.global.t('download-title') }}</h1>
+			<p>{{ i18n.global.t('download-subtitle') }}</p>
+			<button class="secondary-button">{{ i18n.global.t('download-btn') }}</button>
 		</div>
-		<img src="../assets/logo-big.svg" alt="logo" />
+		<img src="@/assets/icons/logo-big.svg" alt="logo" />
 	</section>
 </template>
 
+<script setup>
+import i18n from '@/locales';
+</script>
+
 <style lang="scss" scoped>
-@import '@/sass/abstracts/index';
 .download {
 	@include flex(space-between, center);
 	margin: 0;
@@ -21,6 +24,8 @@
 		justify-content: center;
 	}
 	img {
+		width: 436px;
+		height: 254px;
 		@include media($tab-land) {
 			display: none;
 		}

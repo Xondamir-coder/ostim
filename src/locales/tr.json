@@ -1,0 +1,80 @@
+{
+	"link-main": "Ana",
+	"link-project": "Proje",
+	"link-about": "Hakkımızda",
+	"link-contact": "Temas",
+
+	"hero-title": "sanayi̇de yeni̇ bi̇r evre",
+	"hero-subtitle": "Ostim global - gelecek burada",
+	"hero-btn": "Koltuk seçin",
+
+	"reasons-title": "Neden Ostim Teknopark",
+	"reasons-1-title": "Elverişli konum",
+	"reasons-1-subtitle": "Taşkent bölgesi, Zangiota bölgesi",
+	"reasons-2-title": "Modern teknopark",
+	"reasons-2-subtitle": "Yurt i̇çi̇ i̇şbi̇rli̇ği̇ (üreti̇ci̇lere tedari̇k edi̇li̇r) sağlayici/hi̇zmet sağlayan i̇şletmeler)",
+	"reasons-3-title": "Sanayi metropolü",
+	"reasons-3-subtitle": "Osti̇m şi̇rketler grubu, bi̇r bi̇rçok organi̇zasyondan oluşuyor, hepsi̇ tek kontrolde kurul tarafindan yöneti̇li̇r.",
+
+	"avenues-title": "Projemizde yer alan",
+	"avenues-subtitle": "Her sey yasam ve is icin.",
+	"avenue-admin": "Yönetim binasi",
+	"avenue-guest": "Otel",
+	"avenue-sport": "Spor Kompleksi",
+	"avenue-college": "Teknik kolej - 840 kişilik",
+	"avenue-school": "Okul - 660 kişilik",
+	"avenue-kindergarden": "Anaokulu - 240 kişilik",
+	"avenue-clinic": "Poliklinik",
+	"avenue-business": "İş merkezi",
+	"avenue-exibition": "Sergi Merkezi",
+	"avenue-lab": "Teknopark ve Ar-Ge merkezi",
+	"avenue-trade": "Alışveriş ve eğlence merkezi",
+
+	"faq-title": "Sıkça Sorulan Sorular:",
+	"faq-subtitle": "Tüm sorularınızı cevaplamaya hazırız",
+	"faq-1-question": "Toplam alan nedir?",
+	"faq-1-answer": "Toplam 100 hektarlık alanın 68 hektarı sanayi, 12 hektarı sosyal alanlar, geri kalanı ise yollar ve diğer altyapı tesisleridir.",
+	"faq-2-question": "Bitiş tarihi?",
+	"faq-2-answer": "Aşama 1 için son tarih Eylül 2024'tür. 12 hektarı kamusal alan, 40.000 m2'si küçük sanayi alanı ve diğer altyapı binaları olmak üzere 30 hektarlık bir alanı kaplamaktadır.",
+	"faq-3-question": "Nasıl tavsiye alabilirim?",
+	"faq-3-answer": "Yardım hattımızı arayarak veya ofisimizi ziyaret ederek İhtiyacınız olan tüm bilgileri alın.",
+	"faq-4-question": "Nasıl satın alabilirim?",
+	"faq-4-answer": "Ofisimize gelerek işletmenizle ilgili tüm bilgileri veriyorsunuz. Yönetim Kurulumuz tarafından incelenip onaylandıktan sonra tarafınıza bilgi verilecektir.",
+
+	"download-title": "TAM KATALOG İNDİR",
+	"download-subtitle": "Kataloğumuzdaki en güncel ve eksiksiz bilgiler*",
+	"download-btn": "İNDİRMEK",
+
+	"connect-title": "Bizimle iletişime geçin",
+	"connect-subtitle": "Ostim Global birçok kuruluştan oluşmaktadır.  Tek bir yönetim merkezinden yönetim kurulu tarafından yönetilen şirkette toplam 100 kişi çalışmaktadır ve aşağıdaki hizmetleri vermektedir.",
+
+	"who-title": "Biz Kimiz?",
+	"who-text": "–LİSANSLAR VE İZİNLER–GELİŞTİRME VE KORUMA–İDARİ VE FİNANSAL HİZMETLER–İLETİŞİM VE SUNUCU HİZMETLERİ–BASIM VE BASIN HİZMETLERİ–FUAR ORGANİZASYONU–TEK ÇAĞRI MERKEZİ–TEKNOLOJİ HİZMETLERİ–KÜMELENME–İŞ FUARI",
+	"who-btn": "Daha",
+
+	"feedback-text": "Kalite, hız ve uygun fiyat ana hedefimizdir. Bu ihtiyaçların karşılanması için halkımızın her türlü hizmetine sunacağız.",
+
+	"office-address": "Taşkent bölgesi, Zengiata bölgesi.",
+	"office-address-turkey": "100. Yıl Bulvarı No:101/A 06374 OSTİM/Ankara",
+
+	"footer-social-title": "SOSYAL AĞLARDA BİZ VARIZ",
+	"footer-contact-title": "TEMAS ETMEK",
+	"footer-contact-mail": "Sorularınız veya önerileriniz mi var?",
+	"footer-contact-tel": "Sorularım var? Arama.",
+
+	"contact-info": "İLETİŞİM BİLGİLERİ",
+
+	"got-questions": "Sorusu olan?",
+	"use-form": "Bizimle iletişime geçmek için aşağıdaki formu kullanın",
+	"submit": "Göndermek",
+	"our-offices": "Ofislerimiz",
+	"buy-products": "Ürünlerimizi mağazalarımızdan doğrudan satın alabilirsiniz.",
+	"on-insta": "Instagram sayfamızda",
+	"mon-sat": "Pazartesi - cumartesi",
+
+	"input-name": "Adınız",
+	"input-mail": "E-postanızı buraya yazın",
+	"input-tel": "Telefon numaranız",
+	"input-subject": "Konunuzu buraya yazın",
+	"input-msg": "Mesajınızı buraya yazın"
+}

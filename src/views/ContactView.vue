@@ -6,8 +6,8 @@
 			<InfoBoard :data="infoData" />
 			<div class="info__contact">
 				<div class="info__contact-head">
-					<h1 class="heading-m">savollaringiz bormi?</h1>
-					<p>Use the form below to get in touch with us.</p>
+					<h1 class="heading-m">{{ i18n.global.t('got-questions') }}</h1>
+					<p>{{ i18n.global.t('use-form') }}</p>
 				</div>
 				<form class="info__form" @submit.prevent="submitForm">
 					<input
@@ -16,34 +16,36 @@
 						type="text"
 						name="name"
 						id="name"
-						placeholder="Your full name *" />
+						:placeholder="`${i18n.global.t('input-name')} *`" />
 					<input
 						v-model="submitData.email"
 						required
 						type="email"
 						name="email"
 						id="email"
-						placeholder="Write your email here *" />
+						:placeholder="`${i18n.global.t('input-mail')} *`" />
 					<input
 						v-model="submitData.tel"
 						type="tel"
 						name="tel"
 						id="tel"
-						placeholder="Phone number" />
+						:placeholder="i18n.global.t('input-tel')" />
 					<input
 						v-model="submitData.subject"
 						type="text"
 						name="subject"
 						id="subject"
-						placeholder="Write your subject here" />
+						:placeholder="i18n.global.t('input-subject')" />
 					<input
 						v-model="submitData.message"
 						required
 						type="text"
 						name="message"
 						id="message"
-						placeholder="Write your message here *" />
-					<button type="submit" class="primary-button">submit</button>
+						:placeholder="`${i18n.global.t('input-msg')} *`" />
+					<button type="submit" class="primary-button">
+						{{ i18n.global.t('submit') }}
+					</button>
 				</form>
 			</div>
 		</section>
@@ -59,7 +61,7 @@
 </template>
 
 <script setup>
-import { onMounted, reactive, ref } from 'vue';
+import { computed, onMounted, reactive, ref } from 'vue';
 import InfoBoard from '@/components/InfoBoard.vue';
 import Hero from '@/layout/Hero.vue';
 import DownloadCatalog from '@/layout/DownloadCatalog.vue';
@@ -68,56 +70,42 @@ import Footer from '@/layout/Footer.vue';
 import Copyright from '@/layout/Copyright.vue';
 import { animateSections } from '@/js/helpers';
 import Background from '@/layout/Background.vue';
+import i18n from '@/locales';
 
 const container = ref();
-const infoData = {
-	title: 'Contact info',
+const infoData = computed(() => ({
+	title: i18n.global.t('contact-info'),
 	text: 'Tortor dignissim convallis aenean et tortor at risus viverra adipiscing.',
 	columns: [
 		{
 			title: 'office',
-			texts: [
-				'730 Glenstone Ave 65802, Springfield, US',
-				'+123 222 333 44',
-				'+123 666 777 88',
-				'logo@yourinfo.com'
-			]
+			texts: [i18n.global.t('office-address'), '+998 77 124 10 10', 'logo@yourinfo.com']
 		},
 		{
-			title: 'office',
-			texts: [
-				'730 Glenstone Ave 65802, Springfield, US',
-				'+123 222 333 44',
-				'+123 666 777 88',
-				'logo@yourinfo.com'
-			]
+			title: 'management',
+			texts: [i18n.global.t('office-address'), , '+998 77 124 10 10', 'logo@yourinfo.com']
 		}
 	]
-};
-const officeData = {
-	title: 'Bizning ofislarimiz',
-	text: 'You can also directly buy products from our stores.',
+}));
+const officeData = computed(() => ({
+	title: i18n.global.t('our-offices'),
+	text: i18n.global.t('buy-products'),
 	columns: [
 		{
 			title: 'Toshkent',
-			texts: [
-				'730 Glenstone Ave 65802, Springfield, US',
-				'+123 222 333 44',
-				'+123 666 777 88',
-				'logo@yourinfo.com'
-			]
+			texts: [i18n.global.t('office-address'), '+998 77 124 10 10', 'logo@yourinfo.com']
 		},
 		{
 			title: 'Turkiya',
 			texts: [
-				'730 Glenstone Ave 65802, Springfield, US',
-				'+123 222 333 44',
-				'+123 666 777 88',
-				'logo@yourinfo.com'
+				i18n.global.t('office-address-turkey'),
+				'+90 (312) 385 50-90 ',
+				'+90 (312) 354 58-98',
+				'ostim@ostim.org.tr'
 			]
 		}
 	]
-};
+}));
 
 const submitData = reactive({
 	name: '',
@@ -136,8 +124,6 @@ onMounted(() => animateSections(Array.from(container.value.children)));
 </script>
 
 <style lang="scss" scoped>
-@import '@/sass/abstracts/index';
-
 .info {
 	@include grid-responsive-cols(300px, 2rem);
 	overflow: hidden;
@@ -179,6 +165,7 @@ onMounted(() => animateSections(Array.from(container.value.children)));
 }
 .office {
 	@include grid-auto(column, 2rem);
+	align-items: center;
 	@include media($tab-land) {
 		grid-auto-flow: row;
 	}

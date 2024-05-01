@@ -1,0 +1,80 @@
+{
+	"link-main": "Main",
+	"link-project": "Project",
+	"link-about": "About us",
+	"link-contact": "Contact",
+
+	"hero-title": "new level of industry",
+	"hero-subtitle": "Ostim global - the future is here",
+	"hero-btn": "Select place",
+
+	"reasons-title": "Why Ostim Technopark",
+	"reasons-1-title": "Convenient location",
+	"reasons-1-subtitle": "Zangiota district, Tashkent region",
+	"reasons-2-title": "Modern technopark",
+	"reasons-2-subtitle": "Domestic cooperation (supplied to manufacturers provider/businesses providing service)",
+	"reasons-3-title": "Industrial megapolis",
+	"reasons-3-subtitle": "Ostim group of companies, comprised of several organizations, all controlled by a management company administered by the council.",
+
+	"avenues-title": "Located in our project",
+	"avenues-subtitle": "Everything for life and business",
+	"avenue-admin": "Administrative building",
+	"avenue-guest": "Hotel",
+	"avenue-sport": "Sports complex",
+	"avenue-college": "Technical College - 840 person",
+	"avenue-school": "School - 660 person",
+	"avenue-kindergarden": "Kindergarten - 240 person",
+	"avenue-clinic": "Polyclinic",
+	"avenue-business": "Business center",
+	"avenue-exibition": "Exhibition center",
+	"avenue-lab": "Technopark and R&D center",
+	"avenue-trade": "Shopping and entertainment center",
+
+	"faq-title": "Frequently asked questions:",
+	"faq-subtitle": "We are ready to help with any questions",
+	"faq-1-question": "What is the total area?",
+	"faq-1-answer": "Of the total area of 100 hectares, 68 hectares are industrial, 12 hectares are social spaces, and the rest are roads and other infrastructure facilities.",
+	"faq-2-question": "End date?",
+	"faq-2-answer": "The deadline for the implementation of the 1st stage is September 2024. It occupies an area of 30 hectares, of which 12 hectares are social zones, 40 thousand m2 of small industrial areas and other infrastructure facilities.",
+	"faq-3-question": "How do I get a consultation?",
+	"faq-3-answer": "By calling our hotline or visiting our office. Get all the information you need.",
+	"faq-4-question": "How can I buy?",
+	"faq-4-answer": "You visit our office and provide all the information about your business. Once reviewed and approved by our Board, you will be notified.",
+
+	"download-title": "DOWNLOAD FULL CATALOG",
+	"download-subtitle": "the most current and complete information in our catalog*",
+	"download-btn": "DOWNLOAD",
+
+	"connect-title": "Connect with us",
+	"connect-subtitle": "Ostim Global consists of many organizations.  The company, managed by the board of directors from a single management center, employs a total of 100 people and provides the following services.",
+
+	"who-title": "Who are we?",
+	"who-text": "–LICENSES AND PERMISSIONS–DEVELOPMENT AND PROTECTION–ADMINISTRATIVE AND FINANCIAL SERVICES–COMMUNICATION AND SERVER SERVICES–PRINTING AND PRESS SERVICES–ORGANIZATION OF EXHIBITIONS–SINGLE CALL CENTER–SERVICE–CLUSTERIZATION–JOB FAIR",
+	"who-btn": "Learn more",
+
+	"feedback-text": "Quality, speed and affordable price are our main goals. We provide all kinds of services to our people to meet these needs.",
+
+	"office-address": "Tashkent region, Zangiota district.",
+	"office-address-turkey": "100. Yıl Bulvarı No:101/A 06374 OSTİM/Ankara",
+
+	"footer-social-title": "WE ARE ON SOCIAL MEDIA",
+	"footer-contact-title": "CONTACT",
+	"footer-contact-mail": "Do you have questions or suggestions?",
+	"footer-contact-tel": "Do you have any questions? Call.",
+
+	"contact-info": "CONTACT INFO",
+
+	"got-questions": "Do you have any questions?",
+	"use-form": "Use the form below to get in touch with us",
+	"submit": "Submit",
+	"our-offices": "Our offices",
+	"buy-products": "You can also directly buy products from our stores.",
+	"on-insta": "On our Instagram page",
+	"mon-sat": "Monday - saturday",
+
+	"input-name": "Your name",
+	"input-mail": "Write your email here",
+	"input-tel": "Your phone number",
+	"input-subject": "Write your subject here",
+	"input-msg": "Write your message here"
+}

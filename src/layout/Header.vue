@@ -5,34 +5,70 @@
 				<input class="header__menu" type="checkbox" name="menu" id="menu" ref="menuBtn" />
 				<label for="menu" class="header__label"></label>
 				<div class="menu">
-					<NavLinks :links="links" class="menu__list" @click="toggleMenu" />
+					<NavLinks :links="routingLinks" class="menu__list" @click="toggleMenu" />
 					<div class="menu__content">
-						<button class="menu__button button">joy tanlash</button>
-						<a href="tel:+998 71 210 44 54">+998 71 210 44 54</a>
-						<p>Dushanba-shanba: 9:00–18:00</p>
+						<button class="menu__button button">{{ i18n.global.t('hero-btn') }}</button>
+						<a href="tel:+998 77 124 10 10">+998 77 124 10 10</a>
+						<p>{{ i18n.global.t('mon-sat') }}: 9:00–18:00</p>
 					</div>
 				</div>
 			</label>
 			<RouterLink to="/">
-				<img class="header__logo" src="../assets/logo.svg" alt="logo" />
-				<img class="header__logo-white" src="../assets/logo-white.svg" alt="logo" />
+				<img class="header__logo" src="@/assets/icons/logo.svg" alt="logo" />
+				<img class="header__logo-white" src="@/assets/icons/logo-white.svg" alt="logo" />
 			</RouterLink>
 			<nav class="nav">
-				<NavLinks :links="links" class="nav__list" />
+				<NavLinks :links="routingLinks" class="nav__list" />
 				<div class="nav__lang">
-					<label for="lang">UZ</label>
+					<label class="nav__lang-label" for="lang">{{
+						i18n.global.locale.toUpperCase()
+					}}</label>
 					<input class="nav__lang-checkbox" type="checkbox" name="lang" id="lang" />
+					<ul class="nav__lang-list">
+						<li class="nav__lang-item" v-for="lang in ['UZ', 'RU', 'EN', 'TR']">
+							<label
+								class="nav__lang-label"
+								for="lang"
+								@click="changeLanguage(lang.toLowerCase())"
+								>{{ lang }}</label
+							>
+						</li>
+					</ul>
 				</div>
 			</nav>
-			<button class="header__btn header__btn-tel">
-				<img src="../assets/icons/tel.svg" alt="tel" />
-			</button>
+			<div class="header__right">
+				<div class="nav__lang">
+					<label class="nav__lang-label" for="mobile-lang">{{
+						i18n.global.locale.toUpperCase()
+					}}</label>
+					<input
+						class="nav__lang-checkbox nav__lang-checkbox_white"
+						type="checkbox"
+						name="mobile-lang"
+						id="mobile-lang" />
+					<ul class="nav__lang-list">
+						<li class="nav__lang-item" v-for="lang in ['UZ', 'RU', 'EN', 'TR']">
+							<label
+								class="nav__lang-label"
+								for="mobile-lang"
+								@click="changeLanguage(lang.toLowerCase())"
+								>{{ lang }}</label
+							>
+						</li>
+					</ul>
+				</div>
+				<a class="header__btn header__btn-tel" href="tel:+998 77 124 10 10">
+					<img src="@/assets/icons/tel.svg" alt="tel" />
+				</a>
+			</div>
 		</div>
 	</header>
 </template>
 
 <script setup>
 import NavLinks from '@/components/NavLinks.vue';
+import { routingLinks } from '@/content/data';
+import i18n, { changeLanguage } from '@/locales';
 import { ref } from 'vue';
 import { RouterLink, useRoute } from 'vue-router';
 
@@ -40,29 +76,9 @@ const route = useRoute();
 const menuBtn = ref(null);
 
 const toggleMenu = () => (menuBtn.value.checked = !menuBtn.value.checked);
-
-const links = [
-	{
-		to: '',
-		name: 'Asosiy'
-	},
-	{
-		to: 'project',
-		name: 'Loyiha'
-	},
-	{
-		to: 'about',
-		name: 'Biz Haqimizda'
-	},
-	{
-		to: 'contact',
-		name: 'Aloqa'
-	}
-];
 </script>
 
 <style lang="scss" scoped>
-@import '@/sass/abstracts/index';
 .header {
 	&__menu {
 		display: none;
@@ -79,7 +95,20 @@ const links = [
 		background-color: #fff;
 	}
 	&__menu:checked ~ .menu {
-		@include visible;
+		transform: translateX(0);
+	}
+	&__right {
+		@include media($tab-port, min) {
+			display: none;
+		}
+		display: flex;
+		gap: 2rem;
+		.nav__lang {
+			gap: 0.5rem;
+		}
+		label {
+			color: #b4bcc8;
+		}
 	}
 	&__btn {
 		@include dimensions(40px);
@@ -188,29 +217,92 @@ const links = [
 	}
 	&__lang {
 		@include flex-align(center, 1rem);
-
+		position: relative;
+		&-list {
+			transition-property: opacity, transform;
+			transition-duration: 0.25s;
+			width: 6rem;
+			position: absolute;
+			right: 0;
+			top: 3rem;
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+			gap: 0.5rem;
+			background-color: #fff;
+			padding: 1rem;
+			font-family: $font-jost;
+			font-size: 1.6rem;
+			font-weight: 500;
+			color: rgb(39, 39, 39);
+			z-index: 10;
+			border-radius: 0.7rem;
+			box-shadow: 0px 0px 10px 3px rgba($color-primary, 0.5);
+			transform: translateY(-2rem);
+			opacity: 0;
+			li:nth-child(2) {
+				transition-delay: 0.3s;
+			}
+			li:nth-child(3) {
+				transition-delay: 0.4s;
+			}
+			li:last-child {
+				transition-delay: 0.5s;
+			}
+			& > *:hover {
+				color: $color-secondary;
+			}
+			& * {
+				cursor: pointer;
+			}
+			& > * {
+				transition-property: opacity, transform;
+				transition-duration: 0.2s;
+				transition-delay: 0.1s;
+				transform: translateX(-2rem);
+				opacity: 0;
+			}
+		}
 		& > * {
 			cursor: pointer;
 		}
+		&-label {
+			font-family: $font-jost;
+			font-size: 1.6rem;
+			font-weight: 500;
+		}
 		&-checkbox {
 			appearance: none;
-			&:checked::before {
+			transition: transform 0.3s;
+			&:checked {
 				transform: rotate(180deg);
+			}
+			&:checked + .nav__lang-list {
+				opacity: 1;
+				transform: translateY(0);
+			}
+			&:checked + .nav__lang-list > * {
+				opacity: 1;
+				transform: translateX(0);
 			}
 			&::before {
 				content: url(../assets/icons/down-arrow.svg);
-				display: block;
-				transition: transform 0.3s;
+			}
+			&_white {
+				content: url(../assets/icons/down-arrow_white.svg);
+				& + .nav__lang-list {
+					top: 6rem;
+				}
 			}
 		}
 	}
 }
 .menu {
 	@include full-viewport;
-	@include hidden(-100%);
+	transform: translateX(-100%);
 	@include flex-justify(space-around, null, null, column);
 	padding-top: 120px;
-	transition: opacity 0.8s, transform 0.8s;
+	transition: transform 0.8s;
 	position: fixed;
 	inset: 0;
 	background-image: linear-gradient(to bottom, #4a0605, #150303);

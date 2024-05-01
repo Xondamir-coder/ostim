@@ -20,7 +20,6 @@
 </template>
 
 <style lang="scss" scoped>
-@import '@/sass/abstracts/index';
 .copyright {
 	margin: 0;
 	border-top: 1px solid #d0d0d0;

@@ -3,7 +3,7 @@
 		<div class="footer__content">
 			<div class="footer__social">
 				<RouterLink to="/">
-					<img src="../assets/logo.svg" alt="logo" />
+					<img src="@/assets/icons/logo.svg" alt="logo" />
 				</RouterLink>
 				<p>
 					Nisi, purus vitae, ultrices nunc. Sit ac sit suscipit hendrerit. Gravida massa
@@ -86,7 +86,7 @@
 			</div>
 			<NavLinks :links="routingLinks" class="footer__list" />
 			<div class="footer__faq">
-				<h1 class="heading-s">Biz ijtimoiy tarmoqlarda:</h1>
+				<h1 class="heading-s">{{ i18n.global.t('footer-social-title') }}</h1>
 				<ul class="footer__list list">
 					<li class="item" v-for="link in socialLinks" :key="link.to">
 						<a class="link" :href="`/${link.to}`">{{ link.name }}</a>
@@ -95,20 +95,24 @@
 			</div>
 			<div class="footer__contact">
 				<div class="footer__contact-large">
-					<h1 class="heading-s">aloqa</h1>
-					<p>Savollaringiz yoki takliflaringiz bormi?</p>
+					<h1 class="heading-s">{{ i18n.global.t('footer-contact-title') }}</h1>
+					<p>{{ i18n.global.t('footer-contact-mail') }}</p>
 					<a class="footer__contact-mail" href="mailto:yourinfo@gmail.com">
 						yourinfo@gmail.com
 					</a>
-					<p>Savollaringiz bormi? Qo’ng’iroq qiling.</p>
-					<a class="footer__contact-tel" href="tel:+998992000101">+998 99 200 01 01</a>
+					<p>{{ i18n.global.t('footer-contact-tel') }}</p>
+					<a class="footer__contact-tel" href="tel:+998 77 124 10 10"
+						>+998 77 124 10 10</a
+					>
 				</div>
 				<div class="footer__contact-small">
 					<p>
 						Savollaringiz bormi?<br />
 						Qo’ng’iroq qiling.
 					</p>
-					<a class="footer__contact-tel" href="tel:+998992000101">+998 99 200 01 01</a>
+					<a class="footer__contact-tel" href="tel:+998 77 124 10 10"
+						>+998 77 124 10 10</a
+					>
 				</div>
 			</div>
 		</div>
@@ -116,25 +120,9 @@
 </template>
 
 <script setup>
+import i18n from '@/locales';
 import NavLinks from '@/components/NavLinks.vue';
-const routingLinks = [
-	{
-		to: '',
-		name: 'Asosiy'
-	},
-	{
-		to: 'project',
-		name: 'Loyiha'
-	},
-	{
-		to: 'about',
-		name: 'Biz Haqimizda'
-	},
-	{
-		to: 'contact',
-		name: 'Aloqa'
-	}
-];
+import { routingLinks } from '@/content/data';
 const socialLinks = [
 	{
 		to: '#',
@@ -160,7 +148,8 @@ const socialLinks = [
 </script>
 
 <style lang="scss" scoped>
-@import '@/sass/abstracts/index';
+@import '@/sass/abstracts/variables';
+@import '@/sass/abstracts/mixins';
 .footer {
 	font-family: $font-poppins;
 	&__social {
@@ -183,10 +172,11 @@ const socialLinks = [
 		}
 	}
 	&__list {
-		@include flex-align(flex-start, 1rem, null, column);
 		@include media($tab-port) {
 			display: none;
 		}
+		@include list;
+		@include flex-align(flex-start, 1rem, null, column);
 		font-size: 14px;
 		font-weight: 400;
 		align-self: flex-end;

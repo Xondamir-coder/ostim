@@ -1,6 +1,6 @@
 <template>
 	<section class="instagram instagram-animate" ref="container">
-		<h1 class="heading-m">instagram sahifamizada</h1>
+		<h1 class="heading-m">{{ i18n.global.t('on-insta') }}</h1>
 		<ul class="instagram__list">
 			<li class="instagram__item" v-for="_ in posts">
 				<a href="#">
@@ -19,6 +19,7 @@
 </template>
 
 <script setup>
+import i18n from '@/locales';
 import { onMounted, ref } from 'vue';
 
 const container = ref(null);
@@ -33,7 +34,6 @@ onMounted(() => observer.observe(container.value));
 </script>
 
 <style lang="scss" scoped>
-@import '@/sass/abstracts/index';
 .instagram {
 	text-align: center;
 	@include grid-row-gap(2.5rem);

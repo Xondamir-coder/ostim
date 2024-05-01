@@ -2,7 +2,6 @@
 	<div class="background"></div>
 </template>
 <style lang="scss" scoped>
-@import '@/sass/abstracts/index';
 .background {
 	@include full-viewport;
 	@include media($tab-port, min) {

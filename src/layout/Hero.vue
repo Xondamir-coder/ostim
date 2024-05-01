@@ -1,21 +1,21 @@
 <template>
 	<section class="hero">
 		<div class="hero__content">
-			<h1 class="hero__heading heading-xl">{{ name }}</h1>
+			<h1 class="hero__heading heading-xl">{{ i18n.global.t(`link-${route.name}`) }}</h1>
 			<p class="hero__text">
 				<RouterLink
 					class="hero__link router__link"
 					active-class="router__link--active"
-					to="/"
-					>Asosiy</RouterLink
-				>
+					to="/">
+					{{ i18n.global.t('link-main') }}
+				</RouterLink>
 				>
 				<RouterLink
 					class="hero__link router__link"
 					active-class="router__link--active"
-					:to="route.path"
-					>{{ name }}</RouterLink
-				>
+					:to="route.path">
+					{{ i18n.global.t(`link-${route.name}`) }}
+				</RouterLink>
 			</p>
 		</div>
 	</section>
@@ -23,19 +23,16 @@
 
 <script setup>
 import { useRoute } from 'vue-router';
-import { computed } from 'vue';
+import i18n from '@/locales';
 
 const route = useRoute();
-const name = computed(() => (route.name === 'about' ? 'Biz Haqimizda' : 'Aloqa'));
 </script>
 
 <style lang="scss" scoped>
-@import '@/sass/abstracts/index';
-
 .hero {
 	@include grid-center;
 	margin: 0 !important;
-	background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+	background: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
 		url(../assets/about-hero.avif);
 	background-position-y: top;
 	background-size: cover;
@@ -49,6 +46,10 @@ const name = computed(() => (route.name === 'about' ? 'Biz Haqimizda' : 'Aloqa')
 	}
 	&__heading {
 		animation: slide-left 1s ease-out;
+		text-transform: uppercase;
+		@include media($tab-port) {
+			font-size: 5.5rem;
+		}
 	}
 	&__link {
 		&:last-child {

@@ -7,89 +7,75 @@ import new_zone from '@/assets/icons/new zone.svg';
 import safe from '@/assets/icons/safe.svg';
 import adminAvenue from '@/assets/admin.avif';
 import sportAvenue from '@/assets/sport.avif';
-import hotelAvenue from '@/assets/hotel.avif';
-import businessAvenue from '@/assets/business.avif';
-import kindergardenAvenue from '@/assets/kindergarden.avif';
 import schoolAvenue from '@/assets/school.avif';
+import hotelAvenue from '@/assets/hotel.avif';
+import clinicAvenue from '@/assets/clinic.avif';
+import kindergartenAvenue from '@/assets/kindergarten.avif';
+import { computed } from 'vue';
+import i18n from '@/locales';
 
 // Home content
-export const questions = [
+export const questions = computed(() => [
 	{
-		question: 'Texnopark qayerda joylashgan?',
-		answer: 'Modern design is a term in the design world that refers to a house with a clean design, sim'
+		question: i18n.global.t('faq-1-question'),
+		answer: i18n.global.t('faq-1-answer')
 	},
 	{
-		question: 'Texnoparkda suv ta’minoti qanday?',
-		answer: 'Modern design is a term in the design world that refers to a house with a clean design, sim'
+		question: i18n.global.t('faq-2-question'),
+		answer: i18n.global.t('faq-2-answer')
 	},
 	{
-		question: 'Umumiy maydon qancha?',
-		answer: 'Modern design is a term in the design world that refers to a house with a clean design, sim'
+		question: i18n.global.t('faq-3-question'),
+		answer: i18n.global.t('faq-3-answer')
 	},
 	{
-		question: 'Qurib bitkazilish muddati',
-		answer: 'Modern design is a term in the design world that refers to a house with a clean design, sim'
-	},
-	{
-		question: 'Custom question',
-		answer: 'Modern design is a term in the design world that refers to a house with a clean design, sim'
-	},
-	{
-		question: 'Another question',
-		answer: 'Modern design is a term in the design world that refers to a house with a clean design, sim'
-	},
-	{
-		question: 'New question',
-		answer: 'Modern design is a term in the design world that refers to a house with a clean design, sim'
-	},
-	{
-		question: 'Old question',
-		answer: 'Modern design is a term in the design world that refers to a house with a clean design, sim'
+		question: i18n.global.t('faq-4-question'),
+		answer: i18n.global.t('faq-4-answer')
 	}
-];
-export const reasons = [
+]);
+export const reasons = computed(() => [
 	{
 		icon: iconCheck,
-		title: 'Qulay joylashuv',
-		text: 'We deliver the final work with great professional way.'
+		title: i18n.global.t('reasons-1-title'),
+		text: i18n.global.t('reasons-1-subtitle')
 	},
 	{
 		icon: workflowIcon,
-		title: 'Zamonaviy texnopark',
-		text: 'We provide the most easy smoth workflow of interior design.'
+		title: i18n.global.t('reasons-2-title'),
+		text: i18n.global.t('reasons-2-subtitle')
 	},
 	{
 		icon: trustedIcon,
-		title: 'Xalqaro industrial park',
-		text: 'People trust us since we opened the company'
+		title: i18n.global.t('reasons-3-title'),
+		text: i18n.global.t('reasons-3-subtitle')
 	}
-];
-export const avenues = [
+]);
+export const avenues = computed(() => [
 	{
 		banner: adminAvenue,
-		title: 'adminstration'
+		title: i18n.global.t('avenue-admin')
 	},
 	{
 		banner: sportAvenue,
-		title: 'Sport complex'
+		title: i18n.global.t('avenue-sport')
 	},
 	{
 		banner: schoolAvenue,
-		title: 'School'
+		title: i18n.global.t('avenue-school')
 	},
 	{
 		banner: hotelAvenue,
-		title: 'Hotel'
+		title: i18n.global.t('avenue-guest')
 	},
 	{
-		banner: businessAvenue,
-		title: 'Business centre'
+		banner: clinicAvenue,
+		title: i18n.global.t('avenue-clinic')
 	},
 	{
-		banner: kindergardenAvenue,
-		title: 'kindergarden'
+		banner: kindergartenAvenue,
+		title: i18n.global.t('avenue-kindergarden')
 	}
-];
+]);
 
 // About content
 export const features = [
@@ -107,10 +93,25 @@ export const features = [
 		title: 'Yangi zonalar',
 		text: 'Consectetur adipi elit lorem ipsum dolor sit amet.',
 		img: new_zone
-	},
-	{
-		title: "100% xavfsiz to'lov",
-		text: 'Consectetur adipi elit lorem ipsum dolor sit amet.',
-		img: safe
 	}
 ];
+
+// Routing links
+export const routingLinks = computed(() => [
+	{
+		to: '',
+		name: i18n.global.t('link-main')
+	},
+	{
+		to: 'project',
+		name: i18n.global.t('link-project')
+	},
+	{
+		to: 'about',
+		name: i18n.global.t('link-about')
+	},
+	{
+		to: 'contact',
+		name: i18n.global.t('link-contact')
+	}
+]);

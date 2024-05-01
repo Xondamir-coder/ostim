@@ -12,24 +12,16 @@
 			</ul>
 		</section>
 		<section class="us">
-			<img
-				class="us__video"
-				src="https://s3-alpha-sig.figma.com/img/268a/9033/6a93a2ae31f86ef29125bee0546725ec?Expires=1711929600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=j0WOEGSj5JvgqeX9-k9c0xR-pWS~lfhyKPdjRR1AemnnEBF9sXXzr5UF3d2wp6kZFQi6BdrPLSHsRHl2GzbECR79aoNOxuiKFyMlHoSAvDpAzEoTmVj89MlKTqE0Aoj6j7R4egtBhgpM8Fooo5UXSAYFg0WsVJb6Wyc97UsLPWsZ7dDOW6VeAzhUzCEFEUQo8Wtv8fxcuRO4BbFBM2Vsb9Yyw7R15nf~Eh8gLuXiRkIuZGptH814cymRTuZdrlwj2mneLPzlFYgM4K2ZbTpaoBWS60dJA1HTq7sDFAVqt4zC6Ut3oAPK7i~5h7YTbU-4~VZrdvRar6PGmtpIWBztcA__"
-				alt="video" />
+			<img class="us__video" alt="video" />
 			<div class="us__content">
-				<h1 class="heading-m">biz kimmiz?</h1>
-				<p>
-					Risus augue curabitur diam senectus congue velit et. Sed vitae metus nibh sit
-					era. Nulla adipiscing pharetra pellentesque maecenas odio eros at. Et libero
-					vulputate amet duis erat volutpat vitae eget. Sed vitae metus nibh sit era.
-					Nulla adipiscing pharetra pellentesque maecenas odio eros at. Quam libero etiam
-					et in ac at quis.<br />
-					Sed vitae metus nibh sit era. Nulla adipiscing pharetra pellentesque maecenas
-					odio eros at. Et libero vulputate amet duis erat volutpat vitae eget. Quam
-					libero etiam et in ac at quis. Risus augue curabitur diam senectus congue velit
-					et.
+				<h1 class="heading-m">{{ i18n.global.t('who-title') }}</h1>
+				<p
+					v-for="text in i18n.global.t('who-text').split('–')"
+					:key="text"
+					:class="{ hidden: !text }">
+					– {{ text }}
 				</p>
-				<button type="button" class="primary-button">Batafsil</button>
+				<button type="button" class="primary-button">{{ i18n.global.t('who-btn') }}</button>
 			</div>
 		</section>
 		<section class="feedback">
@@ -48,8 +40,7 @@
 			</button>
 			<div class="feedback__content">
 				<p class="body-xl">
-					“Sifat, tezkorlik va hamyonbop narx bizning asosiy maqsadimiz. Xalqimizga shu
-					qulayliklarni amalga oshirish uchun barcha xizmatlarni ado qilamiz”
+					{{ i18n.global.t('feedback-text') }}
 				</p>
 				<div class="feedback__content-author body-s">
 					<div class="feedback__stars">
@@ -95,6 +86,7 @@ import { onMounted, ref } from 'vue';
 import { animateSections } from '@/js/helpers';
 import { features } from '@/content/data';
 import { Hero, DownloadCatalog, Instagram, Footer, Copyright, Background } from '@/layout';
+import i18n from '@/locales';
 
 const container = ref();
 
@@ -102,8 +94,6 @@ onMounted(() => animateSections(Array.from(container.value.children)));
 </script>
 
 <style lang="scss" scoped>
-@import '@/sass/abstracts/index';
-
 .features {
 	&__list {
 		@include grid-responsive-cols(250px, 2rem);
@@ -111,8 +101,14 @@ onMounted(() => animateSections(Array.from(container.value.children)));
 	&__item {
 		@include grid-area('icon title' 'icon text');
 		@include hidden;
+		row-gap: 0.7rem;
 		grid-template-columns: 3rem;
-		column-gap: 1.4rem;
+		column-gap: 1rem;
+		h4 {
+			line-height: 2.2rem;
+		}
+		p {
+		}
 		&-icon {
 			grid-area: icon;
 			@include dimensions(2.5rem);
@@ -129,7 +125,7 @@ onMounted(() => animateSections(Array.from(container.value.children)));
 }
 
 .us {
-	@include grid-auto(column, 7rem);
+	@include grid-auto(column, 5rem);
 	@include media($tab-land) {
 		grid-auto-flow: row;
 	}
@@ -139,9 +135,15 @@ onMounted(() => animateSections(Array.from(container.value.children)));
 		align-content: center;
 	}
 	&__video {
-		@include cover-img();
-		@include rounded-border();
-		aspect-ratio: 3/2;
+		@include cover-img;
+		@include rounded-border;
+	}
+	p {
+		font-size: 1.6rem;
+		font-weight: 300;
+		line-height: 2.2rem;
+		letter-spacing: 0.03em;
+		color: #3a3a3a;
 	}
 }
 
@@ -166,6 +168,11 @@ onMounted(() => animateSections(Array.from(container.value.children)));
 			stroke: $color-blue;
 		}
 	}
+	&__stars {
+		display: flex;
+		justify-content: center;
+		gap: 0.7rem;
+	}
 	&__content {
 		@include grid-row-gap(3rem);
 		@include media($tab-port) {
@@ -175,7 +182,9 @@ onMounted(() => animateSections(Array.from(container.value.children)));
 		flex-basis: 80%;
 		&-author {
 			@include grid-row-gap(1rem);
-			@include text(_, 500, _, uppercase, 0.1em);
+			font-weight: 500;
+			letter-spacing: 0.1em;
+			text-transform: uppercase;
 		}
 	}
 }

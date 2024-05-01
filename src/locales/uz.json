@@ -1,0 +1,80 @@
+{
+	"link-main": "Asosiy",
+	"link-project": "Loyiha",
+	"link-about": "Biz haqimizda",
+	"link-contact": "Aloqa",
+
+	"hero-title": "sanoatning yangi bosqichi",
+	"hero-subtitle": "Ostim global - kelajak shu yerda",
+	"hero-btn": "Joy tanlash",
+
+	"reasons-title": "Nega aynan Ostim texnoparki",
+	"reasons-1-title": "Qulay joylashuv",
+	"reasons-1-subtitle": "Toshkent viloyati, Zangiota tumani",
+	"reasons-2-title": "Zamonaviy texnopark",
+	"reasons-2-subtitle": "Ichki kooperatsiya (ishlab chiqaruvchilarga yetkazib beruvchi/ xizmat ko'rsativchi korxonalar)",
+	"reasons-3-title": "Sanoat megapolisi",
+	"reasons-3-subtitle": "Ostim kompaniyalar guruhi, bir nechta tashkilotlardan iborat bo'lib, barchasi boshqaruv kompaniyasi nazorat kengashi tomonidan boshqariladi.",
+
+	"avenues-title": "Loyihamizda joylashgan",
+	"avenues-subtitle": "Barchasi hayot va biznes uchun.",
+	"avenue-admin": "Ma'muriy bino",
+	"avenue-guest": "Mehmonxona",
+	"avenue-sport": "Sport kompleksi",
+	"avenue-college": "Texnik kollej - 840 o'rinli",
+	"avenue-school": "Maktab - 660 o'rinli",
+	"avenue-kindergarden": "Bolalar bog'chasi 240 o'rinli",
+	"avenue-clinic": "Polinklinika",
+	"avenue-business": "Biznes markaz",
+	"avenue-exibition": "Ko'rgazmalar markazi",
+	"avenue-lab": "Texnopark va labaratoriya",
+	"avenue-trade": "Savdo va ko'ngilochar markaz",
+
+	"faq-title": "Ko'p beriladigan savollar:",
+	"faq-subtitle": "Hamma savollarizga javob berishga tayyormiz",
+	"faq-1-question": "Umumiy maydon qancha?",
+	"faq-1-answer": "Jami 100 gektar maydondan 68 gektar sanoat maydonlari, 12 gektar ijtimoiy xudud va qolgan qismi yo'llar va boshqa infratuzilma inshoatlaridan iborat.",
+	"faq-2-question": "Qurilib bitkazish muddati?",
+	"faq-2-answer": "1-bosqich topshirilish muddati 2024 - Sentyabr, 30 gektar maydonni tashkil etib, 12 gektar ijtimoiy hudud, 40.000 m2 kichik sanoat maydonlari va boshqa infratuzilma binolaridan iborat.",
+	"faq-3-question": "Qanday qilib maslahat olish mumkun?",
+	"faq-3-answer": "Bizning ishonch raqamlarimizga qo'ng'iroq qilib, yoki ofisimizga tashrif buyurib barcha kerakli ma'lumotlarga ega bo'ling.",
+	"faq-4-question": "Qanday qilib sotib olish mumkun?",
+	"faq-4-answer": "Ofisimizga tashrif buyurasiz, o'z biznesingiz haqida barcha ma'lumotlarni taqdim etasiz. Bizning kengash tomonidan ko'rib chiqilib tasdiqlangandan so'ng sizga xabar beriladi.",
+
+	"download-title": "KATALOGNI TO’LIQ YUKLAB OLING",
+	"download-subtitle": "eng yangi va to’liq ma’lumotlar katalogimizda*",
+	"download-btn": "YUKLAB OLISH",
+
+	"connect-title": "Biz bilan bog'laning",
+	"connect-subtitle": "Ostim Global kompaniyasi ko'plab tashkilotlardan iborat. Yagona boshqaruv markazi tomonidan direktorlar kengashi tomonidan boshqariladigan kompaniyada jami 100 kishi ishlaydi va quyidagi xizmatlarni taqdim etadi.",
+
+	"who-title": "Biz kimmiz?",
+	"who-text": "–Litsenziya va ruxsatnomalar berish–OBODONLASHTIRISH VA Qo'riqlash–MAMURIY VA MOLIYAVIY XIZMATLAR–ALOQA VA SERVER XIZMATLARI–MATBAA VA MATBUOT XIZMATI–KO'RGAZMALAR TASHKIL ETISH–YAGONA CALL CENTER–TEXNOLOGIK XIZMATLAR–KLASTERLASH–ISH O'RINLARI YARMARKASI",
+	"who-btn": "Batafsil",
+
+	"feedback-text": "Sifat, tezlik va hamyonbop narx bizning asosiy maqsadimizdir. Bu ehtiyojlarni qondirish uchun xalqimizga barcha turdagi xizmatlarni taqdim etamiz.",
+
+	"office-address": "Toshkent viloyati, Zangiota tumani.",
+	"office-address-turkey": "100. Yıl Bulvarı No:101/A 06374 OSTİM/Ankara",
+
+	"footer-social-title": "BIZ IJTIMOIY TARMOQLARDA",
+	"footer-contact-title": "ALOQA",
+	"footer-contact-mail": "Savollaringiz yoki takliflaringiz bormi?",
+	"footer-contact-tel": "Savollaringiz bormi? Qo’ng’iroq qiling.",
+
+	"contact-info": "ALOQA MA'LUMOTI",
+
+	"got-questions": "Savollaringiz bormi?",
+	"use-form": "Biz bilan bog'lanish uchun quyidagi formadan foydalaning",
+	"submit": "Yuborish",
+	"our-offices": "Bizning offislarimiz",
+	"buy-products": "Mahsulotlarimizni do'konlarimizdan to'g'ri sotib olishingiz mumkin.",
+	"on-insta": "Instagram sahifamizada",
+	"mon-sat": "Dushanba - shanba",
+
+	"input-name": "Sizning ismingiz",
+	"input-mail": "Pochtagizni shu yerga yozing",
+	"input-tel": "Telefon raqamingiz",
+	"input-subject": "Mavzuingizni shu yerga yozing",
+	"input-msg": "Xabaringizni shu yerga yozing"
+}

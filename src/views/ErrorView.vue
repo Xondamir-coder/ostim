@@ -1,9 +1,9 @@
 <template>
 	<div class="error">
 		<div class="container">
-			<img class="container__img" src="../assets/logo.svg" alt="logo" />
+			<img class="container__img" src="@/assets/icons/logo.svg" alt="logo" />
 			<div class="content">
-				<img class="content__img" src="../assets/404.avif" alt="404" />
+				<img class="content__img" src="@/assets/404.avif" alt="404" />
 				<h1 class="content__heading">Page not found</h1>
 				<p class="content__text">The page you are looking for cannot be found</p>
 				<p class="content__text">Possible reasons</p>
@@ -14,12 +14,11 @@
 			</div>
 			<RouterLink class="router__link primary-button" to="/">go home page</RouterLink>
 		</div>
-		<img class="error__img" src="../assets/404-2.avif" alt="404-2" />
+		<img class="error__img" src="@/assets/404-2.avif" alt="404-2" />
 	</div>
 </template>
 
 <style lang="scss" scoped>
-@import '@/sass/abstracts/index';
 .error {
 	@include grid-center;
 	@include full-viewport;
