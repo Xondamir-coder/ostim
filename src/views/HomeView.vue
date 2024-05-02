@@ -29,7 +29,7 @@
 				{{ i18n.global.t('avenues-subtitle') }}
 			</p>
 			<div class="avenues__content">
-				<button class="avenues__left">
+				<!-- <button class="avenues__left">
 					<svg
 						width="10"
 						height="17"
@@ -43,7 +43,7 @@
 							stroke-linecap="round"
 							stroke-linejoin="round" />
 					</svg>
-				</button>
+				</button> -->
 				<div class="avenues__container avenues-animate" ref="avenuesContainer">
 					<div class="avenues__box" v-for="avenue in avenues" :key="avenue">
 						<div class="avenues__banner">
@@ -52,7 +52,7 @@
 						<h3>{{ avenue.title }}</h3>
 					</div>
 				</div>
-				<button class="avenues__right">
+				<!-- <button class="avenues__right">
 					<svg
 						width="10"
 						height="17"
@@ -66,39 +66,7 @@
 							stroke-linecap="round"
 							stroke-linejoin="round" />
 					</svg>
-				</button>
-			</div>
-			<div class="avenues__buttons">
-				<button class="avenues__left">
-					<svg
-						width="10"
-						height="17"
-						viewBox="0 0 10 17"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg">
-						<path
-							d="M8.24791 15.7186L1.3042 8.77488L8.24791 1.83118"
-							stroke="#3B3B3B"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round" />
-					</svg>
-				</button>
-				<button class="avenues__right">
-					<svg
-						width="10"
-						height="17"
-						viewBox="0 0 10 17"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg">
-						<path
-							d="M1.30225 15.7186L8.24595 8.77488L1.30225 1.83118"
-							stroke="#3B3B3B"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round" />
-					</svg>
-				</button>
+				</button> -->
 			</div>
 		</section>
 		<section class="faq" data-animate>
@@ -108,7 +76,7 @@
 					{{ i18n.global.t('faq-subtitle') }}
 				</p>
 				<TransitionGroup tag="ul" name="list" class="faq__list">
-					<li class="faq__list__item body-l" v-for="faq in faqs" :key="faq">
+					<li class="faq__list__item body-l" v-for="faq in questions" :key="faq">
 						<input type="checkbox" class="faq__list__checkbox" :id="faq.question" />
 						<label :for="faq.question" class="faq__list__label">{{
 							faq.question
@@ -173,7 +141,6 @@ import Copyright from '@/layout/Copyright.vue';
 import Footer from '@/layout/Footer.vue';
 import i18n from '@/locales';
 
-const faqs = ref(questions.value.slice(0, 4));
 const tel = ref('');
 const reasonsContainer = ref();
 const avenuesContainer = ref();
@@ -184,7 +151,6 @@ const submitTel = () => {
 	console.log(trimmedTel);
 	tel.value = '';
 };
-const increaseFaqs = () => (faqs.value = questions.value.slice(0, faqs.value.length + 2));
 const handleObserver = entries => {
 	entries.forEach(
 		entry => entry.isIntersecting && entry.target.classList.remove(entry.target.classList[1])
@@ -323,7 +289,7 @@ const formatValue = () => {
 		flex-direction: column;
 		gap: 1rem;
 		@include media($tab-port) {
-			justify-items: center;
+			align-items: center;
 			text-align: center;
 			width: 300px;
 		}
@@ -369,7 +335,7 @@ const formatValue = () => {
 		align-items: center;
 		gap: 6rem;
 		button {
-			@include media($large-desktop) {
+			@include media($tab-port) {
 				display: none;
 			}
 		}
@@ -412,7 +378,7 @@ const formatValue = () => {
 	&__box {
 		cursor: pointer;
 		@include transition-appear-transform(1s);
-		$transition-delays: 100ms 200ms 300ms 400ms 500ms 600ms;
+		$transition-delays: 100ms 200ms 300ms 400ms 500ms 600ms 700ms 800ms 900ms;
 		@each $delay in $transition-delays {
 			$index: index($transition-delays, $delay);
 			&:nth-child(#{$index}) {
@@ -467,7 +433,7 @@ const formatValue = () => {
 .connect {
 	@include grid-auto(column, 15rem);
 	img {
-		@include cover-img(100%, 80%);
+		@include cover-img;
 		@include rounded-border;
 		align-self: end;
 		@include media($tab-land) {

@@ -107,8 +107,7 @@
 				</div>
 				<div class="footer__contact-small">
 					<p>
-						Savollaringiz bormi?<br />
-						Qo’ng’iroq qiling.
+						{{ i18n.global.t('footer-contact-tel') }}
 					</p>
 					<a class="footer__contact-tel" href="tel:+998 77 124 10 10"
 						>+998 77 124 10 10</a

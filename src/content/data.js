@@ -4,13 +4,14 @@ import trustedIcon from '@/assets/icons/trusted.svg';
 import korzinka from '@/assets/icons/korzinka.svg';
 import quality from '@/assets/icons/quality.svg';
 import new_zone from '@/assets/icons/new zone.svg';
-import safe from '@/assets/icons/safe.svg';
 import adminAvenue from '@/assets/admin.avif';
 import sportAvenue from '@/assets/sport.avif';
 import schoolAvenue from '@/assets/school.avif';
 import hotelAvenue from '@/assets/hotel.avif';
 import clinicAvenue from '@/assets/clinic.avif';
 import kindergartenAvenue from '@/assets/kindergarten.avif';
+import tradeAvenue from '@/assets/trade.avif';
+import businessAvenue from '@/assets/business.avif';
 import { computed } from 'vue';
 import i18n from '@/locales';
 
@@ -74,6 +75,18 @@ export const avenues = computed(() => [
 	{
 		banner: kindergartenAvenue,
 		title: i18n.global.t('avenue-kindergarden')
+	},
+	{
+		banner: schoolAvenue,
+		title: i18n.global.t('avenue-college')
+	},
+	{
+		banner: tradeAvenue,
+		title: i18n.global.t('avenue-trade')
+	},
+	{
+		banner: businessAvenue,
+		title: i18n.global.t('avenue-business')
 	}
 ]);
 
