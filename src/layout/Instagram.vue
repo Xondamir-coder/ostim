@@ -4,13 +4,10 @@
 		<ul class="instagram__list">
 			<li class="instagram__item" v-for="_ in posts">
 				<a href="#">
-					<img
-						class="instagram__banner"
-						src="../assets/about-insta.avif"
-						alt="some photo" />
+					<img class="instagram__banner" src="@/assets/insta.avif" alt="some photo" />
 					<img
 						class="instagram__icon"
-						src="../assets/icons/instagram.svg"
+						src="@/assets/icons/instagram.svg"
 						alt="instagram icon" />
 				</a>
 			</li>
