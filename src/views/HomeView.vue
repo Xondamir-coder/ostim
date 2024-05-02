@@ -214,9 +214,7 @@ const formatValue = () => {
 	@include grid-center;
 	margin: 0;
 	height: $height;
-	@include media($tab-port) {
-		background: none;
-	}
+
 	position: relative;
 	&::before {
 		content: '';
@@ -241,6 +239,9 @@ const formatValue = () => {
 		position: absolute;
 		z-index: -2;
 		transition: filter 0.7s;
+		@include media($tab-port) {
+			display: none;
+		}
 	}
 	&__content {
 		@include responsive-width(65rem);
