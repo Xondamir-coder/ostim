@@ -262,6 +262,9 @@ const formatValue = () => {
 		@include text(7.2rem, 600, 8rem, none);
 		animation: slide-left 1s ease-out;
 		text-transform: capitalize;
+		@include media($tab-port) {
+			font-size: 5.5rem;
+		}
 	}
 	p {
 		font-size: inherit;
@@ -387,7 +390,7 @@ const formatValue = () => {
 			}
 		}
 		&:hover img {
-			transform: scale(1.2);
+			transform: scale(1.4);
 		}
 		& img {
 			@include cover-img;

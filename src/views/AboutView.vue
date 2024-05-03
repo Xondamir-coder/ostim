@@ -12,7 +12,7 @@
 			</ul>
 		</section>
 		<section class="us">
-			<img class="us__video" alt="video" />
+			<img class="us__video" alt="video" src="@/assets/business.avif" />
 			<div class="us__content">
 				<h1 class="heading-m">{{ i18n.global.t('who-title') }}</h1>
 				<p
