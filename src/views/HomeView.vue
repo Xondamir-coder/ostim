@@ -307,10 +307,15 @@ const formatValue = () => {
 		}
 	}
 	&__icon {
-		@include dimensions(6.2rem);
 		@include grid-center;
+		height: 6.2rem;
+		width: 6.2rem;
 		border-radius: 50%;
 		background-color: $color-beige;
+		img {
+			width: 60%;
+			height: 60%;
+		}
 	}
 	&__heading {
 		@extend .heading;
