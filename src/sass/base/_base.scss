@@ -23,14 +23,16 @@ html {
 		font-size: 40%;
 	}
 }
-#app {
-	overflow: hidden;
-}
 body {
 	font-size: 1.6rem; // set to 16px
 	font-family: $font-lato;
 	color: $color-primary;
 	@extend .body-m;
+}
+body.view-project #app {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
 }
 button {
 	background-color: transparent;
