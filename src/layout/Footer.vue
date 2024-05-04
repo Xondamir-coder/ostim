@@ -6,8 +6,7 @@
 					<img src="@/assets/icons/logo.svg" alt="logo" />
 				</RouterLink>
 				<p>
-					Nisi, purus vitae, ultrices nunc. Sit ac sit suscipit hendrerit. Gravida massa
-					volutpat aenean odio erat nullam fringilla.
+					{{ i18n.global.t('hero-subtitle') }}
 				</p>
 				<nav class="footer__social-nav">
 					<ul class="footer__social-links">
@@ -97,8 +96,8 @@
 				<div class="footer__contact-large">
 					<h1 class="heading-s">{{ i18n.global.t('footer-contact-title') }}</h1>
 					<p>{{ i18n.global.t('footer-contact-mail') }}</p>
-					<a class="footer__contact-mail" href="mailto:yourinfo@gmail.com">
-						yourinfo@gmail.com
+					<a class="footer__contact-mail" href="mailto:ostim@ostim.org.tr">
+						ostim@ostim.org.tr
 					</a>
 					<p>{{ i18n.global.t('footer-contact-tel') }}</p>
 					<a class="footer__contact-tel" href="tel:+998 77 124 10 10"

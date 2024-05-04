@@ -210,7 +210,7 @@ const formatValue = () => {
 	color: $color-intermediate-primary;
 }
 .hero {
-	$height: calc(100dvh - 7.7rem);
+	$height: calc(100vh - 7.7rem);
 	@include grid-center;
 	margin: 0;
 	height: $height;

@@ -3,15 +3,12 @@
 		<div class="copyright__content">
 			<div class="copyright__container">
 				<div class="copyright__partners">
-					<p>We ship with:</p>
-					<img src="../assets/icons/dhl.svg" alt="dhl" />
-					<img src="../assets/icons/ship-2.svg" alt="some" />
-				</div>
-				<div class="copyright__payment">
-					<p>Payment options:</p>
-					<img src="../assets/icons/visa.svg" alt="visa" />
-					<img src="../assets/icons/mastercard.svg" alt="mastercard" />
-					<img src="../assets/icons/paypal.svg" alt="paypal" />
+					<p>{{ i18n.global.t('partners') }}</p>
+					<img class="copyright__img" src="@/assets/icons/partner-1.svg" alt="" />
+					<img class="copyright__img" src="@/assets/icons/partner-2.svg" alt="" />
+					<img class="copyright__img" src="@/assets/icons/partner-3.svg" alt="" />
+					<img class="copyright__img" src="@/assets/icons/partner-4.svg" alt="" />
+					<img class="copyright__img" src="@/assets/icons/partner-5.svg" alt="" />
 				</div>
 			</div>
 			<p>&copy; Copyright {{ new Date().getFullYear() }}</p>
@@ -19,13 +16,24 @@
 	</section>
 </template>
 
+<script setup>
+import i18n from '@/locales';
+</script>
+
 <style lang="scss" scoped>
 .copyright {
 	margin: 0;
 	border-top: 1px solid #d0d0d0;
+	&__img {
+		width: 7rem;
+		height: 7rem;
+	}
 	&__content {
 		margin: var(--page-margin-y) var(--page-margin-x);
-		@include flex-justify(space-between, null, wrap);
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		align-items: center;
 	}
 	&__container {
 		@include responsive-width(55rem);
@@ -33,7 +41,10 @@
 	}
 	&__partners,
 	&__payment {
-		@include flex-align(center, 1rem);
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		flex-wrap: wrap;
 	}
 }
 </style>
