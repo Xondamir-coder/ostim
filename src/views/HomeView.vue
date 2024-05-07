@@ -1,5 +1,4 @@
 <template>
-	<Background />
 	<main class="main">
 		<section class="hero">
 			<img class="hero__img" src="@/assets/about-hero.avif" alt="banner" />
@@ -214,8 +213,11 @@ const formatValue = () => {
 	@include grid-center;
 	margin: 0;
 	height: $height;
-
 	position: relative;
+
+	@include media($tab-port) {
+		height: 100vh;
+	}
 	&::before {
 		content: '';
 		width: 100%;
@@ -225,7 +227,7 @@ const formatValue = () => {
 		inset: 0;
 		z-index: -1;
 		@include media($tab-port) {
-			display: none;
+			// display: none;
 		}
 	}
 	button {
@@ -240,7 +242,7 @@ const formatValue = () => {
 		z-index: -2;
 		transition: filter 0.7s;
 		@include media($tab-port) {
-			display: none;
+			height: 100%;
 		}
 	}
 	&__content {

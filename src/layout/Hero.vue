@@ -42,7 +42,14 @@ const route = useRoute();
 	font-weight: 300;
 	animation: appear 1s ease-out;
 	@include media($tab-port) {
-		background: none;
+		// background: none;
+		height: 50rem;
+	}
+	&__content {
+		@include media($tab-port) {
+			// background: none;
+			margin-top: 15rem;
+		}
 	}
 	&__heading {
 		animation: slide-left 1s ease-out;

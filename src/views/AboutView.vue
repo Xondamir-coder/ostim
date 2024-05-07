@@ -1,5 +1,4 @@
 <template>
-	<Background class="bg-small" />
 	<main class="about" ref="container">
 		<Hero />
 		<section class="features">

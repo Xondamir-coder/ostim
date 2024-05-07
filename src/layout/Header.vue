@@ -152,9 +152,12 @@ const toggleMenu = () => (menuBtn.value.checked = !menuBtn.value.checked);
 	&__container {
 		@include flex-justify(space-between);
 		@include media($tab-port) {
+			position: absolute;
+			inset: 0;
 			max-width: 100%;
 			display: grid;
 			grid-auto-flow: column;
+			align-content: start;
 			grid-auto-columns: 1fr;
 			justify-items: center;
 			align-items: center;
