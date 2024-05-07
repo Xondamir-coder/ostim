@@ -74,7 +74,7 @@
 			</button>
 		</section>
 		<DownloadCatalog />
-		<Instagram />
+		<!-- <Instagram /> -->
 		<Footer />
 		<Copyright />
 	</main>

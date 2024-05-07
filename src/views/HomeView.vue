@@ -134,7 +134,6 @@
 import { onMounted, ref } from 'vue';
 import { animateSections } from '@/js/helpers';
 import { avenues, questions, reasons } from '@/content/data';
-import Background from '@/layout/Background.vue';
 import DownloadCatalog from '@/layout/DownloadCatalog.vue';
 import Copyright from '@/layout/Copyright.vue';
 import Footer from '@/layout/Footer.vue';
@@ -144,11 +143,35 @@ const tel = ref('');
 const reasonsContainer = ref();
 const avenuesContainer = ref();
 
-const submitTel = () => {
-	const trimmedTel = tel.value.replaceAll(' ', '');
+const getDevice = () => (window.matchMedia('(pointer:coarse)').matches ? 'Mobile' : 'Desktop');
+const submitTel = async () => {
+	if (tel.value.length < 17) return;
+
 	console.log('submitting');
-	console.log(trimmedTel);
-	tel.value = '';
+
+	const date = new Date().toDateString();
+	const device = getDevice();
+	const text = `Phone number: ${tel.value}
+Time: ${date}
+From: ${device}`;
+	const botToken = import.meta.env.VITE_BOT_TOKEN;
+	const chat_id = '@ostim_global';
+	const postData = { chat_id, text };
+	const URL = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+	try {
+		const res = await fetch(URL, {
+			method: 'POST',
+			headers: {
+				'content-type': 'application/json'
+			},
+			body: JSON.stringify(postData)
+		});
+		const data = await res.json();
+		console.log(data);
+	} catch (error) {
+		console.error(error);
+	}
 };
 const handleObserver = entries => {
 	entries.forEach(

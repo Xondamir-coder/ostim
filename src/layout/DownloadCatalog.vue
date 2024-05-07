@@ -3,7 +3,12 @@
 		<div class="download__content">
 			<h1 class="heading-m">{{ i18n.global.t('download-title') }}</h1>
 			<p>{{ i18n.global.t('download-subtitle') }}</p>
-			<button class="secondary-button">{{ i18n.global.t('download-btn') }}</button>
+			<a
+				class="secondary-button"
+				href="/catalog.pdf"
+				download="Турк_Узбек_Кластери_01.02.2024.pdf">
+				{{ i18n.global.t('download-btn') }}
+			</a>
 		</div>
 		<img src="@/assets/icons/logo-big.svg" alt="logo" />
 	</section>
@@ -22,6 +27,10 @@ import i18n from '@/locales';
 	color: #fff;
 	@include media($tab-land) {
 		justify-content: center;
+	}
+	a {
+		color: currentColor;
+		text-decoration: none;
 	}
 	img {
 		width: 436px;

@@ -53,7 +53,7 @@
 			<InfoBoard :data="officeData" />
 		</section>
 		<DownloadCatalog />
-		<Instagram />
+		<!-- <Instagram /> -->
 		<Footer />
 		<Copyright />
 	</main>
@@ -68,7 +68,6 @@ import Instagram from '@/layout/Instagram.vue';
 import Footer from '@/layout/Footer.vue';
 import Copyright from '@/layout/Copyright.vue';
 import { animateSections } from '@/js/helpers';
-import Background from '@/layout/Background.vue';
 import i18n from '@/locales';
 
 const container = ref();
@@ -78,11 +77,11 @@ const infoData = computed(() => ({
 	columns: [
 		{
 			title: 'office',
-			texts: [i18n.global.t('office-address'), '+998 77 124 10 10', 'logo@yourinfo.com']
+			texts: [i18n.global.t('office-address'), '+998 77 124 10 10', 'ostim@ostim.org.tr']
 		},
 		{
 			title: 'management',
-			texts: [i18n.global.t('office-address'), , '+998 77 124 10 10', 'logo@yourinfo.com']
+			texts: [i18n.global.t('office-address'), , '+998 77 124 10 10', 'ostim@ostim.org.tr']
 		}
 	]
 }));
@@ -92,7 +91,7 @@ const officeData = computed(() => ({
 	columns: [
 		{
 			title: 'Toshkent',
-			texts: [i18n.global.t('office-address'), '+998 77 124 10 10', 'logo@yourinfo.com']
+			texts: [i18n.global.t('office-address'), '+998 77 124 10 10', 'ostim@ostim.org.tr']
 		},
 		{
 			title: 'Turkiya',
