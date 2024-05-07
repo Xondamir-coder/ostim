@@ -29,6 +29,8 @@
 	"avenue-exibition": "Exhibition center",
 	"avenue-lab": "Technopark and R&D center",
 	"avenue-trade": "Shopping and entertainment center",
+	"avenue-fire-station": "Fire station",
+	"avenue-logistics": "Logistics center",
 
 	"faq-title": "Frequently asked questions:",
 	"faq-subtitle": "We are ready to help with any questions",
@@ -72,6 +74,8 @@
 	"on-insta": "On our Instagram page",
 	"mon-sat": "Monday - saturday",
 	"partners": "Our partners",
+	"next": "Next",
+	"contact-us": "Contact us",
 
 	"input-name": "Your name",
 	"input-mail": "Write your email here",

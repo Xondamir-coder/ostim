@@ -5,15 +5,13 @@
 	<div ref="modal" class="modal modal--hidden">
 		<img :src="avenueImg" alt="avenue" />
 		<div class="modal__content">
-			<h1 class="modal__title">Mehmonxona</h1>
-			<p class="modal__text">
-				Lorem ipsum dolor sitdolor id vulputate orci risus. Pharetra tincidunt feugiat
-				tempus neque ac aliquam egestas blandit aliquam. Nibh nulla mauris mi vitae sit
-				fames. 2000kv2
+			<h1 class="modal__title">{{ avenueTitle }}</h1>
+			<p class="modal__text" v-if="avenueDesc">
+				{{ avenueDesc }}
 			</p>
 			<div class="modal__btns">
-				<button class="modal__button">Next</button>
-				<button class="modal__button">contact us</button>
+				<button class="modal__button">{{ i18n.global.t('next') }}</button>
+				<button class="modal__button">{{ i18n.global.t('contact-us') }}</button>
 			</div>
 		</div>
 	</div>
@@ -25,15 +23,15 @@ import gsap from 'gsap';
 import Genplan from '@/components/Genplan.vue';
 import adminAvenue from '@/assets/admin.avif';
 import hotelAvenue from '@/assets/hotel.avif';
+import i18n from '@/locales';
 
 const genplan = ref();
 const modal = ref();
 const avenueImg = ref('');
+const avenueTitle = ref();
+const avenueDesc = ref();
 const st = 300;
-const avenuesMap = {
-	admin: adminAvenue,
-	hotel: hotelAvenue
-};
+const avenuesMap = new Map([[i18n.global.t('avenue-logistics'), hotelAvenue]]);
 
 const handleMouseMove = e => {
 	const x = (e.clientX / window.innerWidth) * st - st * 0.5;
@@ -46,9 +44,9 @@ const handleMouseMove = e => {
 	});
 };
 const showAvenue = avenueName => {
-	avenueImg.value = avenuesMap[avenueName];
-	console.log(avenueImg.value);
-	modal.value.classList.toggle('modal--hidden');
+	avenueImg.value = avenuesMap.get(avenueName);
+	avenueTitle.value = avenueName;
+	modal.value.classList.remove('modal--hidden');
 };
 const closeModal = () => {
 	const target = event.target.closest('.avenue');
@@ -122,7 +120,7 @@ onUnmounted(() => {
 		line-height: 21px;
 		padding: 1rem 2.5rem;
 		transition: {
-			property: color, background-color, transform;
+			property: color, background-color, transform, box-shadow;
 			duration: 0.5s;
 		}
 		&:hover {
@@ -137,15 +135,18 @@ onUnmounted(() => {
 			background-color: $color-secondary;
 			&:hover {
 				background-color: #fff;
+				box-shadow: 0px 0px 15px 3px rgba($color-secondary, 0.2);
 				color: $color-secondary;
 			}
 		}
 		&:last-child {
+			text-transform: lowercase;
 			color: $color-secondary;
 			border: 1px solid $color-secondary;
 
 			&:hover {
 				background-color: $color-secondary;
+				box-shadow: 0px 0px 15px 3px rgba(#000, 0.4);
 				color: #fff;
 			}
 		}
