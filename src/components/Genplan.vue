@@ -465,6 +465,7 @@
 </template>
 
 <script setup>
+import gsap from 'gsap';
 import { ref } from 'vue';
 
 const emit = defineEmits(['show']);
@@ -478,7 +479,11 @@ const st = 300;
 const handleMouseMove = e => {
 	cursor.x = (e.clientX / window.innerWidth) * st - st * 0.5;
 	cursor.y = (e.clientY / window.innerHeight) * st - st * 0.5;
-	genplan.value.style.translate = `${-cursor.x}px ${-cursor.y}px`;
+	gsap.to(genplan.value, {
+		x: -cursor.x,
+		y: -cursor.y,
+		duration: 0.5
+	});
 };
 
 window.addEventListener('mousemove', handleMouseMove);
@@ -488,7 +493,7 @@ window.addEventListener('mousemove', handleMouseMove);
 svg {
 	// width: 100%;
 	// height: 100%;
-	transform: scale(1.5) translate(-2%, -10%);
+	transform: scale(1.4) translate(-2%, -10%);
 	// transition: translate 100ms;
 }
 .shadow {
