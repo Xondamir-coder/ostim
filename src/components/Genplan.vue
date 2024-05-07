@@ -227,7 +227,7 @@
 		</g>
 
 		<!-- 2 -->
-		<g class="avenue">
+		<g class="avenue" @click="emitShow('admin')">
 			<path
 				class="shadow"
 				d="M 1117.51 896.952 L 1178.051 986.36 L 1357.002 918.373 L 1290.33 827.647 L 1111.862 889.134" />
@@ -344,7 +344,7 @@
 		</g>
 
 		<!-- 6 -->
-		<g class="avenue">
+		<g class="avenue" @click="emitShow('hotel')">
 			<path
 				class="shadow"
 				d="M 1592.051 607.421 L 1659.373 683.82 L 1799.312 633.14 L 1722.157 539.343 L 1576.923 591.536 L 1592.051 607.421 Z" />
