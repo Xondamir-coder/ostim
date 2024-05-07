@@ -473,9 +473,7 @@ svg {
 	transform: scale(1.4) translate(-2%, -10%);
 	@include media($tab-land) {
 		height: 120%;
-	}
-	@include media($tab-port) {
-		transform: translateX(-40%);
+		transform: scale(1.1) translate(0, 0);
 	}
 }
 .shadow {
