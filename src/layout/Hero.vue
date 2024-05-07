@@ -33,7 +33,7 @@ const route = useRoute();
 	@include grid-center;
 	margin: 0 !important;
 	background: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-		url(../assets/about-hero.avif);
+		url(@/assets/about-hero.avif);
 	background-position-y: top;
 	background-size: cover;
 	height: 30rem;

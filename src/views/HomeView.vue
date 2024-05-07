@@ -2,7 +2,7 @@
 	<Background />
 	<main class="main">
 		<section class="hero">
-			<img class="hero__img" src="../assets/about-hero.avif" alt="banner" />
+			<img class="hero__img" src="@/assets/about-hero.avif" alt="banner" />
 			<div class="hero__content">
 				<h1 class="hero__heading">{{ i18n.global.t('hero-title') }}</h1>
 				<p class="body-l">
@@ -91,7 +91,7 @@
 		</section>
 		<DownloadCatalog data-animate />
 		<section class="connect" data-animate>
-			<img src="../assets/faq-banner.avif" alt="banner" />
+			<img src="@/assets/faq-banner.avif" alt="banner" />
 			<div class="connect__content">
 				<h2 class="heading">{{ i18n.global.t('connect-title') }}</h2>
 				<p class="body-l">
@@ -387,7 +387,7 @@ const formatValue = () => {
 	&__box {
 		cursor: pointer;
 		@include transition-appear-transform(1s);
-		$transition-delays: 100ms 200ms 300ms 400ms 500ms 600ms 700ms 800ms 900ms;
+		$transition-delays: 100ms 200ms 300ms 400ms 500ms 600ms 700ms 800ms 900ms 1000ms 1100ms;
 		@each $delay in $transition-delays {
 			$index: index($transition-delays, $delay);
 			&:nth-child(#{$index}) {
@@ -444,10 +444,10 @@ const formatValue = () => {
 	img {
 		@include cover-img;
 		@include rounded-border;
-		align-self: end;
 		@include media($tab-land) {
 			display: none;
 		}
+		align-self: end;
 	}
 	&__form {
 		@include flex(space-between, center);
@@ -457,6 +457,9 @@ const formatValue = () => {
 		padding: 1rem 2rem;
 		border-radius: 20px;
 		justify-self: start;
+		@include media($tab-port) {
+			padding: 1rem;
+		}
 	}
 	&__input {
 		@include text(14px, 400, 2em);
@@ -475,8 +478,8 @@ const formatValue = () => {
 		@include grid-row-gap(2rem);
 	}
 	&__btn {
-		@include dimensions(44px);
 		@include grid-center;
+		@include dimensions(44px);
 		border-radius: 50%;
 		background-color: $color-tertiary;
 	}

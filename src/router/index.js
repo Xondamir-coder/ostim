@@ -36,4 +36,10 @@ const router = createRouter({
 	]
 });
 
+router.beforeEach(to => {
+	to.path === '/project'
+		? document.body.classList.add('view-project')
+		: document.body.classList.remove('view-project');
+});
+
 export default router;

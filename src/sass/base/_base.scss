@@ -29,6 +29,9 @@ body {
 	color: $color-primary;
 	@extend .body-m;
 }
+#app {
+	// overflow: hidden;
+}
 body.view-project #app {
 	height: 100vh;
 	display: flex;
