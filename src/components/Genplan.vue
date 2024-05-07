@@ -1,6 +1,5 @@
 <template>
 	<svg
-		ref="genplan"
 		viewBox="0 0 2560 1440"
 		xmlns="http://www.w3.org/2000/svg"
 		xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -465,59 +464,18 @@
 </template>
 
 <script setup>
-import gsap from 'gsap';
-import { onUnmounted, ref } from 'vue';
-
 const emit = defineEmits(['show']);
-
-const genplan = ref();
-const cursor = { x: 0, y: 0 };
-const edgeThreshold = 60; // in pixels
-const st = 300;
-
 const emitShow = avenue => emit('show', avenue);
-const handleMove = e => {
-	const clientX = e.clientX;
-	const clientY = e.clientY;
-	const innerWidth = window.innerWidth;
-	const innerHeight = window.innerHeight;
-
-	// touchscreen
-	if (window.matchMedia('(pointer: coarse)').matches) {
-		// Check if the click is close to any edge
-		const isCloseToLeftEdge = clientX < edgeThreshold;
-		const isCloseToRightEdge = clientX > innerWidth - edgeThreshold;
-
-		if (isCloseToLeftEdge) gsap.to(genplan.value, { x: '+=60', duration: 0.5 });
-		if (isCloseToRightEdge) gsap.to(genplan.value, { x: '-=60', duration: 0.5 });
-
-		return;
-	}
-
-	cursor.x = (clientX / innerWidth) * st - st * 0.5;
-	cursor.y = (clientY / innerHeight) * st - st * 0.5;
-
-	gsap.to(genplan.value, {
-		x: -cursor.x,
-		y: -cursor.y,
-		duration: 0.5
-	});
-};
-
-window.addEventListener('mousemove', handleMove);
-
-onUnmounted(() => {
-	window.removeEventListener('mousemove', handleMove);
-});
 </script>
 
 <style scoped lang="scss">
 svg {
 	transform: scale(1.4) translate(-2%, -10%);
-	// transition: translate 100ms;
 	@include media($tab-land) {
 		height: 120%;
-		transform: translateX(-42%);
+	}
+	@include media($tab-port) {
+		transform: translateX(-40%);
 	}
 }
 .shadow {
