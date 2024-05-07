@@ -15,5 +15,6 @@ const showAvenue = avenueName => {
 <style scoped lang="scss">
 .container {
 	overflow: hidden;
+	height: 100%;
 }
 </style>

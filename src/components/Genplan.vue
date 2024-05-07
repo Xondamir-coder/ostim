@@ -466,19 +466,37 @@
 
 <script setup>
 import gsap from 'gsap';
-import { ref } from 'vue';
+import { onUnmounted, ref } from 'vue';
 
 const emit = defineEmits(['show']);
 
-const emitShow = avenue => emit('show', avenue);
-
-const cursor = { x: 0, y: 0 };
 const genplan = ref();
-
+const cursor = { x: 0, y: 0 };
+const edgeThreshold = 60; // in pixels
 const st = 300;
-const handleMouseMove = e => {
-	cursor.x = (e.clientX / window.innerWidth) * st - st * 0.5;
-	cursor.y = (e.clientY / window.innerHeight) * st - st * 0.5;
+
+const emitShow = avenue => emit('show', avenue);
+const handleMove = e => {
+	const clientX = e.clientX;
+	const clientY = e.clientY;
+	const innerWidth = window.innerWidth;
+	const innerHeight = window.innerHeight;
+
+	// touchscreen
+	if (window.matchMedia('(pointer: coarse)').matches) {
+		// Check if the click is close to any edge
+		const isCloseToLeftEdge = clientX < edgeThreshold;
+		const isCloseToRightEdge = clientX > innerWidth - edgeThreshold;
+
+		if (isCloseToLeftEdge) gsap.to(genplan.value, { x: '+=60', duration: 0.5 });
+		if (isCloseToRightEdge) gsap.to(genplan.value, { x: '-=60', duration: 0.5 });
+
+		return;
+	}
+
+	cursor.x = (clientX / innerWidth) * st - st * 0.5;
+	cursor.y = (clientY / innerHeight) * st - st * 0.5;
+
 	gsap.to(genplan.value, {
 		x: -cursor.x,
 		y: -cursor.y,
@@ -486,15 +504,21 @@ const handleMouseMove = e => {
 	});
 };
 
-window.addEventListener('mousemove', handleMouseMove);
+window.addEventListener('mousemove', handleMove);
+
+onUnmounted(() => {
+	window.removeEventListener('mousemove', handleMove);
+});
 </script>
 
 <style scoped lang="scss">
 svg {
-	// width: 100%;
-	// height: 100%;
 	transform: scale(1.4) translate(-2%, -10%);
 	// transition: translate 100ms;
+	@include media($tab-land) {
+		height: 120%;
+		transform: translateX(-42%);
+	}
 }
 .shadow {
 	fill: #63876380;
@@ -527,5 +551,6 @@ svg {
 	transform: translateY(-50px);
 	transition-property: transform, opacity;
 	transition-duration: 300ms;
+	pointer-events: none;
 }
 </style>
