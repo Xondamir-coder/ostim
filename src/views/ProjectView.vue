@@ -57,14 +57,14 @@ const closeModal = () => {
 
 onMounted(() => {
 	// Mobile
-	if (window.matchMedia('(pointer:coarse)')) return;
+	if (window.matchMedia('(pointer:coarse)').matches) return;
 
 	// Desktop
 	window.addEventListener('mousemove', handleMouseMove);
 });
 onUnmounted(() => {
 	// Mobile
-	if (window.matchMedia('(pointer:coarse)')) return;
+	if (window.matchMedia('(pointer:coarse)').matches) return;
 
 	// Desktop
 	window.removeEventListener('mousemove', handleMouseMove);
