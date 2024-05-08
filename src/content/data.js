@@ -7,7 +7,7 @@ import new_zone from '@/assets/icons/new zone.svg';
 import adminAvenue from '@/assets/admin.avif';
 import hotelAvenue from '@/assets/hotel.avif';
 import sportAvenue from '@/assets/sport.avif';
-import schoolAvenue from '@/assets/school.avif';
+import collegeAvenue from '@/assets/college.avif';
 import clinicAvenue from '@/assets/clinic.avif';
 import kindergartenAvenue from '@/assets/kindergarten.avif';
 import tradeAvenue from '@/assets/trade.avif';
@@ -62,7 +62,7 @@ export const avenues = computed(() => [
 		title: i18n.global.t('avenue-sport')
 	},
 	{
-		banner: schoolAvenue,
+		banner: collegeAvenue,
 		title: i18n.global.t('avenue-school')
 	},
 	{
@@ -78,7 +78,7 @@ export const avenues = computed(() => [
 		title: i18n.global.t('avenue-kindergarden')
 	},
 	{
-		banner: schoolAvenue,
+		banner: collegeAvenue,
 		title: i18n.global.t('avenue-college')
 	},
 	{

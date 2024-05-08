@@ -307,7 +307,8 @@
 					fill="white" />
 			</g>
 		</g>
-		<g class="avenue">
+		<g class="avenue" @click="emitShow(i18n.global.t('avenue-lab'))">
+			<title>{{ i18n.global.t('avenue-lab') }}</title>
 			<path
 				class="shadow"
 				d="M 1076.503 802.29 L 1116.95 855.283 L 1243.672 816.265 L 1194.49 754.432 L 1073.194 796.468 L 1072.622 796.808 L 1076.503 802.29 Z" />
@@ -334,7 +335,11 @@
 					fill="white" />
 			</g>
 		</g>
-		<g transform="matrix(1, 0, 0, 1, 8.291497354082708, 26.825498980663724)" class="avenue">
+		<g
+			transform="matrix(1, 0, 0, 1, 8.291497354082708, 26.825498980663724)"
+			class="avenue"
+			@click="emitShow(i18n.global.t('avenue-trade'))">
+			<title>{{ i18n.global.t('avenue-trade') }}</title>
 			<path
 				class="shadow"
 				d="M 1140.338 875.383 L 1200.329 971.955 L 1306.656 930.01 L 1252.517 836.364 L 1140.338 875.383 Z" />
@@ -361,7 +366,8 @@
 					fill="white" />
 			</g>
 		</g>
-		<g class="avenue">
+		<g class="avenue" @click="emitShow(i18n.global.t('avenue-clinic'))">
+			<title>{{ i18n.global.t('avenue-clinic') }}</title>
 			<path
 				class="shadow"
 				d="M 1377.108 693.971 L 1423.515 750.347 L 1376.764 769.254 L 1330.014 710.128 L 1377.108 693.971 Z" />
@@ -388,7 +394,8 @@
 					fill="white" />
 			</g>
 		</g>
-		<g class="avenue">
+		<g class="avenue" @click="emitShow(i18n.global.t('avenue-college') )">
+			<title>{{ i18n.global.t('avenue-college') }}</title>
 			<path
 				class="shadow"
 				d="M 1634.959 613.032 L 1689.047 674.414 L 1801.482 633.695 L 1739.492 558.334 L 1622.804 600.267 L 1634.959 613.032 Z" />
@@ -415,7 +422,8 @@
 					fill="white" />
 			</g>
 		</g>
-		<g class="avenue" transform="matrix(1, 0, 0, 1, -80.00233578685425, -68.25889689116022)">
+		<g class="avenue" transform="matrix(1, 0, 0, 1, -80.00233578685425, -68.25889689116022)" @click="emitShow(i18n.global.t('avenue-sport'))">
+			<title>{{ i18n.global.t('avenue-sport') }}</title>
 			<path
 				class="shadow"
 				d="M 1800.355 823.994 L 1951.974 776.578 L 1891.006 709.276 L 1742.595 762.891" />
@@ -442,7 +450,8 @@
 					fill="white" />
 			</g>
 		</g>
-		<g class="avenue">
+		<g class="avenue" @click="emitShow(i18n.global.t('avenue-business'))">
+			<title>{{ i18n.global.t('avenue-business') }}</title>
 			<path
 				class="shadow"
 				d="M 1473.402 776.995 L 1566.645 878.858 L 1383.872 945.966 L 1299.707 829.325 L 1471.752 774.199 L 1473.402 776.995 Z" />
@@ -469,7 +478,8 @@
 					fill="white" />
 			</g>
 		</g>
-		<g class="avenue">
+		<g class="avenue" @click="emitShow(i18n.global.t('avenue-guest'))">
+			<title>{{ i18n.global.t('avenue-guest') }}</title>
 			<path
 				class="shadow"
 				d="M 1800.355 823.994 L 1951.974 776.578 L 1891.006 709.276 L 1742.595 762.891" />
@@ -496,7 +506,8 @@
 					fill="white" />
 			</g>
 		</g>
-		<g class="avenue">
+		<g class="avenue" @click="emitShow(i18n.global.t('avenue-admin'))">
+			<title>{{ i18n.global.t('avenue-admin') }}</title>
 			<path
 				class="shadow"
 				d="M 1497.451 755.135 L 1600.427 876.925 L 1768.2 821.943 L 1653.17 701.387 L 1497.451 755.135 Z" />
@@ -523,7 +534,8 @@
 					fill="white" />
 			</g>
 		</g>
-		<g class="avenue" transform="matrix(1, 0, 0, 1, -113.95260026980338, 34.241722617175014)">
+		<g class="avenue" transform="matrix(1, 0, 0, 1, -113.95260026980338, 34.241722617175014)" @click="emitShow(i18n.global.t('avenue-school'))">
+			<title>{{ i18n.global.t('avenue-school') }}</title>
 			<path
 				class="shadow"
 				d="M 1623.75 619.571 L 1677.838 680.953 L 1790.273 640.234 L 1728.283 564.873 L 1611.595 606.806 L 1623.75 619.571 Z" />
@@ -550,7 +562,8 @@
 					fill="white" />
 			</g>
 		</g>
-		<g class="avenue">
+		<g class="avenue" @click="emitShow(i18n.global.t('avenue-kindergarden'))">
+			<title>{{ i18n.global.t('avenue-kindergarden') }}</title>
 			<path
 				class="shadow"
 				d="M 1446.443 675.434 L 1489.029 730.322 L 1553.065 709.187 L 1509.533 654.614 L 1446.443 675.434 Z" />

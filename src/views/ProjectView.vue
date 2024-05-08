@@ -3,11 +3,13 @@
 		<Genplan @show="showAvenue" />
 	</div>
 	<div ref="modal" class="modal modal--hidden">
-		<img :src="avenueImg" alt="avenue" />
+		<div class="modal__img-container">
+			<img alt="avenue" :src="img" v-for="(img, i) in imgs" :key="i" />
+		</div>
 		<div class="modal__content">
-			<h1 class="modal__title">{{ avenueTitle }}</h1>
-			<p class="modal__text" v-if="avenueDesc">
-				{{ avenueDesc }}
+			<h1 class="modal__title">{{ title }}</h1>
+			<p class="modal__text" v-if="desc">
+				{{ desc }}
 			</p>
 			<div class="modal__btns">
 				<button class="modal__button">{{ i18n.global.t('next') }}</button>
@@ -18,20 +20,126 @@
 </template>
 
 <script setup>
-import { onMounted, onUnmounted, ref } from 'vue';
+import { computed, onMounted, onUnmounted, ref } from 'vue';
 import gsap from 'gsap';
 import Genplan from '@/components/Genplan.vue';
 import adminAvenue from '@/assets/admin.avif';
 import hotelAvenue from '@/assets/hotel.avif';
+import sportAvenue from '@/assets/sport.avif';
+import collegeAvenue from '@/assets/college.avif';
+import clinicAvenue from '@/assets/clinic.avif';
+import kindergartenAvenue from '@/assets/kindergarten.avif';
+import tradeAvenue from '@/assets/trade.avif';
+import businessAvenue from '@/assets/business.avif';
+import labAvenue from '@/assets/lab.avif';
+import hotelZoomOut from '@/assets/hotel_zoomed-out.avif';
+import sportAndHotel from '@/assets/sport_hotel.avif';
+import logisticsFireStationAvenue from '@/assets/logistics_fire-station.avif';
 import i18n from '@/locales';
 
+// Elements
 const genplan = ref();
 const modal = ref();
-const avenueImg = ref('');
-const avenueTitle = ref();
-const avenueDesc = ref();
+
+// Reactive vars
+const avenue = ref();
+
+// Vars
 const st = 300;
-const avenuesMap = new Map([[i18n.global.t('avenue-logistics'), hotelAvenue]]);
+const avenuesMap = new Map([
+	[
+		i18n.global.t('avenue-guest'),
+		{
+			imgs: [hotelAvenue, hotelZoomOut, sportAndHotel],
+			title: i18n.global.t('avenue-guest'),
+			desc: "Savdo va ko'ngilochar markaz - bu shahar aholisi va mehmonlari uchun turli xizmatlar va ko'ngilochar imkoniyatlarni taqdim etadigan katta obyekt. Markazda turli do'konlar, butiklarga tashrif buyurish, turli mahsulotlarni sotib olish imkoniyati mavjud."
+		}
+	],
+	[
+		i18n.global.t('avenue-trade'),
+		{
+			imgs: [tradeAvenue],
+			title: i18n.global.t('avenue-trade')
+		}
+	],
+	[
+		i18n.global.t('avenue-business'),
+		{
+			imgs: [businessAvenue],
+			title: i18n.global.t('avenue-business')
+		}
+	],
+	[
+		i18n.global.t('avenue-sport'),
+		{
+			imgs: [sportAvenue, sportAndHotel],
+			title: i18n.global.t('avenue-sport')
+		}
+	],
+	[
+		i18n.global.t('avenue-kindergarden'),
+		{
+			imgs: [kindergartenAvenue],
+			title: i18n.global.t('avenue-kindergarden')
+		}
+	],
+	[
+		i18n.global.t('avenue-admin'),
+		{
+			imgs: [adminAvenue],
+			title: i18n.global.t('avenue-admin')
+		}
+	],
+	[
+		i18n.global.t('avenue-college'),
+		{
+			imgs: [collegeAvenue],
+			title: i18n.global.t('avenue-college')
+		}
+	],
+	[
+		i18n.global.t('avenue-clinic'),
+		{
+			imgs: [clinicAvenue],
+			title: i18n.global.t('avenue-clinic')
+		}
+	],
+	[
+		i18n.global.t('avenue-school'),
+		{
+			imgs: [collegeAvenue],
+			title: i18n.global.t('avenue-school')
+		}
+	],
+	[
+		i18n.global.t('avenue-logistics'),
+		{
+			imgs: [logisticsFireStationAvenue],
+			title: i18n.global.t('avenue-logistics')
+		}
+	],
+	[
+		i18n.global.t('avenue-fire-station'),
+		{
+			imgs: [logisticsFireStationAvenue],
+			title: i18n.global.t('avenue-fire-station')
+		}
+	],
+	[
+		i18n.global.t('avenue-lab'),
+		{
+			imgs: [labAvenue],
+			title: i18n.global.t('avenue-lab')
+		}
+	]
+]);
+const isMobile = window.matchMedia('(pointer:coarse)').matches;
+const animatingTime = 500;
+
+// Computed vars
+const title = computed(() => avenue.value?.title);
+const imgs = computed(() => avenue.value?.imgs);
+const desc = computed(() => avenue.value?.desc);
 
 const handleMouseMove = e => {
 	const x = (e.clientX / window.innerWidth) * st - st * 0.5;
@@ -43,38 +151,58 @@ const handleMouseMove = e => {
 		duration: 0.5
 	});
 };
+const handleMounted = mountType => {
+	if (mountType === 'mount') {
+		// Mobile
+		if (isMobile) return (genplan.value.scrollLeft = Math.min(window.innerWidth * 2, 600));
+
+		// Desktop
+		window.addEventListener('mousemove', handleMouseMove);
+	} else {
+		// Mobile
+		if (isMobile) return;
+
+		// Desktop
+		window.removeEventListener('mousemove', handleMouseMove);
+	}
+};
 const showAvenue = avenueName => {
-	avenueImg.value = avenuesMap.get(avenueName);
-	avenueTitle.value = avenueName;
+	// Hide and animate modal
+	if (avenue.value) {
+		modal.value.classList.add('modal--changing');
+		setTimeout(() => {
+			avenue.value = avenuesMap.get(avenueName);
+			setTimeout(() => {
+				modal.value.classList.remove('modal--changing');
+			}, animatingTime - 200);
+		}, animatingTime);
+	}
+
+	// Show modal
+	!avenue.value && (avenue.value = avenuesMap.get(avenueName));
 	modal.value.classList.remove('modal--hidden');
 };
 const closeModal = () => {
 	const target = event.target.closest('.avenue');
-	!target && modal.value.classList.add('modal--hidden');
+	if (!target) {
+		modal.value.classList.add('modal--hidden');
+		setTimeout(() => {
+			avenue.value = null;
+		}, animatingTime);
+	}
 };
 
-onMounted(() => {
-	// Mobile
-	if (window.matchMedia('(pointer:coarse)').matches) return;
-
-	// Desktop
-	window.addEventListener('mousemove', handleMouseMove);
-});
-onUnmounted(() => {
-	// Mobile
-	if (window.matchMedia('(pointer:coarse)').matches) return;
-
-	// Desktop
-	window.removeEventListener('mousemove', handleMouseMove);
-});
+onMounted(() => handleMounted('mount'));
+onUnmounted(() => handleMounted('unmount'));
 </script>
 
 <style scoped lang="scss">
 .container {
 	overflow: hidden;
 	height: 100%;
-	@include media($tab-port) {
-		overflow-x: auto;
+	@include media($tab-land) {
+		// overflow-x: auto;
+		overflow: auto;
 	}
 }
 .modal {
@@ -85,8 +213,6 @@ onUnmounted(() => {
 	width: 95%;
 	font-family: $font-poppins;
 	background-color: #fff;
-	border-top-left-radius: 2.5rem;
-	border-top-right-radius: 2.5rem;
 	transition: translate 500ms;
 	@include media($tab-port) {
 		left: 50%;
@@ -95,12 +221,35 @@ onUnmounted(() => {
 	&--hidden {
 		translate: 0 100%;
 	}
+	&--changing {
+		.modal__img-container {
+			opacity: 0;
+			transform: translateX(-10rem);
+		}
+		.modal__content > * {
+			opacity: 0;
+			transform: translateX(-10rem);
+		}
+	}
 	&__content {
 		padding: 2rem;
 		display: flex;
 		flex-direction: column;
-		gap: 2rem;
-		margin-left: 1rem;
+		gap: 10px;
+		margin-left: 10px;
+		& > * {
+			transition-property: opacity, transform;
+			transition-duration: 300ms;
+		}
+		& > *:first-child {
+			transition-delay: 50ms;
+		}
+		& > *:nth-child(2) {
+			transition-delay: 100ms;
+		}
+		& > *:last-child {
+			transition-delay: 150ms;
+		}
 	}
 	&__title {
 		color: #393939;
@@ -118,7 +267,7 @@ onUnmounted(() => {
 		font-size: 14px;
 		font-weight: 500;
 		line-height: 21px;
-		padding: 1rem 2.5rem;
+		padding: 10px 2.5rem;
 		transition: {
 			property: color, background-color, transform, box-shadow;
 			duration: 0.5s;
@@ -155,10 +304,46 @@ onUnmounted(() => {
 		display: flex;
 		gap: 10px;
 	}
-	img {
-		@include cover-img;
+	&__img-container {
+		height: 230px;
 		padding: 10px;
 		border-radius: 2.5rem;
+		display: flex;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		gap: 10px;
+		transition-property: opacity, transform;
+		transition-duration: 300ms;
+		&::-webkit-scrollbar {
+			height: 10px;
+		}
+		&::-webkit-scrollbar-track {
+			background: #fff;
+			box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+		}
+		&::-webkit-scrollbar-thumb {
+			background: $color-secondary;
+			border: none;
+			border-radius: 10px;
+		}
+		img {
+			@include cover-img;
+			scroll-snap-align: center;
+		}
 	}
+}
+
+/*
+  Enter and leave animations can use different
+  durations and timing functions.
+*/
+.fade-enter-active,
+.fade-leave-active {
+	transition: all 0.3s ease-out;
+}
+.fade-enter-from,
+.fade-leave-to {
+	transform: translateX(20px);
+	opacity: 0;
 }
 </style>
