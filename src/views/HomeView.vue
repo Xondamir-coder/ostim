@@ -149,7 +149,10 @@ const submitTel = async () => {
 
 	console.log('submitting');
 
-	const date = new Date().toDateString();
+	const date = new Intl.DateTimeFormat('en-GB', {
+		dateStyle: 'short',
+		timeStyle: 'short'
+	}).format(new Date());
 	const device = getDevice();
 	const text = `Phone number: ${tel.value}
 Time: ${date}
