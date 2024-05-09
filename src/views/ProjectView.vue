@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, onUnmounted, ref } from 'vue';
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 import gsap from 'gsap';
 import Genplan from '@/components/Genplan.vue';
 import adminAvenue from '@/assets/admin.avif';
@@ -46,93 +46,7 @@ const avenue = ref();
 
 // Vars
 const st = 300;
-const avenuesMap = new Map([
-	[
-		i18n.global.t('avenue-guest'),
-		{
-			imgs: [hotelAvenue, hotelZoomOut, sportAndHotel],
-			title: i18n.global.t('avenue-guest'),
-			desc: "Savdo va ko'ngilochar markaz - bu shahar aholisi va mehmonlari uchun turli xizmatlar va ko'ngilochar imkoniyatlarni taqdim etadigan katta obyekt. Markazda turli do'konlar, butiklarga tashrif buyurish, turli mahsulotlarni sotib olish imkoniyati mavjud."
-		}
-	],
-	[
-		i18n.global.t('avenue-trade'),
-		{
-			imgs: [tradeAvenue],
-			title: i18n.global.t('avenue-trade')
-		}
-	],
-	[
-		i18n.global.t('avenue-business'),
-		{
-			imgs: [businessAvenue],
-			title: i18n.global.t('avenue-business')
-		}
-	],
-	[
-		i18n.global.t('avenue-sport'),
-		{
-			imgs: [sportAvenue, sportAndHotel],
-			title: i18n.global.t('avenue-sport')
-		}
-	],
-	[
-		i18n.global.t('avenue-kindergarden'),
-		{
-			imgs: [kindergartenAvenue],
-			title: i18n.global.t('avenue-kindergarden')
-		}
-	],
-	[
-		i18n.global.t('avenue-admin'),
-		{
-			imgs: [adminAvenue],
-			title: i18n.global.t('avenue-admin')
-		}
-	],
-	[
-		i18n.global.t('avenue-college'),
-		{
-			imgs: [collegeAvenue],
-			title: i18n.global.t('avenue-college')
-		}
-	],
-	[
-		i18n.global.t('avenue-clinic'),
-		{
-			imgs: [clinicAvenue],
-			title: i18n.global.t('avenue-clinic')
-		}
-	],
-	[
-		i18n.global.t('avenue-school'),
-		{
-			imgs: [collegeAvenue],
-			title: i18n.global.t('avenue-school')
-		}
-	],
-	[
-		i18n.global.t('avenue-logistics'),
-		{
-			imgs: [logisticsFireStationAvenue],
-			title: i18n.global.t('avenue-logistics')
-		}
-	],
-	[
-		i18n.global.t('avenue-fire-station'),
-		{
-			imgs: [logisticsFireStationAvenue],
-			title: i18n.global.t('avenue-fire-station')
-		}
-	],
-	[
-		i18n.global.t('avenue-lab'),
-		{
-			imgs: [labAvenue],
-			title: i18n.global.t('avenue-lab')
-		}
-	]
-]);
+let avenueName;
 const isMobile = window.matchMedia('(pointer:coarse)').matches;
 const animatingTime = 500;
 
@@ -140,6 +54,96 @@ const animatingTime = 500;
 const title = computed(() => avenue.value?.title);
 const imgs = computed(() => avenue.value?.imgs);
 const desc = computed(() => avenue.value?.desc);
+const avenuesMap = computed(
+	() =>
+		new Map([
+			[
+				'guest',
+				{
+					imgs: [hotelAvenue, hotelZoomOut, sportAndHotel],
+					title: i18n.global.t('avenue-guest'),
+					desc: "Savdo va ko'ngilochar markaz - bu shahar aholisi va mehmonlari uchun turli xizmatlar va ko'ngilochar imkoniyatlarni taqdim etadigan katta obyekt. Markazda turli do'konlar, butiklarga tashrif buyurish, turli mahsulotlarni sotib olish imkoniyati mavjud."
+				}
+			],
+			[
+				'trade',
+				{
+					imgs: [tradeAvenue],
+					title: i18n.global.t('avenue-trade')
+				}
+			],
+			[
+				'business',
+				{
+					imgs: [businessAvenue],
+					title: i18n.global.t('avenue-business')
+				}
+			],
+			[
+				'sport',
+				{
+					imgs: [sportAvenue, sportAndHotel],
+					title: i18n.global.t('avenue-sport')
+				}
+			],
+			[
+				'kindergarden',
+				{
+					imgs: [kindergartenAvenue],
+					title: i18n.global.t('avenue-kindergarden')
+				}
+			],
+			[
+				'admin',
+				{
+					imgs: [adminAvenue],
+					title: i18n.global.t('avenue-admin')
+				}
+			],
+			[
+				'college',
+				{
+					imgs: [collegeAvenue],
+					title: i18n.global.t('avenue-college')
+				}
+			],
+			[
+				'clinic',
+				{
+					imgs: [clinicAvenue],
+					title: i18n.global.t('avenue-clinic')
+				}
+			],
+			[
+				'school',
+				{
+					imgs: [collegeAvenue],
+					title: i18n.global.t('avenue-school')
+				}
+			],
+			[
+				'logistics',
+				{
+					imgs: [logisticsFireStationAvenue],
+					title: i18n.global.t('avenue-logistics')
+				}
+			],
+			[
+				'fire-station',
+				{
+					imgs: [logisticsFireStationAvenue],
+					title: i18n.global.t('avenue-fire-station')
+				}
+			],
+			[
+				'lab',
+				{
+					imgs: [labAvenue],
+					title: i18n.global.t('avenue-lab')
+				}
+			]
+		])
+);
 
 const handleMouseMove = e => {
 	const x = (e.clientX / window.innerWidth) * st - st * 0.5;
@@ -166,12 +170,13 @@ const handleMounted = mountType => {
 		window.removeEventListener('mousemove', handleMouseMove);
 	}
 };
-const showAvenue = avenueName => {
+const showAvenue = name => {
+	avenueName = name;
 	// Hide and animate modal
 	if (avenue.value) {
 		modal.value.classList.add('modal--changing');
 		setTimeout(() => {
-			avenue.value = avenuesMap.get(avenueName);
+			avenue.value = avenuesMap.value.get(avenueName);
 			setTimeout(() => {
 				modal.value.classList.remove('modal--changing');
 			}, animatingTime - 200);
@@ -179,7 +184,7 @@ const showAvenue = avenueName => {
 	}
 
 	// Show modal
-	!avenue.value && (avenue.value = avenuesMap.get(avenueName));
+	!avenue.value && (avenue.value = avenuesMap.value.get(avenueName));
 	modal.value.classList.remove('modal--hidden');
 };
 const closeModal = () => {
@@ -192,6 +197,7 @@ const closeModal = () => {
 	}
 };
 
+watch(avenuesMap, () => (avenue.value = avenuesMap.value.get(avenueName)));
 onMounted(() => handleMounted('mount'));
 onUnmounted(() => handleMounted('unmount'));
 </script>
@@ -305,9 +311,7 @@ onUnmounted(() => handleMounted('unmount'));
 		gap: 10px;
 	}
 	&__img-container {
-		height: 230px;
 		padding: 10px;
-		border-radius: 2.5rem;
 		display: flex;
 		overflow-x: auto;
 		scroll-snap-type: x mandatory;

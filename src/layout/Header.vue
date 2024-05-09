@@ -19,7 +19,7 @@
 			</RouterLink>
 			<nav class="nav">
 				<NavLinks :links="routingLinks" class="nav__list" />
-				<div class="nav__lang">
+				<label class="nav__lang" for="lang">
 					<label class="nav__lang-label" for="lang">{{
 						i18n.global.locale.toUpperCase()
 					}}</label>
@@ -34,7 +34,7 @@
 							>
 						</li>
 					</ul>
-				</div>
+				</label>
 			</nav>
 			<div class="header__right">
 				<div class="nav__lang">
