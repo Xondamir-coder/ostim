@@ -45,13 +45,6 @@ const modal = ref();
 // Reactive vars
 const avenue = ref();
 
-// Vars
-const route = useRoute();
-const st = 300;
-let avenueName;
-const isMobile = window.matchMedia('(pointer:coarse)').matches;
-const animatingTime = 500;
-
 // Computed vars
 const title = computed(() => avenue.value?.title);
 const imgs = computed(() => avenue.value?.imgs);
@@ -148,6 +141,14 @@ const avenuesMap = computed(
 );
 const hash = computed(() => route.hash.slice(1));
 
+// Vars
+const route = useRoute();
+const st = 300;
+let avenueName, oldHash;
+const isMobile = window.matchMedia('(pointer:coarse)').matches;
+const animatingTime = 500;
+const validHashes = Array.from(avenuesMap.value.entries()).map(entry => entry[0]);
+
 const handleMouseMove = e => {
 	const x = (e.clientX / window.innerWidth) * st - st * 0.5;
 	const y = (e.clientY / window.innerHeight) * st - st * 0.5;
@@ -179,13 +180,17 @@ const showAvenue = name => {
 	avenueName = name;
 	// Hide and animate modal
 	if (avenue.value) {
-		modal.value.classList.add('modal--changing');
-		setTimeout(() => {
-			avenue.value = avenuesMap.value.get(avenueName);
+		if (oldHash) {
+			modal.value.classList.add('modal--changing');
 			setTimeout(() => {
-				modal.value.classList.remove('modal--changing');
-			}, animatingTime - 200);
-		}, animatingTime);
+				avenue.value = avenuesMap.value.get(avenueName);
+				setTimeout(() => {
+					modal.value.classList.remove('modal--changing');
+				}, animatingTime - 200);
+			}, animatingTime);
+		} else {
+			avenue.value = avenuesMap.value.get(avenueName);
+		}
 	}
 
 	// Show modal
@@ -204,8 +209,8 @@ const closeModal = () => {
 	}
 };
 
-watch(hash, () => {
-	const validHashes = Array.from(avenuesMap.value.entries()).map(entry => entry[0]);
+watch(hash, (_, oldVal) => {
+	oldHash = oldVal;
 	validHashes.includes(hash.value) && showAvenue(hash.value);
 });
 watch(avenuesMap, () => (avenue.value = avenuesMap.value.get(avenueName)));

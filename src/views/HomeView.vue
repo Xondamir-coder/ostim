@@ -374,7 +374,7 @@ const formatValue = () => {
 	&__box {
 		min-width: 260px;
 		flex: 1 0 30.6%;
-		scroll-snap-align: start;
+		scroll-snap-align: center;
 		text-decoration: none;
 		cursor: pointer;
 		@include transition-appear-transform(1s);
