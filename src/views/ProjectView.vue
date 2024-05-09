@@ -1,6 +1,6 @@
 <template>
 	<div ref="genplan" class="container" @click="closeModal">
-		<Genplan @show="showAvenue" />
+		<Genplan />
 	</div>
 	<div ref="modal" class="modal modal--hidden">
 		<div class="modal__img-container">
@@ -36,6 +36,7 @@ import hotelZoomOut from '@/assets/hotel_zoomed-out.avif';
 import sportAndHotel from '@/assets/sport_hotel.avif';
 import logisticsFireStationAvenue from '@/assets/logistics_fire-station.avif';
 import i18n from '@/locales';
+import { useRoute } from 'vue-router';
 
 // Elements
 const genplan = ref();
@@ -45,6 +46,7 @@ const modal = ref();
 const avenue = ref();
 
 // Vars
+const route = useRoute();
 const st = 300;
 let avenueName;
 const isMobile = window.matchMedia('(pointer:coarse)').matches;
@@ -58,10 +60,10 @@ const avenuesMap = computed(
 	() =>
 		new Map([
 			[
-				'guest',
+				'hotel',
 				{
 					imgs: [hotelAvenue, hotelZoomOut, sportAndHotel],
-					title: i18n.global.t('avenue-guest'),
+					title: i18n.global.t('avenue-hotel'),
 					desc: "Savdo va ko'ngilochar markaz - bu shahar aholisi va mehmonlari uchun turli xizmatlar va ko'ngilochar imkoniyatlarni taqdim etadigan katta obyekt. Markazda turli do'konlar, butiklarga tashrif buyurish, turli mahsulotlarni sotib olish imkoniyati mavjud."
 				}
 			],
@@ -87,10 +89,10 @@ const avenuesMap = computed(
 				}
 			],
 			[
-				'kindergarden',
+				'kindergarten',
 				{
 					imgs: [kindergartenAvenue],
-					title: i18n.global.t('avenue-kindergarden')
+					title: i18n.global.t('avenue-kindergarten')
 				}
 			],
 			[
@@ -144,6 +146,7 @@ const avenuesMap = computed(
 			]
 		])
 );
+const hash = computed(() => route.hash.slice(1));
 
 const handleMouseMove = e => {
 	const x = (e.clientX / window.innerWidth) * st - st * 0.5;
@@ -157,6 +160,8 @@ const handleMouseMove = e => {
 };
 const handleMounted = mountType => {
 	if (mountType === 'mount') {
+		hash.value && showAvenue(hash.value);
+
 		// Mobile
 		if (isMobile) return (genplan.value.scrollLeft = Math.min(window.innerWidth * 2, 600));
 
@@ -185,18 +190,24 @@ const showAvenue = name => {
 
 	// Show modal
 	!avenue.value && (avenue.value = avenuesMap.value.get(avenueName));
-	modal.value.classList.remove('modal--hidden');
+	setTimeout(() => {
+		modal.value.classList.remove('modal--hidden');
+	}, 10);
 };
 const closeModal = () => {
 	const target = event.target.closest('.avenue');
 	if (!target) {
 		modal.value.classList.add('modal--hidden');
 		setTimeout(() => {
-			avenue.value = null;
+			location.hash = '';
 		}, animatingTime);
 	}
 };
 
+watch(hash, () => {
+	const validHashes = Array.from(avenuesMap.value.entries()).map(entry => entry[0]);
+	validHashes.includes(hash.value) && showAvenue(hash.value);
+});
 watch(avenuesMap, () => (avenue.value = avenuesMap.value.get(avenueName)));
 onMounted(() => handleMounted('mount'));
 onUnmounted(() => handleMounted('unmount'));
@@ -232,7 +243,8 @@ onUnmounted(() => handleMounted('unmount'));
 			opacity: 0;
 			transform: translateX(-10rem);
 		}
-		.modal__content > * {
+		.modal__title,
+		.modal__text {
 			opacity: 0;
 			transform: translateX(-10rem);
 		}
@@ -243,21 +255,14 @@ onUnmounted(() => handleMounted('unmount'));
 		flex-direction: column;
 		gap: 10px;
 		margin-left: 10px;
-		& > * {
-			transition-property: opacity, transform;
-			transition-duration: 300ms;
-		}
-		& > *:first-child {
-			transition-delay: 50ms;
-		}
-		& > *:nth-child(2) {
-			transition-delay: 100ms;
-		}
-		& > *:last-child {
-			transition-delay: 150ms;
-		}
+	}
+	&__title,
+	&__text {
+		transition-property: opacity, transform;
+		transition-duration: 300ms;
 	}
 	&__title {
+		transition-delay: 90ms;
 		color: #393939;
 		font-size: 18px;
 		font-weight: 700;
@@ -265,6 +270,7 @@ onUnmounted(() => handleMounted('unmount'));
 		font-family: inherit;
 	}
 	&__text {
+		transition-delay: 150ms;
 		font-size: 12px;
 		font-weight: 400;
 	}
@@ -315,6 +321,7 @@ onUnmounted(() => handleMounted('unmount'));
 		display: flex;
 		overflow-x: auto;
 		scroll-snap-type: x mandatory;
+		scroll-behavior: smooth;
 		gap: 10px;
 		transition-property: opacity, transform;
 		transition-duration: 300ms;

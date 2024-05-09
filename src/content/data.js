@@ -55,43 +55,53 @@ export const reasons = computed(() => [
 export const avenues = computed(() => [
 	{
 		banner: adminAvenue,
-		title: i18n.global.t('avenue-admin')
+		title: i18n.global.t('avenue-admin'),
+		to: 'admin'
 	},
 	{
 		banner: sportAvenue,
-		title: i18n.global.t('avenue-sport')
+		title: i18n.global.t('avenue-sport'),
+		to: 'sport'
 	},
 	{
 		banner: collegeAvenue,
-		title: i18n.global.t('avenue-school')
+		title: i18n.global.t('avenue-school'),
+		to: 'school'
 	},
 	{
 		banner: hotelAvenue,
-		title: i18n.global.t('avenue-guest')
+		title: i18n.global.t('avenue-hotel'),
+		to: 'hotel'
 	},
 	{
 		banner: clinicAvenue,
-		title: i18n.global.t('avenue-clinic')
+		title: i18n.global.t('avenue-clinic'),
+		to: 'clinic'
 	},
 	{
 		banner: kindergartenAvenue,
-		title: i18n.global.t('avenue-kindergarden')
+		title: i18n.global.t('avenue-kindergarten'),
+		to: 'kindergarten'
 	},
 	{
 		banner: collegeAvenue,
-		title: i18n.global.t('avenue-college')
+		title: i18n.global.t('avenue-college'),
+		to: 'college'
 	},
 	{
 		banner: tradeAvenue,
-		title: i18n.global.t('avenue-trade')
+		title: i18n.global.t('avenue-trade'),
+		to: 'trade'
 	},
 	{
 		banner: businessAvenue,
-		title: i18n.global.t('avenue-business')
+		title: i18n.global.t('avenue-business'),
+		to: 'business'
 	},
 	{
 		banner: exibitionAvenue,
-		title: i18n.global.t('avenue-exibition')
+		title: i18n.global.t('avenue-exibition'),
+		to: 'exibition'
 	}
 ]);
 

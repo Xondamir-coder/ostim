@@ -27,45 +27,18 @@
 			<p class="body-l">
 				{{ i18n.global.t('avenues-subtitle') }}
 			</p>
-			<div class="avenues__content">
-				<!-- <button class="avenues__left">
-					<svg
-						width="10"
-						height="17"
-						viewBox="0 0 10 17"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg">
-						<path
-							d="M8.24791 15.7186L1.3042 8.77488L8.24791 1.83118"
-							stroke="#3B3B3B"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round" />
-					</svg>
-				</button> -->
-				<div class="avenues__container avenues-animate" ref="avenuesContainer">
-					<div class="avenues__box" v-for="avenue in avenues" :key="avenue">
-						<div class="avenues__banner">
-							<img loading="lazy" :src="avenue.banner" alt="banner" />
-						</div>
-						<h3>{{ avenue.title }}</h3>
+
+			<div class="avenues__container avenues-animate" ref="avenuesContainer">
+				<RouterLink
+					class="avenues__box"
+					v-for="avenue in avenues"
+					:key="avenue"
+					:to="`/project#${avenue.to}`">
+					<div class="avenues__banner">
+						<img loading="lazy" :src="avenue.banner" alt="banner" />
 					</div>
-				</div>
-				<!-- <button class="avenues__right">
-					<svg
-						width="10"
-						height="17"
-						viewBox="0 0 10 17"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg">
-						<path
-							d="M1.30225 15.7186L8.24595 8.77488L1.30225 1.83118"
-							stroke="#3B3B3B"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round" />
-					</svg>
-				</button> -->
+					<h3>{{ avenue.title }}</h3>
+				</RouterLink>
 			</div>
 		</section>
 		<section class="faq" data-animate>
@@ -378,15 +351,51 @@ const formatValue = () => {
 		}
 	}
 	&__container {
-		@include grid-repeated-cols(3, 5rem);
-		@include media($large-desktop, min) {
-			gap: 8rem;
+		width: 100%;
+		gap: 5rem;
+		display: flex;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		scroll-behavior: smooth;
+
+		&::-webkit-scrollbar {
+			height: 10px;
 		}
-		@include media($tab-port) {
-			@include grid-auto(column, 2rem, 250px);
-			grid-template-columns: none;
-			overflow-x: auto;
-			width: calc(100vw - 10rem);
+		&::-webkit-scrollbar-track {
+			background: #fff;
+			box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+		}
+		&::-webkit-scrollbar-thumb {
+			background: $color-secondary;
+			border: none;
+			border-radius: 10px;
+		}
+	}
+	&__box {
+		min-width: 260px;
+		flex: 1 0 30.6%;
+		scroll-snap-align: start;
+		text-decoration: none;
+		cursor: pointer;
+		@include transition-appear-transform(1s);
+		$transition-delays: 100ms 200ms 300ms 400ms 500ms 600ms 700ms 800ms 900ms 1000ms 1100ms;
+		@each $delay in $transition-delays {
+			$index: index($transition-delays, $delay);
+			&:nth-child(#{$index}) {
+				transition-delay: $delay * 4;
+			}
+		}
+		&:hover img {
+			transform: scale(1.4);
+		}
+		& img {
+			@include cover-img;
+			transition: transform 0.7s ease-out;
+		}
+		h3 {
+			@include text(14px, bold, null, uppercase, 2px);
+			font-family: inherit;
+			color: $color-dark-blue;
 		}
 	}
 	&__buttons {
@@ -411,29 +420,6 @@ const formatValue = () => {
 	&__banner {
 		@include rounded-border;
 		overflow: hidden;
-	}
-	&__box {
-		cursor: pointer;
-		@include transition-appear-transform(1s);
-		$transition-delays: 100ms 200ms 300ms 400ms 500ms 600ms 700ms 800ms 900ms 1000ms 1100ms;
-		@each $delay in $transition-delays {
-			$index: index($transition-delays, $delay);
-			&:nth-child(#{$index}) {
-				transition-delay: $delay * 4;
-			}
-		}
-		&:hover img {
-			transform: scale(1.4);
-		}
-		& img {
-			@include cover-img;
-			transition: transform 0.7s ease-out;
-		}
-		h3 {
-			@include text(14px, bold, null, uppercase, 2px);
-			font-family: inherit;
-			color: $color-dark-blue;
-		}
 	}
 }
 
