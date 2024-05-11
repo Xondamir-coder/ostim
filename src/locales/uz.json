@@ -76,6 +76,8 @@
 	"partners": "Hamkorlarimiz",
 	"next": "Keyingisi",
 	"contact-us": "Biz bilan bog'lanish",
+	"submit-success": "Muvaffaqiyatli yuborildi",
+	"submit-error": "Yetarli raqamlar kiritilmagan",
 
 	"input-name": "Sizning ismingiz",
 	"input-mail": "Pochtagizni shu yerga yozing",

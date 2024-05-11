@@ -76,6 +76,8 @@
 	"partners": "Bizim ortaklarımız",
 	"next": "Sonraki",
 	"contact-us": "Bize Ulaşın",
+	"submit-success": "Başarıyla gönderildi",
+	"submit-error": "Yeterli sayı girilmedi",
 
 	"input-name": "Adınız",
 	"input-mail": "E-postanızı buraya yazın",

@@ -76,6 +76,8 @@
 	"partners": "Our partners",
 	"next": "Next",
 	"contact-us": "Contact us",
+	"submit-success": "Submitted successfully",
+	"submit-error": "Not enough numbers entered",
 
 	"input-name": "Your name",
 	"input-mail": "Write your email here",

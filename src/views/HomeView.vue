@@ -95,6 +95,14 @@
 								stroke-linejoin="round" />
 						</svg>
 					</button>
+					<Transition name="slide">
+						<span
+							class="connect__form-label"
+							v-if="showTelLabel"
+							:class="{ 'connect__form-label--error': telLabel.includes('❌') }">
+							{{ telLabel }}
+						</span>
+					</Transition>
 				</form>
 			</div>
 		</section>
@@ -112,13 +120,19 @@ import Copyright from '@/layout/Copyright.vue';
 import Footer from '@/layout/Footer.vue';
 import i18n from '@/locales';
 
+const showTelLabel = ref(false);
+const telLabel = ref('');
 const tel = ref('');
 const reasonsContainer = ref();
 const avenuesContainer = ref();
 
 const getDevice = () => (window.matchMedia('(pointer:coarse)').matches ? 'Mobile' : 'Desktop');
 const submitTel = async () => {
-	if (tel.value.length < 17) return;
+	if (tel.value.length < 17) {
+		showTelLabel.value = true;
+		telLabel.value = `${i18n.global.t('submit-error')} ❌`;
+		return;
+	}
 
 	console.log('submitting');
 
@@ -144,27 +158,18 @@ From: ${device}`;
 			body: JSON.stringify(postData)
 		});
 		const data = await res.json();
+		tel.value = '';
+		showTelLabel.value = true;
+		telLabel.value = `${i18n.global.t('submit-success')} ✅`;
 		console.log(data);
 	} catch (error) {
 		console.error(error);
 	}
 };
-const handleObserver = entries => {
-	entries.forEach(
-		entry => entry.isIntersecting && entry.target.classList.remove(entry.target.classList[1])
-	);
-};
-
-const observer = new IntersectionObserver(handleObserver, { threshold: 0.3 });
-onMounted(() => {
-	animateSections(document.querySelectorAll('[data-animate]'));
-	observer.observe(avenuesContainer.value);
-	observer.observe(reasonsContainer.value);
-});
-
 const setInitialValue = () => (tel.value = '+998 ');
 const checkInput = () => {
 	tel.value = tel.value.length < 5 ? '+998 ' : tel.value;
+	showTelLabel.value && (showTelLabel.value = false);
 	formatValue();
 };
 const lastIndexOfLastNumber = str => {
@@ -200,6 +205,18 @@ const formatValue = () => {
 	event.target.selectionStart = lastIndex + 1;
 	event.target.selectionEnd = lastIndex + 1;
 };
+const handleObserver = entries => {
+	entries.forEach(
+		entry => entry.isIntersecting && entry.target.classList.remove(entry.target.classList[1])
+	);
+};
+
+const observer = new IntersectionObserver(handleObserver, { threshold: 0.3 });
+onMounted(() => {
+	animateSections(document.querySelectorAll('[data-animate]'));
+	observer.observe(avenuesContainer.value);
+	observer.observe(reasonsContainer.value);
+});
 </script>
 
 <style lang="scss" scoped>
@@ -464,6 +481,7 @@ const formatValue = () => {
 		align-self: end;
 	}
 	&__form {
+		position: relative;
 		@include flex(space-between, center);
 		@include responsive-width(400px);
 		background-color: #fefcfb;
@@ -473,6 +491,15 @@ const formatValue = () => {
 		justify-self: start;
 		@include media($tab-port) {
 			padding: 1rem;
+		}
+		&-label {
+			position: absolute;
+			bottom: -2.5rem;
+			font-size: 12px;
+			color: #00d26a;
+			&--error {
+				color: #f92f60;
+			}
 		}
 	}
 	&__input {
@@ -579,6 +606,17 @@ const formatValue = () => {
 }
 .list-leave-active {
 	position: absolute;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+	transition-property: transform, opacity;
+	transition-duration: 300ms;
+}
+.slide-enter-from,
+.slide-leave-to {
+	opacity: 0;
+	transform: translateX(-15px);
 }
 
 .heading {
