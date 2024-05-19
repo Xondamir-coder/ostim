@@ -1,8 +1,11 @@
 {
+	"ceo": "Bosh Direktor",
+
 	"link-main": "Asosiy",
 	"link-project": "Loyiha",
 	"link-about": "Biz haqimizda",
 	"link-contact": "Aloqa",
+	"link-about-ostim": "OSTIM haqida",
 
 	"hero-title": "sanoatning yangi bosqichi",
 	"hero-subtitle": "Ostim global - kelajak shu yerda",
@@ -31,6 +34,7 @@
 	"avenue-trade": "Savdo va ko'ngilochar markaz",
 	"avenue-fire-station": "Yong'in markazi",
 	"avenue-logistics": "Logistika markazi",
+	"avenue-petrol-station": "Benzin shaxobchasi",
 
 	"faq-title": "Ko'p beriladigan savollar:",
 	"faq-subtitle": "Hamma savollarizga javob berishga tayyormiz",

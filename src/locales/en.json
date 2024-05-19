@@ -1,8 +1,10 @@
 {
+	"ceo": "CEO",
 	"link-main": "Main",
 	"link-project": "Project",
 	"link-about": "About us",
 	"link-contact": "Contact",
+	"link-about-ostim": "About Ostim",
 
 	"hero-title": "new level of industry",
 	"hero-subtitle": "Ostim global - the future is here",
@@ -31,6 +33,7 @@
 	"avenue-trade": "Shopping and entertainment center",
 	"avenue-fire-station": "Fire station",
 	"avenue-logistics": "Logistics center",
+	"avenue-petrol-station": "Petrol station",
 
 	"faq-title": "Frequently asked questions:",
 	"faq-subtitle": "We are ready to help with any questions",

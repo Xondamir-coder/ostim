@@ -1,8 +1,10 @@
 {
+	"ceo": "Генеральный директор",
 	"link-main": "Главный",
 	"link-project": "Проект",
 	"link-about": "О нас",
 	"link-contact": "Контакт",
+	"link-about-ostim": "Об OSTIM",
 
 	"hero-title": "новый уровень промышленности",
 	"hero-subtitle": "Ostim global - будущее уже здесь",
@@ -31,6 +33,7 @@
 	"avenue-trade": "Торгово-развлекательный центр",
 	"avenue-fire-station": "Пожарная станция",
 	"avenue-logistics": "Логистический центр",
+	"avenue-petrol-station": "Бензозаправочная станция",
 
 	"faq-title": "Часто задаваемые вопросы:",
 	"faq-subtitle": "Мы готовы помочь по всем вопросам",

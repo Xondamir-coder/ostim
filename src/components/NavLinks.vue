@@ -8,10 +8,16 @@
 				>{{ link.name }}</RouterLink
 			>
 		</li>
+		<li class="item">
+			<a class="link router__link" href="https://www.ostim.org.tr/" target="_blank">{{
+				i18n.global.t('link-about-ostim')
+			}}</a>
+		</li>
 	</ul>
 </template>
 
 <script setup>
+import i18n from '@/locales';
 const props = defineProps({
 	links: Array
 });

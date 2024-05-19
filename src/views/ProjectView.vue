@@ -35,6 +35,7 @@ import labAvenue from '@/assets/lab.avif';
 import hotelZoomOut from '@/assets/hotel_zoomed-out.avif';
 import sportAndHotel from '@/assets/sport_hotel.avif';
 import logisticsFireStationAvenue from '@/assets/logistics_fire-station.avif';
+import petrolStationAvenue from '@/assets/petrol_station.avif';
 import i18n from '@/locales';
 import { useRoute } from 'vue-router';
 
@@ -135,6 +136,13 @@ const avenuesMap = computed(
 				{
 					imgs: [labAvenue],
 					title: i18n.global.t('avenue-lab')
+				}
+			],
+			[
+				'petrol-station',
+				{
+					imgs: [petrolStationAvenue],
+					title: i18n.global.t('avenue-petrol-station')
 				}
 			]
 		])

@@ -13,6 +13,7 @@ import kindergartenAvenue from '@/assets/kindergarten.avif';
 import tradeAvenue from '@/assets/trade.avif';
 import businessAvenue from '@/assets/business.avif';
 import exibitionAvenue from '@/assets/korgazmalar.avif';
+import petrolStationAvenue from '@/assets/petrol_station.avif';
 import { computed } from 'vue';
 import i18n from '@/locales';
 
@@ -102,6 +103,11 @@ export const avenues = computed(() => [
 		banner: exibitionAvenue,
 		title: i18n.global.t('avenue-exibition'),
 		to: 'exibition'
+	},
+	{
+		banner: petrolStationAvenue,
+		title: i18n.global.t('avenue-petrol-station'),
+		to: 'petrol-station'
 	}
 ]);
 

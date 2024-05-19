@@ -55,8 +55,8 @@
 								fill="#72AEC8" />
 						</svg>
 					</div>
-					<p>PAlonchi palonchiev</p>
-					<p>CEO</p>
+					<p>Adem Arici</p>
+					<p>{{ i18n.global.t('ceo') }}</p>
 				</div>
 			</div>
 			<button type="button" class="feedback__btn feedback__btn-right">

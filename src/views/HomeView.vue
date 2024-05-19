@@ -7,7 +7,9 @@
 				<p class="body-l">
 					{{ i18n.global.t('hero-subtitle') }}
 				</p>
-				<button class="secondary-button">{{ i18n.global.t('hero-btn') }}</button>
+				<RouterLink class="secondary-button" to="/project">{{
+					i18n.global.t('hero-btn')
+				}}</RouterLink>
 			</div>
 		</section>
 		<section class="reasons" data-animate>
@@ -246,7 +248,8 @@ onMounted(() => {
 			// display: none;
 		}
 	}
-	button {
+	a {
+		text-decoration: none;
 		margin-top: 10%;
 	}
 	&__img {
@@ -267,7 +270,7 @@ onMounted(() => {
 		color: #fff;
 		justify-items: center;
 		text-align: center;
-		button {
+		a {
 			animation: slide-bottom 1s;
 		}
 		p {
@@ -494,7 +497,7 @@ onMounted(() => {
 		}
 		&-label {
 			position: absolute;
-			bottom: -2.5rem;
+			bottom: -25px;
 			font-size: 12px;
 			color: #00d26a;
 			&--error {

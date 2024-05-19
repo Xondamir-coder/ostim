@@ -25,7 +25,7 @@
 							</a>
 						</li>
 						<li class="footer__social-icon">
-							<a href="#">
+							<a href="https://www.instagram.com/ostimglobal" target="_blank">
 								<svg
 									width="18"
 									height="19"
@@ -39,7 +39,7 @@
 							</a>
 						</li>
 						<li class="footer__social-icon">
-							<a href="#">
+							<a href="https://twitter.com/ostimglobal" target="_blank">
 								<svg
 									width="18"
 									height="15"
@@ -53,7 +53,9 @@
 							</a>
 						</li>
 						<li class="footer__social-icon">
-							<a href="#">
+							<a
+								href="https://www.linkedin.com/onboarding/start/people-you-may-know/new/"
+								target="_blank">
 								<svg
 									width="18"
 									height="19"
@@ -67,7 +69,9 @@
 							</a>
 						</li>
 						<li class="footer__social-icon">
-							<a href="#">
+							<a
+								href="https://www.youtube.com/c/OST%C4%B0MOSB1967/videos"
+								target="_blank">
 								<svg
 									width="22"
 									height="15"
@@ -88,7 +92,7 @@
 				<h1 class="heading-s">{{ i18n.global.t('footer-social-title') }}</h1>
 				<ul class="footer__list list">
 					<li class="item" v-for="link in socialLinks" :key="link.to">
-						<a class="link" :href="`/${link.to}`">{{ link.name }}</a>
+						<a class="link" :href="link.to" target="_blank">{{ link.name }}</a>
 					</li>
 				</ul>
 			</div>
@@ -123,7 +127,7 @@ import NavLinks from '@/components/NavLinks.vue';
 import { routingLinks } from '@/content/data';
 const socialLinks = [
 	{
-		to: '#',
+		to: 'https://www.instagram.com/ostimglobal',
 		name: 'instagram'
 	},
 	{
@@ -131,11 +135,11 @@ const socialLinks = [
 		name: 'facebook'
 	},
 	{
-		to: '#',
+		to: 'https://twitter.com/ostimglobal',
 		name: 'twitter'
 	},
 	{
-		to: '#',
+		to: 'https://www.linkedin.com/onboarding/start/people-you-may-know/new/',
 		name: 'linkedin'
 	},
 	{

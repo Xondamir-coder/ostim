@@ -1,8 +1,10 @@
 {
+	"ceo": "CEO",
 	"link-main": "Ana",
 	"link-project": "Proje",
 	"link-about": "Hakkımızda",
 	"link-contact": "Temas",
+	"link-about-ostim": "OSTİM hakkında",
 
 	"hero-title": "sanayi̇de yeni̇ bi̇r evre",
 	"hero-subtitle": "Ostim global - gelecek burada",
@@ -31,6 +33,7 @@
 	"avenue-trade": "Alışveriş ve eğlence merkezi",
 	"avenue-fire-station": "Itfaiye merkezi",
 	"avenue-logistics": "Lojistik merkezi",
+	"avenue-petrol-station": "Petrol istasyonu",
 
 	"faq-title": "Sıkça Sorulan Sorular:",
 	"faq-subtitle": "Tüm sorularınızı cevaplamaya hazırız",
