@@ -5,10 +5,19 @@
 	"link-about": "Hakkımızda",
 	"link-contact": "Temas",
 	"link-about-ostim": "OSTİM hakkında",
+	"link-investors": "Yatırımcılar için",
 
 	"hero-title": "sanayi̇de yeni̇ bi̇r evre",
 	"hero-subtitle": "Ostim global - gelecek burada",
 	"hero-btn": "Koltuk seçin",
+
+	"investors-input-name": "Isim",
+	"investors-input-tel": "telefon numarası",
+	"investors-input-area": "alan",
+	"investors-input-source": "güç kaynağı",
+	"investors-input-wish": "Dilek",
+	"investors-input-gas": "gaz kaynağı",
+	"investors-input-purpose": "amaç",
 
 	"reasons-title": "Neden Ostim Teknopark",
 	"reasons-1-title": "Elverişli konum",
@@ -81,6 +90,8 @@
 	"contact-us": "Bize Ulaşın",
 	"submit-success": "Başarıyla gönderildi",
 	"submit-error": "Yeterli sayı girilmedi",
+	"see-instruction": "talimatlara bakın",
+	"download-documents": "Belgeleri indirin",
 
 	"input-name": "Adınız",
 	"input-mail": "E-postanızı buraya yazın",

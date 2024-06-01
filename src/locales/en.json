@@ -5,6 +5,15 @@
 	"link-about": "About us",
 	"link-contact": "Contact",
 	"link-about-ostim": "About Ostim",
+	"link-investors": "For investors",
+
+	"investors-input-name": "Name",
+	"investors-input-tel": "Phone number",
+	"investors-input-area": "Area",
+	"investors-input-source": "Power supply",
+	"investors-input-wish": "Wish",
+	"investors-input-gas": "Gas supply",
+	"investors-input-purpose": "Purpose",
 
 	"hero-title": "new level of industry",
 	"hero-subtitle": "Ostim global - the future is here",
@@ -81,6 +90,8 @@
 	"contact-us": "Contact us",
 	"submit-success": "Submitted successfully",
 	"submit-error": "Not enough numbers entered",
+	"see-instruction": "See instruction",
+	"download-documents": "Download documents",
 
 	"input-name": "Your name",
 	"input-mail": "Write your email here",

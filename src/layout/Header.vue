@@ -164,6 +164,9 @@ const toggleMenu = () => (menuBtn.value.checked = !menuBtn.value.checked);
 			padding-top: 20px;
 			margin: 0;
 		}
+		@include media(1500px) {
+			max-width: 90%;
+		}
 		& > * {
 			z-index: 2;
 		}
@@ -188,7 +191,7 @@ const toggleMenu = () => (menuBtn.value.checked = !menuBtn.value.checked);
 }
 .nav {
 	@include flex(space-between, center);
-	@include responsive-width(60rem);
+	@include responsive-width(80rem);
 	@include media($tab-port) {
 		display: none;
 	}

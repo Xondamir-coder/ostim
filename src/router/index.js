@@ -4,6 +4,7 @@ import AboutView from '../views/AboutView.vue';
 import ContactView from '../views/ContactView.vue';
 import ProjectView from '../views/ProjectView.vue';
 import ErrorView from '../views/ErrorView.vue';
+import InvestorsView from '../views/InvestorsView.vue';
 
 const router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),
@@ -27,6 +28,11 @@ const router = createRouter({
 			path: '/project',
 			component: ProjectView,
 			name: 'project'
+		},
+		{
+			path: '/investors',
+			component: InvestorsView,
+			name: 'investors'
 		},
 		{
 			path: '/:pathMatch(.*)*',

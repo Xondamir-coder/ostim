@@ -12,8 +12,12 @@
 				{{ desc }}
 			</p>
 			<div class="modal__btns">
-				<button class="modal__button">{{ i18n.global.t('next') }}</button>
-				<button class="modal__button">{{ i18n.global.t('contact-us') }}</button>
+				<button class="modal__button" @click="nextAvenue">
+					{{ i18n.global.t('next') }}
+				</button>
+				<a class="modal__button" href="tel:+998 77 124 10 10">
+					{{ i18n.global.t('contact-us') }}
+				</a>
 			</div>
 		</div>
 	</div>
@@ -157,6 +161,11 @@ const isMobile = window.matchMedia('(pointer:coarse)').matches;
 const animatingTime = 500;
 const validHashes = Array.from(avenuesMap.value.entries()).map(entry => entry[0]);
 
+const nextAvenue = () => {
+	const index = validHashes.indexOf(hash.value) + 1;
+	const newHash = index === validHashes.length ? validHashes[0] : validHashes[index];
+	location.hash = `#${newHash}`;
+};
 const handleMouseMove = e => {
 	const x = (e.clientX / window.innerWidth) * st - st * 0.5;
 	const y = (e.clientY / window.innerHeight) * st - st * 0.5;
@@ -293,6 +302,7 @@ onUnmounted(() => handleMounted('unmount'));
 		font-weight: 500;
 		line-height: 21px;
 		padding: 10px 2.5rem;
+		text-decoration: none;
 		transition: {
 			property: color, background-color, transform, box-shadow;
 			duration: 0.5s;

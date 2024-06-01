@@ -6,6 +6,15 @@
 	"link-about": "Biz haqimizda",
 	"link-contact": "Aloqa",
 	"link-about-ostim": "OSTIM haqida",
+	"link-investors": "Investorlar uchun",
+
+	"investors-input-name": "Ism",
+	"investors-input-tel": "Telefon nomer",
+	"investors-input-area": "Maydon",
+	"investors-input-source": "Quvvat manbai",
+	"investors-input-wish": "Tilak",
+	"investors-input-gas": "Gaz ta'minoti",
+	"investors-input-purpose": "Maqsad",
 
 	"hero-title": "sanoatning yangi bosqichi",
 	"hero-subtitle": "Ostim global - kelajak shu yerda",
@@ -82,6 +91,8 @@
 	"contact-us": "Biz bilan bog'lanish",
 	"submit-success": "Muvaffaqiyatli yuborildi",
 	"submit-error": "Yetarli raqamlar kiritilmagan",
+	"see-instruction": "Instruksiya ko'rish",
+	"download-documents": "Dokument yuklab olish",
 
 	"input-name": "Sizning ismingiz",
 	"input-mail": "Pochtagizni shu yerga yozing",

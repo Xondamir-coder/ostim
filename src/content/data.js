@@ -137,6 +137,10 @@ export const routingLinks = computed(() => [
 		name: i18n.global.t('link-main')
 	},
 	{
+		to: 'investors',
+		name: i18n.global.t('link-investors')
+	},
+	{
 		to: 'project',
 		name: i18n.global.t('link-project')
 	},
