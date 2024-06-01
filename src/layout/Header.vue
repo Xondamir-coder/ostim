@@ -162,7 +162,6 @@ const toggleMenu = () => (menuBtn.value.checked = !menuBtn.value.checked);
 			justify-items: center;
 			align-items: center;
 			padding-top: 20px;
-			margin: 0;
 		}
 		@include media(1500px) {
 			max-width: 90%;
@@ -321,7 +320,7 @@ const toggleMenu = () => (menuBtn.value.checked = !menuBtn.value.checked);
 	&__list {
 		font-family: $font-jost;
 		font-weight: 400;
-		font-size: 5.4rem;
+		font-size: 3.5rem;
 		color: #fff;
 		line-height: 148%;
 		flex-direction: column;
