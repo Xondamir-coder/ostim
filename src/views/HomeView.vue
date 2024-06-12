@@ -271,17 +271,17 @@ onMounted(() => {
 		justify-items: center;
 		text-align: center;
 		a {
-			animation: slide-bottom 1s;
+			animation: slide-bottom 800ms;
 		}
 		p {
 			@include responsive-width(50rem);
 			font-weight: 300;
-			animation: slide-right 1s ease-out;
+			animation: slide-right 800ms ease-out;
 		}
 	}
 	&__heading {
 		@include text(7.2rem, 600, 8rem, none);
-		animation: slide-left 1s ease-out;
+		animation: slide-left 800ms ease-out;
 		text-transform: capitalize;
 		@include media($tab-port) {
 			font-size: 5.5rem;

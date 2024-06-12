@@ -8,17 +8,18 @@
 		</li>
 		<li
 			class="investors__btn"
-			v-for="entry in [1, 2, 3]"
+			v-for="entry in [1, 2, 3, 4, 5]"
 			@click="changeSlide(entry)"
 			:key="entry"
 			:class="{ 'investors__btn-active': curSlide === entry }"></li>
 		<li
-			@click="changeSlide(4)"
+			@click="changeSlide(6)"
 			class="investors__btn"
-			:class="{ 'investors__btn-active': curSlide === 4 }">
+			:class="{ 'investors__btn-active': curSlide === 6 }">
 			<span class="investors__btn-span">STOP</span>
 		</li>
 	</ul>
+	<!-- 1 -->
 	<div class="investors" :class="{ 'investors--active': curSlide === 0 }">
 		<div class="investors__content investors__content--1">
 			<p class="investors__mark">{{ i18n.global.t('investors-mark-1') }}</p>
@@ -30,6 +31,7 @@
 			<img class="investors__img" src="@/assets/investors-1.avif" alt="first" />
 		</div>
 	</div>
+	<!-- 2 -->
 	<div class="investors" :class="{ 'investors--active': curSlide === 1 }">
 		<div class="investors__content">
 			<p class="investors__mark">{{ i18n.global.t('investors-mark-2') }}</p>
@@ -67,10 +69,85 @@
 			</button>
 		</div>
 	</div>
+	<!-- 3 -->
 	<div class="investors" :class="{ 'investors--active': curSlide === 2 }">
 		<div class="investors__content">
 			<p class="investors__mark">{{ i18n.global.t('investors-mark-3') }}</p>
 			<h1 class="investors__title">{{ i18n.global.t('investors-title-3') }}</h1>
+			<p class="investors__subtitle">{{ i18n.global.t('investors-subtitle-3') }}</p>
+			<ul class="investors__list">
+				<li class="investors__item investors__item--2" v-for="i in [1, 2, 3, 4]" :key="i">
+					<span class="investors__item-count">{{ i }}</span>
+					<span>{{ i18n.global.t(`investors-item-${i}`) }}</span>
+				</li>
+			</ul>
+			<button class="secondary-button">{{ i18n.global.t('contact-us') }}</button>
+		</div>
+		<div class="investors__right">
+			<img class="investors__img" src="@/assets/investors-3.avif" alt="first" />
+		</div>
+	</div>
+	<!-- 4 -->
+	<div class="investors" :class="{ 'investors--active': curSlide === 3 }">
+		<div class="investors__content">
+			<p class="investors__mark">{{ i18n.global.t('investors-mark-4') }}</p>
+			<h1 class="investors__title">OSTIM GLOBAL</h1>
+			<p class="investors__subtitle">{{ i18n.global.t('investors-subtitle-4') }}</p>
+			<ul class="investors__areas">
+				<li
+					class="investors__area"
+					v-for="item in [
+						['100', i18n.global.t('modules')],
+						['150-200', i18n.global.t('modules')],
+						['10 000', i18n.global.t('investors-total-area')]
+					]"
+					:key="i">
+					<span class="investors__area-big">{{ item[0] }}</span>
+					<span class="investors__area-small">м2</span>
+					<span class="investors__area-title">
+						{{ item[1] }}
+					</span>
+				</li>
+			</ul>
+			<button class="secondary-button">{{ i18n.global.t('who-btn') }}</button>
+		</div>
+		<div class="investors__right">
+			<img class="investors__img" src="@/assets/investors-4.avif" alt="first" />
+		</div>
+	</div>
+	<!-- 5 -->
+	<div class="investors" :class="{ 'investors--active': curSlide === 4 }">
+		<div class="investors__content">
+			<p class="investors__mark">{{ i18n.global.t('investors-mark-5') }}</p>
+			<h1 class="investors__title">{{ i18n.global.t('investors-title-5') }}</h1>
+			<p class="investors__subtitle">{{ i18n.global.t('investors-subtitle-5') }}</p>
+			<ul class="investors__areas">
+				<li
+					class="investors__area"
+					v-for="item in [
+						['240', i18n.global.t('kindergarten')],
+						['660', i18n.global.t('school')],
+						['840', i18n.global.t('college')]
+					]"
+					:key="i">
+					<span class="investors__area-big">{{ item[0] }}</span>
+					<span class="investors__area-small">{{ i18n.global.t('place') }}</span>
+					<span class="investors__area-title">
+						{{ item[1] }}
+					</span>
+				</li>
+			</ul>
+			<button class="secondary-button">{{ i18n.global.t('who-btn') }}</button>
+		</div>
+		<div class="investors__right">
+			<img class="investors__img" src="@/assets/investors-5.avif" alt="first" />
+		</div>
+	</div>
+	<!-- 6 -->
+	<div class="investors" :class="{ 'investors--active': curSlide === 5 }">
+		<div class="investors__content">
+			<p class="investors__mark">{{ i18n.global.t('investors-mark-6') }}</p>
+			<h1 class="investors__title">{{ i18n.global.t('investors-title-6') }}</h1>
 			<ul class="investors__list">
 				<li
 					class="investors__item investors__item--2"
@@ -111,15 +188,16 @@
 			<button class="secondary-button">{{ i18n.global.t('who-btn') }}</button>
 		</div>
 		<div class="investors__right">
-			<img class="investors__img" src="@/assets/investors-3.avif" alt="first" />
+			<img class="investors__img" src="@/assets/investors-6.avif" alt="first" />
 		</div>
 	</div>
-	<div class="investors" :class="{ 'investors--active': curSlide === 4 }">
+	<!-- 7 -->
+	<div class="investors" :class="{ 'investors--active': curSlide === 6 }">
 		<div class="investors__content">
-			<p class="investors__mark">{{ i18n.global.t('investors-mark-4') }}</p>
-			<h1 class="investors__title">{{ i18n.global.t('investors-title-4') }}</h1>
+			<p class="investors__mark">{{ i18n.global.t('investors-mark-7') }}</p>
+			<h1 class="investors__title">{{ i18n.global.t('investors-title-7') }}</h1>
 			<h1 class="investors__subtitle investors__subtitle--4">
-				{{ i18n.global.t('investors-subtitle-4') }}
+				{{ i18n.global.t('investors-subtitle-7') }}
 			</h1>
 			<form class="investors__form" @submit.prevent="submitForm">
 				<input
@@ -198,9 +276,9 @@ const data = ref({
 const changeSlide = slide => (curSlide.value = slide);
 const handleKeyup = e => {
 	if (e.key === 'ArrowRight')
-		curSlide.value === 4 ? changeSlide(0) : changeSlide(curSlide.value + 1);
+		curSlide.value === 6 ? changeSlide(0) : changeSlide(curSlide.value + 1);
 	if (e.key === 'ArrowLeft')
-		curSlide.value === 0 ? changeSlide(4) : changeSlide(curSlide.value - 1);
+		curSlide.value === 0 ? changeSlide(6) : changeSlide(curSlide.value - 1);
 };
 const submitForm = () => {
 	console.log(data.value);
@@ -304,12 +382,15 @@ onUnmounted(() => document.removeEventListener('keyup', handleKeyup));
 			font-size: 1.6rem;
 		}
 		&-title {
-			line-height: 2rem;
+			line-height: 1.8rem;
 			display: block;
 			font-family: $font-jost;
-			font-size: 2rem;
+			font-size: 1.8rem;
 			color: #000;
 			text-transform: uppercase;
+			@include media($large-desktop, min) {
+				font-size: 2rem;
+			}
 		}
 	}
 	&__list {
@@ -322,11 +403,14 @@ onUnmounted(() => document.removeEventListener('keyup', handleKeyup));
 		gap: 1rem;
 		align-items: center;
 		text-transform: uppercase;
-		font-size: 2rem;
+		font-size: 1.8rem;
 		font-weight: 400;
 		line-height: 3.6rem;
 		letter-spacing: 0.1em;
-		&--2 {
+		@include media($large-desktop, min) {
+			font-size: 2rem;
+		}
+		&--6 {
 			display: block;
 			& span:nth-child(2) {
 				margin-left: 1rem;
@@ -341,6 +425,8 @@ onUnmounted(() => document.removeEventListener('keyup', handleKeyup));
 			gap: 1rem;
 		}
 		&-count {
+			text-align: center;
+			width: 2rem;
 			font-family: $font-carter;
 			color: $color-secondary;
 			font-size: 2.5rem;
@@ -453,8 +539,8 @@ onUnmounted(() => document.removeEventListener('keyup', handleKeyup));
 	}
 
 	button {
-		padding: 2rem 0;
-		width: 13.5rem;
+		padding: 2rem 3rem;
+		align-self: flex-start;
 		font-size: 11px;
 		font-weight: 500;
 		line-height: 16.28px;
@@ -475,16 +561,23 @@ onUnmounted(() => document.removeEventListener('keyup', handleKeyup));
 		margin-bottom: 3rem;
 	}
 	&__title {
-		font-size: 4.8rem;
 		font-weight: 600;
 		line-height: 6.9rem;
 		letter-spacing: 0.1em;
+		font-size: 4rem;
+		@include media($large-desktop, min) {
+			font-size: 4.8rem;
+		}
 	}
 	&__subtitle {
-		font-size: 2rem;
+		font-size: 1.7rem;
 		font-weight: 400;
 		line-height: 3.6rem;
 		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		@include media($large-desktop, min) {
+			font-size: 2rem;
+		}
 		&--4 {
 			font-size: 16px;
 			text-transform: none;
