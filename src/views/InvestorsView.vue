@@ -327,6 +327,7 @@ onUnmounted(() => document.removeEventListener('keyup', handleKeyup));
 	transition: opacity $transition-duration;
 	overflow: hidden;
 	height: 100vh;
+	justify-content: space-between;
 	// &:last-child {
 	// 	position: fixed;
 	// }
@@ -524,8 +525,9 @@ onUnmounted(() => document.removeEventListener('keyup', handleKeyup));
 	}
 	&__content {
 		transform: translateX(-100%);
+		margin-left: calc($header-margin + 0.9rem);
+		max-width: 50rem;
 		align-self: center;
-		margin: 0 calc($header-margin + 0.9rem);
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
