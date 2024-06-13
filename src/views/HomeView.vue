@@ -373,23 +373,8 @@ onMounted(() => {
 	&__container {
 		width: 100%;
 		gap: 5rem;
-		display: flex;
-		overflow-x: auto;
-		scroll-snap-type: x mandatory;
-		scroll-behavior: smooth;
-
-		&::-webkit-scrollbar {
-			height: 10px;
-		}
-		&::-webkit-scrollbar-track {
-			background: #fff;
-			box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-		}
-		&::-webkit-scrollbar-thumb {
-			background: $color-secondary;
-			border: none;
-			border-radius: 10px;
-		}
+		@include carousel;
+		@include pretty-scrollbar;
 	}
 	&__box {
 		min-width: 260px;

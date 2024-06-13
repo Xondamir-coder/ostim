@@ -348,18 +348,7 @@ onUnmounted(() => handleMounted('unmount'));
 		gap: 10px;
 		transition-property: opacity, transform;
 		transition-duration: 300ms;
-		&::-webkit-scrollbar {
-			height: 10px;
-		}
-		&::-webkit-scrollbar-track {
-			background: #fff;
-			box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-		}
-		&::-webkit-scrollbar-thumb {
-			background: $color-secondary;
-			border: none;
-			border-radius: 10px;
-		}
+		@include pretty-scrollbar;
 		img {
 			@include cover-img;
 			scroll-snap-align: center;

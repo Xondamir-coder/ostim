@@ -76,15 +76,15 @@
 			<h1 class="investors__title">{{ i18n.global.t('investors-title-3') }}</h1>
 			<p class="investors__subtitle">{{ i18n.global.t('investors-subtitle-3') }}</p>
 			<ul class="investors__list">
-				<li class="investors__item investors__item--2" v-for="i in [1, 2, 3, 4]" :key="i">
+				<li class="investors__item" v-for="i in [1, 2, 3, 4]" :key="i">
 					<span class="investors__item-count">{{ i }}</span>
 					<span>{{ i18n.global.t(`investors-item-${i}`) }}</span>
 				</li>
 			</ul>
 			<button class="secondary-button">{{ i18n.global.t('contact-us') }}</button>
 		</div>
-		<div class="investors__right">
-			<img class="investors__img" src="@/assets/investors-3.avif" alt="first" />
+		<div class="investors__right investors__carousel-img">
+			<img v-for="img in imgs" :key="img" class="investors__img" :src="img" alt="avenue" />
 		</div>
 	</div>
 	<!-- 4 -->
@@ -101,7 +101,7 @@
 						['150-200', i18n.global.t('modules')],
 						['10 000', i18n.global.t('investors-total-area')]
 					]"
-					:key="i">
+					:key="item">
 					<span class="investors__area-big">{{ item[0] }}</span>
 					<span class="investors__area-small">м2</span>
 					<span class="investors__area-title">
@@ -129,9 +129,11 @@
 						['660', i18n.global.t('school')],
 						['840', i18n.global.t('college')]
 					]"
-					:key="i">
+					:key="item">
 					<span class="investors__area-big">{{ item[0] }}</span>
-					<span class="investors__area-small">{{ i18n.global.t('place') }}</span>
+					<span class="investors__area-small">{{
+						i18n.global.t('investors-place')
+					}}</span>
 					<span class="investors__area-title">
 						{{ item[1] }}
 					</span>
@@ -140,7 +142,21 @@
 			<button class="secondary-button">{{ i18n.global.t('who-btn') }}</button>
 		</div>
 		<div class="investors__right">
-			<img class="investors__img" src="@/assets/investors-5.avif" alt="first" />
+			<div class="investors__right-gradient"></div>
+			<ul class="investors__right-carousel">
+				<li
+					class="investors__right-carousel_item"
+					v-for="childrenAvenue in childrenAvenues"
+					:key="childrenAvenue"
+					:class="{
+						'investors__right-carousel_item--active':
+							childrenAvenue === currentChildrenAvenue
+					}"
+					@click="changeCurrentChildrenAvenue(childrenAvenue)">
+					<img :src="childrenAvenue" alt="child avenue" />
+				</li>
+			</ul>
+			<img class="investors__img" :src="currentChildrenAvenue" alt="child avenue" />
 		</div>
 	</div>
 	<!-- 6 -->
@@ -150,7 +166,7 @@
 			<h1 class="investors__title">{{ i18n.global.t('investors-title-6') }}</h1>
 			<ul class="investors__list">
 				<li
-					class="investors__item investors__item--2"
+					class="investors__item investors__item--6"
 					v-for="i in [1, 2, 3, 4, 5]"
 					:key="i">
 					<span class="investors__item-count">{{ i }}</span>
@@ -258,9 +274,13 @@
 </template>
 
 <script setup>
+import { avenues } from '@/content/data';
 import { Copyright, Footer } from '@/layout';
 import i18n from '@/locales';
-import { onUnmounted, ref } from 'vue';
+import { computed, onUnmounted, ref } from 'vue';
+import schoolImg from '@/assets/investors-school.avif';
+import collegeImg from '@/assets/investors-college.avif';
+import kindergartenImg from '@/assets/investors-5.avif';
 
 const curSlide = ref(0);
 const data = ref({
@@ -272,6 +292,9 @@ const data = ref({
 	gas: '',
 	purpose: ''
 });
+const imgs = computed(() => avenues.value.map(e => e.banner));
+const childrenAvenues = computed(() => [kindergartenImg, collegeImg, schoolImg]);
+const currentChildrenAvenue = ref(childrenAvenues.value[0]);
 
 const changeSlide = slide => (curSlide.value = slide);
 const handleKeyup = e => {
@@ -283,6 +306,8 @@ const handleKeyup = e => {
 const submitForm = () => {
 	console.log(data.value);
 };
+const changeCurrentChildrenAvenue = newChildAvenue =>
+	(currentChildrenAvenue.value = newChildAvenue);
 
 document.addEventListener('keyup', handleKeyup);
 onUnmounted(() => document.removeEventListener('keyup', handleKeyup));
@@ -301,7 +326,7 @@ onUnmounted(() => document.removeEventListener('keyup', handleKeyup));
 	opacity: 0;
 	transition: opacity $transition-duration;
 	overflow: hidden;
-	max-height: 80rem;
+	height: 100vh;
 	// &:last-child {
 	// 	position: fixed;
 	// }
@@ -322,6 +347,17 @@ onUnmounted(() => document.removeEventListener('keyup', handleKeyup));
 	&:last-child {
 		.investors__right {
 			overflow-y: auto;
+		}
+	}
+	&__carousel {
+		&-img {
+			gap: 2rem;
+			overflow-y: hidden;
+			@include carousel;
+			@include pretty-scrollbar;
+			& > * {
+				scroll-snap-align: center;
+			}
 		}
 	}
 	&__footer {
@@ -441,9 +477,11 @@ onUnmounted(() => document.removeEventListener('keyup', handleKeyup));
 			color: #fff;
 			padding: 5rem;
 		}
-		& > *:last-child {
-			margin-top: 3rem;
-			border-top-color: $color-secondary;
+		&-gradient {
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			background: linear-gradient(to bottom, #00000000 10%, #00000069 100%);
 		}
 		&-btn {
 			position: absolute;
@@ -451,12 +489,43 @@ onUnmounted(() => document.removeEventListener('keyup', handleKeyup));
 			left: 50%;
 			transform: translate(-50%, -50%);
 		}
+		&-carousel {
+			z-index: 10;
+			position: absolute;
+			bottom: 1rem;
+			left: 50%;
+			transform: translateX(-50%);
+			color: #fff;
+			display: flex;
+			gap: 3rem;
+			&_item {
+				height: 9rem;
+				width: 16rem;
+				border-radius: 1.2rem;
+				border: 2px solid transparent;
+				transition-property: transform, border-color;
+				transition-duration: 400ms;
+				transform-origin: bottom;
+				cursor: pointer;
+				&:hover {
+					transform: scale(1.2);
+					border-color: $color-secondary;
+				}
+				img {
+					@include cover-img;
+					border-radius: inherit;
+				}
+				&--active {
+					transform: scale(1.2);
+					border-color: $color-secondary;
+				}
+			}
+		}
 	}
 	&__content {
 		transform: translateX(-100%);
 		align-self: center;
-		margin: 0 auto;
-		max-width: 58rem;
+		margin: 0 calc($header-margin + 0.9rem);
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;

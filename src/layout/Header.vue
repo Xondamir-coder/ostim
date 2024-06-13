@@ -150,6 +150,9 @@ const toggleMenu = () => (menuBtn.value.checked = !menuBtn.value.checked);
 		}
 	}
 	&__container {
+		padding: 0.9rem 0;
+		gap: 2rem;
+		margin: 0 $header-margin;
 		@include flex-justify(space-between);
 		@include media($tab-port) {
 			position: absolute;
@@ -169,10 +172,6 @@ const toggleMenu = () => (menuBtn.value.checked = !menuBtn.value.checked);
 		& > * {
 			z-index: 2;
 		}
-		padding: 0.9rem 0;
-		max-width: 70%;
-		margin: 0 auto;
-		gap: 2rem;
 	}
 	&__logo {
 		@include media($tab-port) {

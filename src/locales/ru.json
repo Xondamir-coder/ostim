@@ -36,6 +36,7 @@
 	"investors-step-4": "Подписание инвестиционных обязательств",
 	"investors-step-5": "договор о выделении участка земли",
 	"investors-total-area": "общая площадь",
+	"investors-place": "мест",
 
 	"investors-input-name": "Имя",
 	"investors-input-tel": "Номер телефона",
@@ -123,7 +124,6 @@
 	"see-instruction": "посмотреть инструкцию",
 	"download-documents": "Скачать документы",
 	"modules": "Модули",
-	"place": "мест",
 	"sign-up": "Записаться",
 	"kindergarten": "детский сад",
 	"school": "школа",
