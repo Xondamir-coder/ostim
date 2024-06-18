@@ -403,7 +403,7 @@ import kindergartenImg from '@/assets/investors-5.avif';
 import SelectDropdown from '@/components/SelectDropdown.vue';
 import NavLinks from '@/components/NavLinks.vue';
 
-const curSlide = ref(6);
+const curSlide = ref(0);
 const data = ref({
 	name: '',
 	tel: '',
