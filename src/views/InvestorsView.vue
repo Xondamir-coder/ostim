@@ -245,7 +245,7 @@
 					:placeholder="`${i18n.global.t('investors-input-name')} *`" />
 				<SelectDropdown
 					:title="i18n.global.t('investors-input-area')"
-					:content="content"
+					:content="areaContent"
 					v-model="data.area" />
 				<input
 					v-model="data.tel"
@@ -256,7 +256,7 @@
 					:placeholder="`${i18n.global.t('investors-input-tel')} *`" />
 				<SelectDropdown
 					:title="i18n.global.t('investors-input-source')"
-					:content="content"
+					:content="sourceContent"
 					v-model="data.source" />
 				<input
 					v-model="data.wish"
@@ -266,12 +266,14 @@
 					id="wish"
 					:placeholder="i18n.global.t('investors-input-wish')" />
 				<SelectDropdown
+					class="dropdown--up"
 					:title="i18n.global.t('investors-input-gas')"
-					:content="content"
+					:content="gasContent"
 					v-model="data.gas" />
 				<SelectDropdown
+					class="dropdown--up"
 					:title="i18n.global.t('investors-input-purpose')"
-					:content="content"
+					:content="purposeContent"
 					v-model="data.purpose" />
 				<button type="submit" class="secondary-button">
 					{{ i18n.global.t('submit') }}
@@ -415,7 +417,33 @@ const data = ref({
 });
 const container = ref();
 const currentAvenue = ref('kindergarten');
-const content = ['Hello', 'Bye'];
+const areaContent = [
+	'400 — 2 000 м²',
+	'2 000 — 5 000 м²',
+	'5 000 — 10 000 м²',
+	'10 000 — 30 000 м²',
+	'>30 000 м²'
+];
+const sourceContent = computed(() => [
+	`<0,5 ${i18n.global.t('mega-watt')}`,
+	`0,5 — 2 ${i18n.global.t('mega-watt')}`,
+	`2 — 5 ${i18n.global.t('mega-watt')}`,
+	`>5 ${i18n.global.t('mega-watt')}`
+]);
+const purposeContent = computed(() => [
+	i18n.global.t('production'),
+	i18n.global.t('stock'),
+	i18n.global.t('other')
+]);
+const gasContent = [
+	`< 0,01 млн м³/${i18n.global.t('year')}`,
+	`0,01 – 0,1 млн. м³/${i18n.global.t('year')}`,
+	`0,1 – 1 млн. м³/${i18n.global.t('year')}`,
+	`1 – 10 млн. м³/${i18n.global.t('year')}`,
+	`10 – 100 млн. м³/${i18n.global.t('year')}`,
+	`100 – 500 млн. м³/${i18n.global.t('year')}`,
+	`> 500 млн. м³/${i18n.global.t('year')}`
+];
 
 const imgs = computed(() => avenues.value.map(e => e.banner));
 const childrenAvenues = computed(() => [
