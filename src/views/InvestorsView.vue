@@ -298,19 +298,23 @@
 					<img src="@/assets/icons/partner-5.svg" alt="some hero" />
 				</div>
 			</div>
-			<NavLinks :links="routingLinks" class="investors__right--2_links" />
-			<div class="investors__right--2_contact">
-				<h1>{{ i18n.global.t('link-contact') }}</h1>
-				<p class="investors__right--2_contact-mail">{{ i18n.global.t('got-questions') }}</p>
-				<a class="investors__right--2_contact-mail" href="mailto:ostim@ostim.org.tr">
-					ostim@ostim.org.tr
-				</a>
-				<p class="investors__right--2_contact-tel">
-					{{ i18n.global.t('footer-contact-tel') }}
-				</p>
-				<a class="investors__right--2_contact-tel red" href="tel:+998771241010">
-					+998 77 124 10 10
-				</a>
+			<div class="investors__right--2_contact_links">
+				<NavLinks :links="routingLinks" class="investors__right--2_links" />
+				<div class="investors__right--2_contact">
+					<h1>{{ i18n.global.t('link-contact') }}</h1>
+					<p class="investors__right--2_contact-mail">
+						{{ i18n.global.t('got-questions') }}
+					</p>
+					<a class="investors__right--2_contact-mail" href="mailto:ostim@ostim.org.tr">
+						ostim@ostim.org.tr
+					</a>
+					<p class="investors__right--2_contact-tel">
+						{{ i18n.global.t('footer-contact-tel') }}
+					</p>
+					<a class="investors__right--2_contact-tel red" href="tel:+998771241010">
+						+998 77 124 10 10
+					</a>
+				</div>
 			</div>
 			<ul class="investors__right--2_social">
 				<li class="investors__right--2_social-icon">
@@ -823,13 +827,27 @@ onUnmounted(() => viewportWidth >= 768 && document.removeEventListener('keyup', 
 			@include media($tab-port) {
 				padding: 5rem;
 			}
-
 			& > * {
 				display: flex;
 				flex-direction: column;
 				align-items: center;
 			}
 
+			&_contact_links {
+				gap: 3rem;
+				align-self: stretch;
+				& > * {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+				}
+				@media only screen and (max-height: 960px) {
+					flex-direction: row;
+				}
+				@media only screen and (max-width: 1600px) {
+					flex-direction: row;
+				}
+			}
 			&_social {
 				display: flex;
 				align-self: flex-end;

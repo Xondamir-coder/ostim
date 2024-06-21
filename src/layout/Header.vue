@@ -3,31 +3,42 @@
 		<div
 			class="header__container"
 			:class="{ 'header__container-investors': $route.path == '/investors' }">
+			<RouterLink class="header__logo-container" to="/">
+				<img class="header__logo" src="@/assets/icons/logo.svg" alt="logo" />
+				<img class="header__logo-white" src="@/assets/icons/header-logo.svg" alt="logo" />
+			</RouterLink>
 			<label class="header__btn" for="menu">
 				<input class="header__menu" type="checkbox" name="menu" id="menu" ref="menuBtn" />
 				<label for="menu" class="header__label"></label>
 				<div class="menu">
 					<NavLinks :links="routingLinks" class="menu__list" @click="toggleMenu" />
 					<div class="menu__content">
+						<label class="nav__lang nav__lang-mobile" for="lang">
+							<label class="nav__lang-label" for="lang">{{
+								i18n.global.locale.toUpperCase()
+							}}</label>
+							<input
+								class="nav__lang-checkbox"
+								type="checkbox"
+								name="lang"
+								id="lang" />
+							<ul class="nav__lang-list">
+								<li class="nav__lang-item" v-for="lang in ['UZ', 'RU', 'EN', 'TR']">
+									<label
+										class="nav__lang-label"
+										for="lang"
+										@click="changeLanguage(lang.toLowerCase())"
+										>{{ lang }}</label
+									>
+								</li>
+							</ul>
+						</label>
 						<button class="menu__button button">{{ i18n.global.t('hero-btn') }}</button>
 						<a href="tel:+998 77 124 10 10">+998 77 124 10 10</a>
 						<p>{{ i18n.global.t('mon-sat') }}: 9:00–18:00</p>
 					</div>
 				</div>
 			</label>
-			<RouterLink to="/">
-				<img class="header__logo" src="@/assets/icons/logo.svg" alt="logo" />
-				<img
-					v-if="$route.path != '/investors'"
-					class="header__logo-white"
-					src="@/assets/icons/logo-white.svg"
-					alt="logo" />
-				<img
-					v-else
-					class="header__logo-white"
-					src="@/assets/icons/header-logo.svg"
-					alt="logo" />
-			</RouterLink>
 			<nav class="nav">
 				<NavLinks :links="routingLinks" class="nav__list" />
 				<label class="nav__lang" for="lang">
@@ -47,31 +58,6 @@
 					</ul>
 				</label>
 			</nav>
-			<div class="header__right" v-if="$route.path != '/investors'">
-				<div class="nav__lang">
-					<label class="nav__lang-label" for="mobile-lang">{{
-						i18n.global.locale.toUpperCase()
-					}}</label>
-					<input
-						class="nav__lang-checkbox nav__lang-checkbox_white"
-						type="checkbox"
-						name="mobile-lang"
-						id="mobile-lang" />
-					<ul class="nav__lang-list">
-						<li class="nav__lang-item" v-for="lang in ['UZ', 'RU', 'EN', 'TR']">
-							<label
-								class="nav__lang-label"
-								for="mobile-lang"
-								@click="changeLanguage(lang.toLowerCase())"
-								>{{ lang }}</label
-							>
-						</li>
-					</ul>
-				</div>
-				<a class="header__btn header__btn-tel" href="tel:+998 77 124 10 10">
-					<img src="@/assets/icons/tel.svg" alt="tel" />
-				</a>
-			</div>
 		</div>
 	</header>
 </template>
@@ -180,7 +166,7 @@ const toggleMenu = () => (menuBtn.value.checked = !menuBtn.value.checked);
 			display: grid;
 			grid-auto-flow: column;
 			align-content: start;
-			grid-auto-columns: 1fr;
+			grid-auto-columns: max-content;
 			justify-items: center;
 			align-items: center;
 			padding-top: 20px;
@@ -205,6 +191,9 @@ const toggleMenu = () => (menuBtn.value.checked = !menuBtn.value.checked);
 			@include media($tab-port, min) {
 				display: none;
 			}
+		}
+		&-container {
+			z-index: 10;
 		}
 	}
 	&__list {
@@ -251,6 +240,12 @@ const toggleMenu = () => (menuBtn.value.checked = !menuBtn.value.checked);
 	&__lang {
 		@include flex-align(center, 1rem);
 		position: relative;
+		&-mobile {
+			color: #fff;
+			input {
+				content: url(@/assets/icons/down-arrow_white.svg);
+			}
+		}
 		&-list {
 			transition-property: opacity, transform;
 			transition-duration: 0.25s;
