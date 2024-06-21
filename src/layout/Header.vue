@@ -328,7 +328,7 @@ const toggleMenu = () => (menuBtn.value.checked = !menuBtn.value.checked);
 .menu {
 	@include full-viewport;
 	transform: translateX(-100%);
-	@include flex-justify(space-around, null, null, column);
+	@include flex-justify(space-evenly, null, null, column);
 	padding-top: 120px;
 	transition: transform 0.8s;
 	position: fixed;
