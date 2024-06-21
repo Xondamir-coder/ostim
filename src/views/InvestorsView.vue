@@ -74,7 +74,7 @@
 		</div>
 	</div>
 	<!-- 3 -->
-	<div class="investors" :class="{ 'investors--active': curSlide === 2 }">
+	<div ref="carousel" class="investors" :class="{ 'investors--active': curSlide === 2 }">
 		<div class="investors__content">
 			<p class="investors__mark">{{ i18n.global.t('investors-mark-3') }}</p>
 			<h1 class="investors__title">{{ i18n.global.t('investors-title-3') }}</h1>
@@ -148,7 +148,7 @@
 			</ul>
 			<button class="secondary-button">{{ i18n.global.t('who-btn') }}</button>
 		</div>
-		<div class="investors__right">
+		<div class="investors__right investors__right--5">
 			<div class="investors__right-gradient"></div>
 			<ul class="investors__right-carousel">
 				<li
@@ -229,7 +229,7 @@
 	</div>
 	<!-- 7 -->
 	<div class="investors" :class="{ 'investors--active': curSlide === 6 }">
-		<div class="investors__content">
+		<div class="investors__content investors__content--2">
 			<p class="investors__mark">{{ i18n.global.t('investors-mark-7') }}</p>
 			<h1 class="investors__title">{{ i18n.global.t('investors-title-7') }}</h1>
 			<h1 class="investors__subtitle investors__subtitle--4">
@@ -243,10 +243,7 @@
 					id="name"
 					required
 					:placeholder="`${i18n.global.t('investors-input-name')} *`" />
-				<SelectDropdown
-					:title="i18n.global.t('investors-input-area')"
-					:content="areaContent"
-					v-model="data.area" />
+
 				<input
 					v-model="data.tel"
 					type="tel"
@@ -254,10 +251,6 @@
 					id="tel"
 					required
 					:placeholder="`${i18n.global.t('investors-input-tel')} *`" />
-				<SelectDropdown
-					:title="i18n.global.t('investors-input-source')"
-					:content="sourceContent"
-					v-model="data.source" />
 				<input
 					v-model="data.wish"
 					class="investors__input-wish"
@@ -266,12 +259,22 @@
 					id="wish"
 					:placeholder="i18n.global.t('investors-input-wish')" />
 				<SelectDropdown
-					class="dropdown--up"
+					class="investors__form-item"
+					:title="i18n.global.t('investors-input-area')"
+					:content="areaContent"
+					v-model="data.area" />
+				<SelectDropdown
+					class="investors__form-item dropdown--up"
 					:title="i18n.global.t('investors-input-gas')"
 					:content="gasContent"
 					v-model="data.gas" />
 				<SelectDropdown
-					class="dropdown--up"
+					class="investors__form-item"
+					:title="i18n.global.t('investors-input-source')"
+					:content="sourceContent"
+					v-model="data.source" />
+				<SelectDropdown
+					class="investors__form-item dropdown--up"
 					:title="i18n.global.t('investors-input-purpose')"
 					:content="purposeContent"
 					v-model="data.purpose" />
@@ -453,6 +456,7 @@ const childrenAvenues = computed(() => [
 ]);
 
 let animation;
+const carousel = ref();
 
 const changeCurrentAvenue = avenue => (currentAvenue.value = avenue);
 const changeSlide = slide => (curSlide.value = slide);
@@ -463,6 +467,8 @@ const handleKeyup = e => {
 const submitForm = () => {
 	console.log(data.value);
 };
+
+const viewportWidth = window.innerWidth;
 
 watch(curSlide, () => {
 	if (curSlide.value == 2 && !animation) {
@@ -494,8 +500,54 @@ watch(curSlide, () => {
 	if (curSlide.value != 2 && animation) animation.pause();
 	if (curSlide.value == 2 && animation) animation.play();
 });
-onMounted(() => document.addEventListener('keyup', handleKeyup));
-onUnmounted(() => document.removeEventListener('keyup', handleKeyup));
+onMounted(() => {
+	if (viewportWidth <= 768) {
+		const observer = new IntersectionObserver(
+			entries => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting && !animation) {
+						let count = 0;
+						animation = gsap.to(container.value.firstElementChild.firstElementChild, {
+							width: '100%',
+							duration: 3,
+							repeat: -1,
+							onRepeat: () => {
+								const arr = Array.from(container.value.children).slice(1);
+								if (count === arr.length - 1) {
+									animation.kill();
+									gsap.to(container.value.firstElementChild.firstElementChild, {
+										width: '100%',
+										duration: 3
+									});
+									return;
+								}
+								arr.forEach(e =>
+									gsap.to(e, {
+										duration: 1,
+										x: `-=${e.scrollWidth + 20}`
+									})
+								);
+								count++;
+							}
+						});
+					}
+					if (!entry.isIntersecting && animation) {
+						animation.pause();
+					}
+					if (entry.isIntersecting && animation) {
+						animation.play();
+					}
+				});
+			},
+			{ threshold: 0.3 }
+		);
+
+		observer.observe(carousel.value.lastElementChild);
+		return;
+	}
+	document.addEventListener('keyup', handleKeyup);
+});
+onUnmounted(() => viewportWidth >= 768 && document.removeEventListener('keyup', handleKeyup));
 </script>
 
 <style lang="scss">
@@ -527,9 +579,37 @@ onUnmounted(() => document.removeEventListener('keyup', handleKeyup));
 	// &:last-child {
 	// 	position: fixed;
 	// }
+	@include media($tab-port) {
+		flex-direction: column;
+		position: static;
+		opacity: 1;
+		&:not(:last-child) {
+			margin: 0 6.4rem;
+			margin-bottom: 7rem;
+		}
+		gap: 10rem;
+		height: auto;
+	}
+	@include media(500px) {
+		&:not(:last-child) {
+			margin: 0 3rem;
+			margin-bottom: 7rem;
+		}
+	}
+	@include media(350px) {
+		&:not(:last-child) {
+			margin: 0;
+			margin-bottom: 7rem;
+		}
+		text-align: center;
+		& * {
+			justify-content: center;
+			align-items: center;
+			align-self: center !important;
+		}
+	}
 
 	&--active {
-		// position: absolute !important;
 		opacity: 1;
 		z-index: 1;
 		.investors__right,
@@ -544,6 +624,10 @@ onUnmounted(() => document.removeEventListener('keyup', handleKeyup));
 	&:last-child {
 		.investors__right {
 			overflow-y: auto;
+
+			@include media($tab-port) {
+				overflow-y: visible;
+			}
 		}
 	}
 	&__carousel {
@@ -593,6 +677,34 @@ onUnmounted(() => document.removeEventListener('keyup', handleKeyup));
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		gap: 2rem;
+		@include media(500px) {
+			grid-template-columns: none;
+		}
+		&-item {
+			grid-column: 2 / span 1;
+
+			@include media(500px) {
+				grid-column: auto;
+			}
+		}
+		&-item:nth-child(4) {
+			grid-row: 1 / span 1;
+			@include media(500px) {
+				grid-row: auto;
+			}
+		}
+		&-item:nth-child(5) {
+			grid-row: 3 / span 1;
+			@include media(500px) {
+				grid-row: auto;
+			}
+		}
+		&-item:nth-child(6) {
+			grid-row: 2 / span 1;
+			@include media(500px) {
+				grid-row: auto;
+			}
+		}
 		input {
 			font-family: $font-lato;
 			font-size: 16px;
@@ -603,6 +715,9 @@ onUnmounted(() => document.removeEventListener('keyup', handleKeyup));
 			padding: 1.5rem;
 			transition: border 0.3s;
 			color: #3a3a3a;
+			@include media(500px) {
+				padding-left: 3rem;
+			}
 		}
 	}
 	&__areas {
@@ -653,6 +768,10 @@ onUnmounted(() => document.removeEventListener('keyup', handleKeyup));
 		@include media($large-desktop, min) {
 			font-size: 2rem;
 		}
+		img {
+			width: 3rem;
+			height: 3rem;
+		}
 		&--6 {
 			display: block;
 			& span:nth-child(2) {
@@ -661,6 +780,10 @@ onUnmounted(() => document.removeEventListener('keyup', handleKeyup));
 			.investors__item-sub {
 				margin-left: 4rem;
 				margin-top: 1rem;
+				svg {
+					width: 3rem;
+					height: 3rem;
+				}
 			}
 		}
 		&-sub {
@@ -679,6 +802,14 @@ onUnmounted(() => document.removeEventListener('keyup', handleKeyup));
 	&__right {
 		transform: translateX(100%);
 		position: relative;
+
+		@include media($tab-port) {
+			transform: translateX(0);
+		}
+		&--5 {
+			flex-basis: initial;
+			height: 640px;
+		}
 		&--2 {
 			background-color: $color-primary;
 			color: #fff;
@@ -688,6 +819,10 @@ onUnmounted(() => document.removeEventListener('keyup', handleKeyup));
 			align-items: center;
 			gap: 3rem;
 			justify-content: space-between;
+
+			@include media($tab-port) {
+				padding: 5rem;
+			}
 
 			& > * {
 				display: flex;
@@ -710,6 +845,11 @@ onUnmounted(() => document.removeEventListener('keyup', handleKeyup));
 				align-self: stretch;
 				justify-content: space-between;
 				flex-direction: row;
+				@include media(350px) {
+					flex-direction: column;
+					gap: 3rem;
+					align-self: stretch !important;
+				}
 				div {
 					display: flex;
 					gap: 1.2rem;
@@ -720,6 +860,10 @@ onUnmounted(() => document.removeEventListener('keyup', handleKeyup));
 				p {
 					font-family: $font-poppins;
 					@include p;
+				}
+				img {
+					width: 20rem;
+					height: 12rem;
 				}
 			}
 			&_partners {
@@ -785,6 +929,10 @@ onUnmounted(() => document.removeEventListener('keyup', handleKeyup));
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
+			svg {
+				width: 8rem;
+				height: 8.4rem;
+			}
 		}
 		&-img {
 			opacity: 0;
@@ -803,6 +951,7 @@ onUnmounted(() => document.removeEventListener('keyup', handleKeyup));
 			color: #fff;
 			display: flex;
 			gap: 3rem;
+
 			&_item {
 				height: 9rem;
 				width: 16rem;
@@ -812,6 +961,11 @@ onUnmounted(() => document.removeEventListener('keyup', handleKeyup));
 				transition-duration: 400ms;
 				transform-origin: bottom;
 				cursor: pointer;
+
+				@include media(500px) {
+					width: 14rem;
+					height: 8rem;
+				}
 				&:hover {
 					transform: scale(1.2);
 					border-color: $color-secondary;
@@ -835,6 +989,24 @@ onUnmounted(() => document.removeEventListener('keyup', handleKeyup));
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
+		@include media($desktop) {
+			margin-left: calc($header-margin - 8rem + 0.9rem);
+		}
+		@include media($tab-port) {
+			margin-left: 0;
+			align-self: flex-start;
+			transform: translateX(0);
+			max-width: initial;
+		}
+		&--2 {
+			@include media($tab-port) {
+				margin: 0 6.4rem;
+			}
+			@include media(500px) {
+				margin: 0 3rem;
+			}
+		}
+
 		&--1 {
 			& + .investors__right {
 				animation: slide-left 800ms;
@@ -858,6 +1030,9 @@ onUnmounted(() => document.removeEventListener('keyup', handleKeyup));
 				opacity: 0;
 				animation-delay: 900ms;
 			}
+			@include media($tab-port) {
+				margin-top: 20rem;
+			}
 		}
 	}
 	&__nav {
@@ -872,6 +1047,9 @@ onUnmounted(() => document.removeEventListener('keyup', handleKeyup));
 		gap: 1.6rem;
 		border-radius: 10rem;
 		box-shadow: 0px 0px 8px 0px #0000001a;
+		@include media($tab-port) {
+			display: none;
+		}
 	}
 	&__btn {
 		cursor: pointer;

@@ -1,6 +1,8 @@
 <template>
 	<header class="header" v-if="route.name != 'error'">
-		<div class="header__container">
+		<div
+			class="header__container"
+			:class="{ 'header__container-investors': $route.path == '/investors' }">
 			<label class="header__btn" for="menu">
 				<input class="header__menu" type="checkbox" name="menu" id="menu" ref="menuBtn" />
 				<label for="menu" class="header__label"></label>
@@ -15,7 +17,16 @@
 			</label>
 			<RouterLink to="/">
 				<img class="header__logo" src="@/assets/icons/logo.svg" alt="logo" />
-				<img class="header__logo-white" src="@/assets/icons/logo-white.svg" alt="logo" />
+				<img
+					v-if="$route.path != '/investors'"
+					class="header__logo-white"
+					src="@/assets/icons/logo-white.svg"
+					alt="logo" />
+				<img
+					v-else
+					class="header__logo-white"
+					src="@/assets/icons/header-logo.svg"
+					alt="logo" />
 			</RouterLink>
 			<nav class="nav">
 				<NavLinks :links="routingLinks" class="nav__list" />
@@ -36,7 +47,7 @@
 					</ul>
 				</label>
 			</nav>
-			<div class="header__right">
+			<div class="header__right" v-if="$route.path != '/investors'">
 				<div class="nav__lang">
 					<label class="nav__lang-label" for="mobile-lang">{{
 						i18n.global.locale.toUpperCase()
@@ -153,6 +164,14 @@ const toggleMenu = () => (menuBtn.value.checked = !menuBtn.value.checked);
 		padding: 0.9rem 0;
 		gap: 2rem;
 		margin: 0 $header-margin;
+		&-investors {
+			grid-auto-columns: max-content !important;
+			max-width: 100% !important;
+			margin: 0 6.4rem;
+		}
+		@include media($desktop) {
+			margin: 0 calc($header-margin - 8rem);
+		}
 		@include flex-justify(space-between);
 		@include media($tab-port) {
 			position: absolute;
@@ -166,6 +185,11 @@ const toggleMenu = () => (menuBtn.value.checked = !menuBtn.value.checked);
 			align-items: center;
 			padding-top: 20px;
 		}
+
+		@include media(500px) {
+			margin: 0 3rem;
+		}
+
 		@include media(1500px) {
 			max-width: 90%;
 		}
