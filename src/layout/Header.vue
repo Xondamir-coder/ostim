@@ -1,8 +1,6 @@
 <template>
 	<header class="header" v-if="route.name != 'error'">
-		<div
-			class="header__container"
-			:class="{ 'header__container-investors': $route.path == '/investors' }">
+		<div class="header__container">
 			<RouterLink class="header__logo-container" to="/">
 				<img class="header__logo" src="@/assets/icons/logo.svg" alt="logo" />
 				<img class="header__logo-white" src="@/assets/icons/header-logo.svg" alt="logo" />
@@ -13,20 +11,20 @@
 				<div class="menu">
 					<NavLinks :links="routingLinks" class="menu__list" @click="toggleMenu" />
 					<div class="menu__content">
-						<label class="nav__lang nav__lang-mobile" for="lang">
-							<label class="nav__lang-label" for="lang">{{
+						<label class="nav__lang nav__lang-mobile" for="menu-lang">
+							<label class="nav__lang-label" for="menu-lang">{{
 								i18n.global.locale.toUpperCase()
 							}}</label>
 							<input
 								class="nav__lang-checkbox"
 								type="checkbox"
 								name="lang"
-								id="lang" />
+								id="menu-lang" />
 							<ul class="nav__lang-list">
 								<li class="nav__lang-item" v-for="lang in ['UZ', 'RU', 'EN', 'TR']">
 									<label
 										class="nav__lang-label"
-										for="lang"
+										for="menu-lang"
 										@click="changeLanguage(lang.toLowerCase())"
 										>{{ lang }}</label
 									>
@@ -247,7 +245,7 @@ const toggleMenu = () => (menuBtn.value.checked = !menuBtn.value.checked);
 			}
 		}
 		&-list {
-			transition-property: opacity, transform;
+			transition-property: opacity, transform, visibility;
 			transition-duration: 0.25s;
 			width: 6rem;
 			position: absolute;
@@ -266,8 +264,9 @@ const toggleMenu = () => (menuBtn.value.checked = !menuBtn.value.checked);
 			z-index: 10;
 			border-radius: 0.7rem;
 			box-shadow: 0px 0px 10px 3px rgba($color-primary, 0.5);
-			transform: translateY(-2rem);
+			transform: translateY(-4rem);
 			opacity: 0;
+			visibility: hidden;
 			li:nth-child(2) {
 				transition-delay: 0.3s;
 			}
@@ -308,6 +307,7 @@ const toggleMenu = () => (menuBtn.value.checked = !menuBtn.value.checked);
 			&:checked + .nav__lang-list {
 				opacity: 1;
 				transform: translateY(0);
+				visibility: visible;
 			}
 			&:checked + .nav__lang-list > * {
 				opacity: 1;
