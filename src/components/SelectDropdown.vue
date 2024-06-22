@@ -104,7 +104,7 @@ const chooseOption = option => (model.value = option);
 		visibility: hidden;
 		transform: translateY(-4rem);
 		transition-property: opacity, transform, visibility;
-		transition-duration: 600ms;
+		transition-duration: 200ms;
 		display: flex;
 		flex-direction: column;
 		// gap: 1rem;

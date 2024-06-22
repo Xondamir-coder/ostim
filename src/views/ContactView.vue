@@ -10,6 +10,7 @@
 				</div>
 				<form class="info__form" @submit.prevent="submitForm">
 					<input
+						@input="submitMsg = ''"
 						v-model="submitData.name"
 						required
 						type="text"
@@ -43,7 +44,7 @@
 						id="message"
 						:placeholder="`${i18n.global.t('input-msg')} *`" />
 					<button type="submit" class="primary-button">
-						{{ i18n.global.t('submit') }}
+						{{ submitButtonText }}
 					</button>
 				</form>
 			</div>
@@ -64,13 +65,13 @@ import { computed, onMounted, reactive, ref } from 'vue';
 import InfoBoard from '@/components/InfoBoard.vue';
 import Hero from '@/layout/Hero.vue';
 import DownloadCatalog from '@/layout/DownloadCatalog.vue';
-import Instagram from '@/layout/Instagram.vue';
 import Footer from '@/layout/Footer.vue';
 import Copyright from '@/layout/Copyright.vue';
-import { animateSections } from '@/js/helpers';
+import { animateSections, sendDataToTelegram } from '@/js/helpers';
 import i18n from '@/locales';
 
 const container = ref();
+const submitMsg = ref('');
 const infoData = computed(() => ({
 	title: i18n.global.t('contact-info'),
 	text: 'Tortor dignissim convallis aenean et tortor at risus viverra adipiscing.',
@@ -104,6 +105,7 @@ const officeData = computed(() => ({
 		}
 	]
 }));
+const submitButtonText = computed(() => submitMsg.value || i18n.global.t('submit'));
 
 const submitData = reactive({
 	name: '',
@@ -113,8 +115,11 @@ const submitData = reactive({
 	message: ''
 });
 
-const submitForm = () => {
+const submitForm = async () => {
 	console.log(submitData);
+	const text = `Имя: ${submitData.name}\nПочта: ${submitData.email}\nНомер телефона: ${submitData.tel}\nТема: ${submitData.subject}\nСообщение: ${submitData.message}`;
+	const { message } = await sendDataToTelegram(text, 'question');
+	submitMsg.value = message;
 	Object.entries(submitData).forEach(([key]) => (submitData[key] = ''));
 };
 

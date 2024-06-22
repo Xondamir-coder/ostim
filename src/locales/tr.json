@@ -120,7 +120,6 @@
 	"next": "Sonraki",
 	"contact-us": "Bize Ulaşın",
 	"submit-success": "Başarıyla gönderildi",
-	"submit-error": "Yeterli sayı girilmedi",
 	"see-instruction": "talimatlara bakın",
 	"download-documents": "Belgeleri indirin",
 	"modules": "Modüller",
@@ -135,6 +134,8 @@
 	"stock": "Stok",
 	"other": "Diğer",
 	"year": "yıl",
+	"error": "Bir hata oluştu. Lütfen tekrar deneyin.",
+	"invalid-phone-number": "Yeterli sayı girilmedi",
 
 	"input-name": "Adınız",
 	"input-mail": "E-postanızı buraya yazın",

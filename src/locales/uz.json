@@ -121,7 +121,6 @@
 	"next": "Keyingisi",
 	"contact-us": "Biz bilan bog'lanish",
 	"submit-success": "Muvaffaqiyatli yuborildi",
-	"submit-error": "Yetarli raqamlar kiritilmagan",
 	"see-instruction": "Instruksiya ko'rish",
 	"download-documents": "Dokument yuklab olish",
 	"modules": "Modullar",
@@ -136,6 +135,8 @@
 	"stock": "Ombor",
 	"other": "Boshqa",
 	"year": "yil",
+	"error": "Xatolik yuz berdi. Qayta urinib ko'ring.",
+	"invalid-phone-number": "Yetarli raqamlar kiritilmagan",
 
 	"input-name": "Sizning ismingiz",
 	"input-mail": "Pochtagizni shu yerga yozing",

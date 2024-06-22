@@ -237,6 +237,7 @@
 			</h1>
 			<form class="investors__form" @submit.prevent="submitForm">
 				<input
+					@input="submitMsg = ''"
 					v-model="data.name"
 					type="text"
 					name="name"
@@ -279,7 +280,7 @@
 					:content="purposeContent"
 					v-model="data.purpose" />
 				<button type="submit" class="secondary-button">
-					{{ i18n.global.t('submit') }}
+					{{ submitButtonText }}
 				</button>
 			</form>
 		</div>
@@ -411,7 +412,9 @@ import collegeImg from '@/assets/investors-college.avif';
 import kindergartenImg from '@/assets/investors-5.avif';
 import SelectDropdown from '@/components/SelectDropdown.vue';
 import NavLinks from '@/components/NavLinks.vue';
+import { sendDataToTelegram } from '@/js/helpers';
 
+const submitMsg = ref('');
 const curSlide = ref(0);
 const data = ref({
 	name: '',
@@ -452,6 +455,7 @@ const gasContent = [
 	`> 500 млн. м³/${i18n.global.t('year')}`
 ];
 
+const submitButtonText = computed(() => submitMsg.value || i18n.global.t('submit'));
 const imgs = computed(() => avenues.value.map(e => e.banner));
 const childrenAvenues = computed(() => [
 	{ img: kindergartenImg, name: 'kindergarten' },
@@ -468,8 +472,15 @@ const handleKeyup = e => {
 	if (e.key === 'ArrowRight') curSlide.value !== 6 && changeSlide(curSlide.value + 1);
 	if (e.key === 'ArrowLeft') curSlide.value !== 0 && changeSlide(curSlide.value - 1);
 };
-const submitForm = () => {
-	console.log(data.value);
+const submitForm = async () => {
+	const text = `Имя: ${data.value.name}\nНомер телефона: ${data.value.tel}\nПожелания: ${
+		data.value.wish || '-'
+	}\nПлощадь: ${data.value.area || '-'}\nИсточник питания: ${
+		data.value.source || '-'
+	}\nГазоснабжение: ${data.value.gas || '-'}\nНазначение: ${data.value.purpose || '-'}`;
+	const { message } = await sendDataToTelegram(text, 'investor');
+	submitMsg.value = message;
+	Object.entries(data.value).forEach(([key]) => (data.value[key] = ''));
 };
 
 const viewportWidth = window.innerWidth;
@@ -506,47 +517,60 @@ watch(curSlide, () => {
 });
 onMounted(() => {
 	if (viewportWidth <= 768) {
-		const observer = new IntersectionObserver(
-			entries => {
-				entries.forEach(entry => {
-					if (entry.isIntersecting && !animation) {
-						let count = 0;
-						animation = gsap.to(container.value.firstElementChild.firstElementChild, {
-							width: '100%',
-							duration: 3,
-							repeat: -1,
-							onRepeat: () => {
-								const arr = Array.from(container.value.children).slice(1);
-								if (count === arr.length - 1) {
-									animation.kill();
-									gsap.to(container.value.firstElementChild.firstElementChild, {
-										width: '100%',
-										duration: 3
-									});
-									return;
-								}
-								arr.forEach(e =>
-									gsap.to(e, {
-										duration: 1,
-										x: `-=${e.scrollWidth + 20}`
-									})
-								);
-								count++;
+		const handleCarouselObserver = entries => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting && !animation) {
+					let count = 0;
+					animation = gsap.to(container.value.firstElementChild.firstElementChild, {
+						width: '100%',
+						duration: 3,
+						repeat: -1,
+						onRepeat: () => {
+							const arr = Array.from(container.value.children).slice(1);
+							if (count === arr.length - 1) {
+								animation.kill();
+								gsap.to(container.value.firstElementChild.firstElementChild, {
+									width: '100%',
+									duration: 3
+								});
+								return;
 							}
-						});
-					}
-					if (!entry.isIntersecting && animation) {
-						animation.pause();
-					}
-					if (entry.isIntersecting && animation) {
-						animation.play();
-					}
-				});
-			},
-			{ threshold: 0.3 }
-		);
+							arr.forEach(e =>
+								gsap.to(e, {
+									duration: 1,
+									x: `-=${e.scrollWidth + 20}`
+								})
+							);
+							count++;
+						}
+					});
+				}
+				if (!entry.isIntersecting && animation) {
+					animation.pause();
+				}
+				if (entry.isIntersecting && animation) {
+					animation.play();
+				}
+			});
+		};
+		const handleSectionsObserver = entries => {
+			entries.forEach(e => {
+				const { target } = e;
+				if (e.isIntersecting) target.classList.remove('section--hidden');
+				else target.classList.add('section--hidden');
+			});
+		};
+		const carouselObserver = new IntersectionObserver(handleCarouselObserver, {
+			threshold: 0.3
+		});
+		carouselObserver.observe(carousel.value.lastElementChild);
 
-		observer.observe(carousel.value.lastElementChild);
+		const sections = Array.from(carousel.value.parentElement.children).slice(2);
+		const sectionsObserver = new IntersectionObserver(handleSectionsObserver);
+		sections.forEach(s => {
+			s.classList.add('section--hidden');
+			sectionsObserver.observe(s);
+		});
 		return;
 	}
 	document.addEventListener('keyup', handleKeyup);
@@ -567,7 +591,7 @@ onUnmounted(() => viewportWidth >= 768 && document.removeEventListener('keyup', 
 }
 
 .investors {
-	$transition-duration: 800ms;
+	$transition-duration: 1s;
 	color: #000;
 	font-family: $font-jost;
 	display: flex;
@@ -623,7 +647,7 @@ onUnmounted(() => viewportWidth >= 768 && document.removeEventListener('keyup', 
 	}
 	& > * {
 		flex-basis: 50%;
-		transition: transform $transition-duration;
+		transition: transform $transition-duration, opacity $transition-duration;
 	}
 	&:last-child {
 		.investors__right {
@@ -1166,6 +1190,17 @@ a {
 }
 .red {
 	color: $color-secondary !important;
+}
+.section--hidden {
+	& > * {
+		opacity: 0;
+	}
+	.investors__right {
+		transform: translateX(-100%);
+	}
+	.investors__content {
+		transform: translateX(100%);
+	}
 }
 
 @keyframes slide-up {

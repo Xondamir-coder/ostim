@@ -115,7 +115,7 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
-import { animateSections } from '@/js/helpers';
+import { animateSections, sendDataToTelegram } from '@/js/helpers';
 import { avenues, questions, reasons } from '@/content/data';
 import DownloadCatalog from '@/layout/DownloadCatalog.vue';
 import Copyright from '@/layout/Copyright.vue';
@@ -128,45 +128,18 @@ const tel = ref('');
 const reasonsContainer = ref();
 const avenuesContainer = ref();
 
-const getDevice = () => (window.matchMedia('(pointer:coarse)').matches ? 'Mobile' : 'Desktop');
 const submitTel = async () => {
 	if (tel.value.length < 17) {
 		showTelLabel.value = true;
-		telLabel.value = `${i18n.global.t('submit-error')} ❌`;
+		telLabel.value = `${i18n.global.t('invalid-phone-number')} ❌`;
 		return;
 	}
 
-	console.log('submitting');
-
-	const date = new Intl.DateTimeFormat('en-GB', {
-		dateStyle: 'short',
-		timeStyle: 'short'
-	}).format(new Date());
-	const device = getDevice();
-	const text = `Phone number: ${tel.value}
-Time: ${date}
-From: ${device}`;
-	const botToken = import.meta.env.VITE_BOT_TOKEN;
-	const chat_id = '@ostim_global';
-	const postData = { chat_id, text };
-	const URL = `https://api.telegram.org/bot${botToken}/sendMessage`;
-
-	try {
-		const res = await fetch(URL, {
-			method: 'POST',
-			headers: {
-				'content-type': 'application/json'
-			},
-			body: JSON.stringify(postData)
-		});
-		const data = await res.json();
-		tel.value = '';
-		showTelLabel.value = true;
-		telLabel.value = `${i18n.global.t('submit-success')} ✅`;
-		console.log(data);
-	} catch (error) {
-		console.error(error);
-	}
+	const text = `Номер телефона: ${tel.value}`;
+	const { message } = await sendDataToTelegram(text, 'call');
+	tel.value = '';
+	showTelLabel.value = true;
+	telLabel.value = message;
 };
 const setInitialValue = () => (tel.value = '+998 ');
 const checkInput = () => {
