@@ -835,8 +835,10 @@ onUnmounted(() => viewportWidth >= 768 && document.removeEventListener('keyup', 
 			transform: translateX(0);
 		}
 		&--5 {
-			flex-basis: initial;
-			height: 640px;
+			@include media($tab-port) {
+				flex-basis: initial;
+				height: 640px;
+			}
 		}
 		&--2 {
 			background-color: $color-primary;
