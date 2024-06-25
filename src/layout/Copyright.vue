@@ -11,7 +11,7 @@
 					<img class="copyright__img" src="@/assets/icons/partner-5.svg" alt="" />
 				</div>
 			</div>
-			<p>&copy; Copyright {{ new Date().getFullYear() }}</p>
+			<p>&copy; {{ i18n.global.t('copyright') }} {{ new Date().getFullYear() }}</p>
 		</div>
 	</section>
 </template>

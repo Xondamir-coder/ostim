@@ -1,5 +1,8 @@
 {
 	"ceo": "CEO",
+	"hectare": "hectare",
+	"copyright": "All rights reserved",
+
 	"link-main": "Main",
 	"link-project": "Project",
 	"link-about": "About us",
@@ -21,9 +24,9 @@
 	"investors-title-6": "5 steps",
 	"investors-title-7": "BECOME AN INVESTOR",
 	"investors-subtitle-1": "Discover opportunities that transform business and economy",
-	"investors-subtitle-3": "Ostim global - a company with extensive experience in implementing projects at various stages of construction. Specializes in comprehensive management of investment and construction projects.",
-	"investors-subtitle-4": "Ostim global - a company with extensive experience in implementing projects at various stages of construction. Specializes in comprehensive management of investment and construction projects.",
-	"investors-subtitle-5": "The Special Economic Zone (SEZ) provides all the conditions for quality education at all levels. Modern kindergartens, schools, and colleges offer comfortable and safe learning using advanced technologies and methodologies. Highly qualified teachers and specialists contribute to the all-around development and successful future of your children.",
+	"investors-subtitle-3": "Ostim global - a company with extensive experience in implementing projects at various stages of construction. Specializes in comprehensive management of investment and construction projects",
+	"investors-subtitle-4": "Ostim global - a company with extensive experience in implementing projects at various stages of construction. Specializes in comprehensive management of investment and construction projects",
+	"investors-subtitle-5": "The Special Economic Zone (SEZ) provides all the conditions for quality education at all levels. Modern kindergartens, schools, and colleges offer comfortable and safe learning using advanced technologies and methodologies. Highly qualified teachers and specialists contribute to the all-around development and successful future of your children",
 	"investors-subtitle-7": "Describe your requirements, and we will find the perfect place for the development of your business",
 	"investors-item-1": "General contractor",
 	"investors-item-2": "General designer",
@@ -37,6 +40,7 @@
 	"investors-step-5": "land allocation agreement",
 	"investors-total-area": "total area",
 	"investors-place": "places",
+	"investors-social": "social",
 
 	"investors-input-name": "Name",
 	"investors-input-tel": "Phone number",
@@ -136,6 +140,8 @@
 	"year": "year",
 	"error": "Error occured. Try again.",
 	"invalid-phone-number": "Not enough numbers entered",
+	"letter-m": "m",
+	"mln": "mln",
 
 	"input-name": "Your name",
 	"input-mail": "Write your email here",

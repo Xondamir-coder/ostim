@@ -1,5 +1,8 @@
 {
 	"ceo": "CEO",
+	"hectare": "hektar",
+	"copyright": "Her hakkı saklıdır",
+
 	"link-main": "Ana",
 	"link-project": "Proje",
 	"link-about": "Hakkımızda",
@@ -25,9 +28,9 @@
 	"investors-title-6": "5 adım",
 	"investors-title-7": "YATIRIMCI OL",
 	"investors-subtitle-1": "İş dünyasını ve ekonomiyi dönüştüren fırsatları keşfedin",
-	"investors-subtitle-3": "Ostim global - inşaatın çeşitli aşamalarında projeleri hayata geçirme konusunda geniş deneyime sahip bir şirkettir. Yatırım ve inşaat projelerinin kapsamlı yönetiminde uzmanlaşmıştır.",
-	"investors-subtitle-4": "Ostim global - inşaatın çeşitli aşamalarında projeleri hayata geçirme konusunda geniş deneyime sahip bir şirkettir. Yatırım ve inşaat projelerinin kapsamlı yönetiminde uzmanlaşmıştır.",
-	"investors-subtitle-5": "Özel Ekonomik Bölge'de (ÖEB) her seviyede kaliteli eğitim için tüm koşullar sağlanmıştır. Modern anaokulları, okullar ve kolejler, ileri teknolojiler ve yöntemler kullanarak konforlu ve güvenli bir öğrenim sunar. Yüksek nitelikli öğretmenler ve uzmanlar, çocuklarınızın her yönden gelişimine ve başarılı bir geleceğe katkıda bulunur.",
+	"investors-subtitle-3": "Ostim global - inşaatın çeşitli aşamalarında projeleri hayata geçirme konusunda geniş deneyime sahip bir şirkettir. Yatırım ve inşaat projelerinin kapsamlı yönetiminde uzmanlaşmıştır",
+	"investors-subtitle-4": "Ostim global - inşaatın çeşitli aşamalarında projeleri hayata geçirme konusunda geniş deneyime sahip bir şirkettir. Yatırım ve inşaat projelerinin kapsamlı yönetiminde uzmanlaşmıştır",
+	"investors-subtitle-5": "Özel Ekonomik Bölge'de (ÖEB) her seviyede kaliteli eğitim için tüm koşullar sağlanmıştır. Modern anaokulları, okullar ve kolejler, ileri teknolojiler ve yöntemler kullanarak konforlu ve güvenli bir öğrenim sunar. Yüksek nitelikli öğretmenler ve uzmanlar, çocuklarınızın her yönden gelişimine ve başarılı bir geleceğe katkıda bulunur",
 	"investors-subtitle-7": "Gereksinimlerinizi açıklayın, ve işinizin gelişimi için mükemmel yeri bulalım",
 	"investors-item-1": "Genel yüklenici",
 	"investors-item-2": "Genel tasarımcı",
@@ -41,6 +44,7 @@
 	"investors-step-5": "arsa tahsis sözleşmesi",
 	"investors-total-area": "toplam alan",
 	"investors-place": "yerler",
+	"investors-social": "sosyal",
 
 	"investors-input-name": "Isim",
 	"investors-input-tel": "telefon numarası",
@@ -136,6 +140,8 @@
 	"year": "yıl",
 	"error": "Bir hata oluştu. Lütfen tekrar deneyin.",
 	"invalid-phone-number": "Yeterli sayı girilmedi",
+	"letter-m": "m",
+	"mln": "milyon",
 
 	"input-name": "Adınız",
 	"input-mail": "E-postanızı buraya yazın",

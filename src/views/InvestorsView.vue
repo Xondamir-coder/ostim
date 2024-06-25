@@ -45,11 +45,18 @@
 				</li>
 			</ul>
 			<ul class="investors__areas">
-				<li class="investors__area" v-for="i in [1, 2, 3]" :key="i">
-					<span class="investors__area-big">100</span>
-					<span class="investors__area-small">га</span>
+				<li
+					class="investors__area"
+					v-for="entry in [
+						{ area: 100, name: i18n.global.t('investors-total-area') },
+						{ area: 70, name: i18n.global.t('investors-social') },
+						{ area: 30, name: i18n.global.t('production') }
+					]"
+					:key="i">
+					<span class="investors__area-big">{{ entry.area }}</span>
+					<span class="investors__area-small">{{ i18n.global.t('hectare') }}</span>
 					<span class="investors__area-title">
-						{{ i18n.global.t('investors-total-area') }}
+						{{ entry.name }}
 					</span>
 				</li>
 			</ul>
@@ -104,9 +111,8 @@
 				<li
 					class="investors__area"
 					v-for="item in [
-						['100', i18n.global.t('modules')],
-						['150-200', i18n.global.t('modules')],
-						['10 000', i18n.global.t('investors-total-area')]
+						['400-500', i18n.global.t('modules')],
+						['111 000', i18n.global.t('investors-total-area')]
 					]"
 					:key="item">
 					<span class="investors__area-big">{{ item[0] }}</span>
@@ -221,7 +227,17 @@
 						fill="black" />
 				</svg>
 			</div>
-			<button class="secondary-button">{{ i18n.global.t('who-btn') }}</button>
+			<a
+				:href="
+					i18n.global.locale === 'ru' || i18n.global.locale === 'en'
+						? 'rus.zip'
+						: i18n.global.locale === 'tr'
+						? 'tr.zip'
+						: 'uzb.zip'
+				"
+				class="secondary-button"
+				>{{ i18n.global.t('download-documents') }}</a
+			>
 		</div>
 		<div class="investors__right">
 			<img class="investors__img" src="@/assets/investors-6.avif" alt="first" />
@@ -286,7 +302,7 @@
 		</div>
 		<div class="investors__right investors__right--2">
 			<div class="investors__right--2_head">
-				<img src="@/assets/icons/logo-old.svg" alt="old logo" />
+				<img src="@/assets/icons/logo.svg" alt="old logo" />
 				<p>{{ i18n.global.t('hero-subtitle') }}</p>
 			</div>
 			<div class="investors__right--2_partners">
@@ -392,7 +408,7 @@
 				</li>
 			</ul>
 			<div class="investors__right--2_copyright">
-				<p>© Copyright {{ new Date().getFullYear() }}</p>
+				<p>© {{ i18n.global.t('copyright') }} {{ new Date().getFullYear() }}</p>
 				<div>
 					<p>{{ i18n.global.t('developed') }}</p>
 					<img src="@/assets/icons/spacelabs.svg" alt="spacelabs" />
@@ -427,13 +443,13 @@ const data = ref({
 });
 const container = ref();
 const currentAvenue = ref('kindergarten');
-const areaContent = [
-	'400 — 2 000 м²',
-	'2 000 — 5 000 м²',
-	'5 000 — 10 000 м²',
-	'10 000 — 30 000 м²',
-	'>30 000 м²'
-];
+const areaContent = computed(() => [
+	`400 — 2 000 ${i18n.global.t('letter-m')}`,
+	`2 000 — 5 000 ${i18n.global.t('letter-m')}`,
+	`5 000 — 10 000 ${i18n.global.t('letter-m')}`,
+	`10 000 — 30 000 ${i18n.global.t('letter-m')}`,
+	`>30 000 ${i18n.global.t('letter-m')}`
+]);
 const sourceContent = computed(() => [
 	`<0,5 ${i18n.global.t('mega-watt')}`,
 	`0,5 — 2 ${i18n.global.t('mega-watt')}`,
@@ -445,15 +461,15 @@ const purposeContent = computed(() => [
 	i18n.global.t('stock'),
 	i18n.global.t('other')
 ]);
-const gasContent = [
-	`< 0,01 млн м³/${i18n.global.t('year')}`,
-	`0,01 – 0,1 млн. м³/${i18n.global.t('year')}`,
-	`0,1 – 1 млн. м³/${i18n.global.t('year')}`,
-	`1 – 10 млн. м³/${i18n.global.t('year')}`,
-	`10 – 100 млн. м³/${i18n.global.t('year')}`,
-	`100 – 500 млн. м³/${i18n.global.t('year')}`,
-	`> 500 млн. м³/${i18n.global.t('year')}`
-];
+const gasContent = computed(() => [
+	`< 0,01 ${i18n.global.t('mln')} ${i18n.global.t('letter-m')}³/${i18n.global.t('year')}`,
+	`0,01 – 0,1 ${i18n.global.t('mln')}. ${i18n.global.t('letter-m')}³/${i18n.global.t('year')}`,
+	`0,1 – 1 ${i18n.global.t('mln')}. ${i18n.global.t('letter-m')}³/${i18n.global.t('year')}`,
+	`1 – 10 ${i18n.global.t('mln')}. ${i18n.global.t('letter-m')}³/${i18n.global.t('year')}`,
+	`10 – 100 ${i18n.global.t('mln')}. ${i18n.global.t('letter-m')}³/${i18n.global.t('year')}`,
+	`100 – 500 ${i18n.global.t('mln')}. ${i18n.global.t('letter-m')}³/${i18n.global.t('year')}`,
+	`> 500 ${i18n.global.t('mln')}. ${i18n.global.t('letter-m')}³/${i18n.global.t('year')}`
+]);
 
 const submitButtonText = computed(() => submitMsg.value || i18n.global.t('submit'));
 const imgs = computed(() => avenues.value.map(e => e.banner));
