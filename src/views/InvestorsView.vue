@@ -49,8 +49,7 @@
 					class="investors__area"
 					v-for="entry in [
 						{ area: 100, name: i18n.global.t('investors-total-area') },
-						{ area: 70, name: i18n.global.t('investors-social') },
-						{ area: 30, name: i18n.global.t('production') }
+						{ area: 70, name: i18n.global.t('production') }
 					]"
 					:key="i">
 					<span class="investors__area-big">{{ entry.area }}</span>
