@@ -267,10 +267,9 @@
 					id="tel"
 					required
 					:placeholder="`${i18n.global.t('investors-input-tel')} *`" />
-				<input
+				<textarea
 					v-model="data.wish"
 					class="investors__input-wish"
-					type="text"
 					name="wish"
 					id="wish"
 					:placeholder="i18n.global.t('investors-input-wish')" />
@@ -748,7 +747,11 @@ onUnmounted(() => viewportWidth >= 768 && document.removeEventListener('keyup', 
 				grid-row: auto;
 			}
 		}
-		input {
+		textarea {
+			resize: none;
+		}
+		input,
+		textarea {
 			font-family: $font-lato;
 			font-size: 16px;
 			font-weight: 300;
